@@ -7,22 +7,22 @@ import { placeHolderImages } from '@/lib/placeholder-images';
 import { PortfolioGrid } from '@/components/portfolio/portfolio-grid';
 
 export default function Home() {
-  const scrollImages = placeHolderImages.filter(img => img.imageHint.includes('concert'));
+  const scrollImages = placeHolderImages.filter(img => img.imageHint.includes('wedding'));
   const featuredPortraits = placeHolderImages.filter(p => p.id.startsWith("portrait")).slice(0, 3);
 
 
   return (
     <>
       <HeroScroll images={scrollImages.map(img => img.imageUrl)} />
-      <div className="relative z-10 bg-transparent">
+      <div className="relative z-10 bg-background">
         <section className="container mx-auto px-4 text-center">
-           <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-            Capturing Moments, Creating Art.
+           <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter">
+            Timeless Photography
           </h1>
-          <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
             Welcome to the world as seen through my lens. I am Hardik, a photographer passionate about freezing time and telling stories through portraits, events, fashion, and the raw energy of the streets.
           </p>
-          <Button asChild size="lg" className="mt-6">
+          <Button asChild size="lg" variant="outline" className="mt-8">
             <Link href="/portfolio">
               Explore My Work <ArrowRight className="ml-2" />
             </Link>

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { CubistImage } from "./cubist-image";
+import Image from "next/image";
 
-interface Image {
+interface ImageInfo {
   id: string;
   imageUrl: string;
   description: string;
@@ -10,7 +10,7 @@ interface Image {
 
 interface PortfolioGridProps {
   title: string;
-  images: Image[];
+  images: ImageInfo[];
   layout?: "A" | "B" | "C";
 }
 
@@ -61,16 +61,18 @@ export function PortfolioGrid({ title, images, layout = "A" }: PortfolioGridProp
 
   return (
     <div className="container mx-auto px-4">
-      <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-8 text-center">
+      <h2 className="font-headline text-4xl md:text-5xl font-semibold tracking-tight mb-12 text-center">
         {title}
       </h2>
       <div className={cn(layoutClasses[layout])}>
         {images.map((image, index) => (
           <div key={image.id} className={cn("relative aspect-[4/5] md:aspect-auto", itemClasses[layout](index))}>
-            <CubistImage
+            <Image
               src={image.imageUrl}
               alt={image.description}
-              hint={image.imageHint}
+              fill
+              className="object-cover w-full h-full"
+              data-ai-hint={image.imageHint}
             />
           </div>
         ))}

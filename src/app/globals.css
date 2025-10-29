@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    --background: 260 40% 5%;
-    --foreground: 210 40% 98%;
-    --card: 260 30% 10%;
-    --card-foreground: 210 40% 98%;
-    --popover: 260 40% 5%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 180 100% 50%; /* Cyan */
-    --primary-foreground: 260 40% 5%;
-    --secondary: 260 30% 15%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 260 30% 15%;
-    --muted-foreground: 210 40% 70%;
-    --accent: 260 30% 20%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 260 30% 20%;
-    --input: 260 30% 15%;
-    --ring: 180 100% 50%;
-    --radius: 0.75rem;
+    --background: 40 33% 96%;
+    --foreground: 240 10% 3.9%;
+    --card: 40 33% 96%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 40 33% 96%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
   }
 
   .dark {
-    --background: 260 40% 5%;
-    --foreground: 210 40% 98%;
-    --card: 260 30% 10%;
-    --card-foreground: 210 40% 98%;
-    --popover: 260 40% 5%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 180 100% 50%; /* Cyan */
-    --primary-foreground: 260 40% 5%;
-    --secondary: 260 30% 15%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 260 30% 15%;
-    --muted-foreground: 210 40% 70%;
-    --accent: 260 30% 20%;
-    --accent-foreground: 210 40% 98%;
+    --background: 240 10% 3.9%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 60 9.1% 97.8%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 260 30% 20%;
-    --input: 260 30% 15%;
-    --ring: 180 100% 50%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
   }
 }
 
@@ -55,56 +55,9 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: hsl(var(--background));
-    background-image:
-      radial-gradient(ellipse 80% 80% at 50% -20%, hsl(260 50% 15% / 0.3), transparent),
-      linear-gradient(to right, hsl(260, 40%, 5%), hsl(240, 50%, 8%));
-    background-attachment: fixed;
-    position: relative;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="hsl(260 30% 20% / 0.3)"><path d="M0 .5H32V32"/></svg>');
-    mask-image: linear-gradient(to bottom, transparent, black, transparent);
-    pointer-events: none;
-    z-index: -1;
   }
 
   section {
-    @apply w-full py-16 md:py-24 lg:py-32;
+    @apply w-full py-16 md:py-24 lg:py-28;
   }
-}
-
-@keyframes background-pan {
-  from { background-position: 0% center; }
-  to { background-position: -200% center; }
-}
-
-.animated-gradient-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.animated-gradient-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(115deg, transparent 20%, hsl(var(--primary) / 0.1), transparent 80%);
-  background-size: 200% auto;
-  transition: background-position 0.8s ease-out;
-  background-position: 200% 0;
-  z-index: 1;
-}
-
-.animated-gradient-card:hover::before {
-  background-position: -200% 0;
 }

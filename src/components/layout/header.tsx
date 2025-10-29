@@ -28,10 +28,8 @@ export function Header() {
       <Link
         href={href}
         className={cn(
-          "text-lg md:text-sm font-medium transition-colors hover:text-primary relative",
-          isActive ? "text-primary" : "text-foreground/80",
-          "after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:bg-primary after:scale-x-0 after:origin-left after:transition-transform after:duration-300",
-          isActive ? "after:scale-x-100" : "hover:after:scale-x-100"
+          "text-sm font-medium transition-colors hover:text-primary relative tracking-widest uppercase",
+          isActive ? "text-primary" : "text-muted-foreground",
         )}
         onClick={() => setIsMenuOpen(false)}
       >
@@ -41,11 +39,10 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/20 bg-background/50 backdrop-blur-lg">
-      <div className="container flex h-20 items-center">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
+      <div className="container flex h-24 items-center">
         <Link href="/" className="mr-6 flex items-center gap-2">
-          <Logo className="h-8 w-8 text-primary" />
-          <span className="hidden font-bold sm:inline-block font-headline text-xl">
+          <span className="font-bold sm:inline-block font-headline text-2xl tracking-tighter">
             Through Hardik's Eye
           </span>
         </Link>
@@ -62,7 +59,7 @@ export function Header() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden border-t border-border/20 bg-background/80 backdrop-blur-lg">
+        <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-sm">
             <nav className="flex flex-col items-center gap-6 py-6">
                 {navLinks.map((link) => (
                     <NavLink key={link.href} {...link} />
