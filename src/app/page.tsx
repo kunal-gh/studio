@@ -117,36 +117,34 @@ export default function Home() {
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
             <div className="container mx-auto px-4">
-                <div className="relative grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                     {bioImage && (
-                        <div className="relative aspect-[4/5] -ml-16 md:-ml-24 lg:-ml-32">
+                        <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
                             <Image
                                 src={bioImage.imageUrl}
                                 alt={bioImage.description}
                                 fill
-                                className="object-cover rounded-lg"
+                                className="object-cover"
                                 data-ai-hint={bioImage.imageHint}
                             />
                         </div>
                     )}
-                    <div className="relative bg-background/80 backdrop-blur-sm p-8 md:p-0 md:bg-transparent md:backdrop-blur-none rounded-lg md:-ml-32 lg:-ml-48">
-                        <div className="max-w-lg space-y-8">
-                             <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter">
-                                About The Artist
-                            </h2>
-                            <h3 className="font-headline text-4xl font-semibold">Hardik — The Eye Behind the Lens</h3>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
-                            </p>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt.
-                            </p>
-                            <Button asChild size="lg" variant="outline" className="animate-pulse">
-                                <Link href="/#contact">
-                                    Work With Me <ArrowRight className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
-                        </div>
+                    <div className="space-y-6">
+                        <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter">
+                            About The Artist
+                        </h2>
+                        <h3 className="font-headline text-3xl font-semibold text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
+                        <p className="text-lg text-foreground/80 leading-relaxed">
+                            Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
+                        </p>
+                        <p className="text-lg text-foreground/80 leading-relaxed">
+                            My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt.
+                        </p>
+                        <Button asChild size="lg" variant="outline">
+                            <Link href="/#contact">
+                                Work With Me <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             </div>
