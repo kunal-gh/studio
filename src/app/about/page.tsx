@@ -13,10 +13,10 @@ export default function AboutPage() {
     const bioImage = placeHolderImages.find(img => img.imageHint.includes('portrait street'));
 
     return (
-        <div className="w-full">
+        <div className="w-full bg-background">
             <section className="container mx-auto px-4 text-center">
                 <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter">
-                    About the Artist
+                    About The Artist
                 </h1>
                 <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
                     Discover the passion, inspiration, and story behind Through Hardik's Eye.
@@ -25,14 +25,14 @@ export default function AboutPage() {
 
             <section>
                 <div className="container mx-auto px-4">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                          {bioImage && (
                             <div className="relative aspect-[4/5]">
                                 <Image
                                 src={bioImage.imageUrl}
                                 alt={bioImage.description}
                                 fill
-                                className="object-cover"
+                                className="object-cover rounded-lg"
                                 data-ai-hint={bioImage.imageHint}
                                 />
                             </div>
@@ -50,7 +50,7 @@ export default function AboutPage() {
                             </p>
                              <Button asChild size="lg" variant="outline">
                                 <Link href="/contact">
-                                    Work With Me <ArrowRight className="ml-2" />
+                                    Work With Me <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
                         </div>

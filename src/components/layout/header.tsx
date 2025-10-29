@@ -5,17 +5,14 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/portfolio", label: "Portfolio" },
-  { href: "/testimonials", label: "Testimonials" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-  { href: "/ai-curator", label: "AI Curator" },
 ];
 
 export function Header() {

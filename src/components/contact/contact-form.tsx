@@ -66,7 +66,7 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 bg-secondary p-8 rounded-lg">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 bg-secondary/50 p-8 rounded-lg">
         <FormField
           control={form.control}
           name="name"
