@@ -124,13 +124,13 @@ export default function Home() {
                                 src={bioImage.imageUrl}
                                 alt={bioImage.description}
                                 fill
-                                className="object-cover"
+                                className="object-cover rounded-lg"
                                 data-ai-hint={bioImage.imageHint}
                             />
                         </div>
                     )}
-                    <div className="relative bg-background/80 backdrop-blur-sm p-8 md:p-12 lg:p-16 md:-ml-32 lg:-ml-48 rounded-lg">
-                        <div className="max-w-md space-y-8">
+                    <div className="relative bg-background/80 backdrop-blur-sm p-8 md:p-0 md:bg-transparent md:backdrop-blur-none rounded-lg md:-ml-32 lg:-ml-48">
+                        <div className="max-w-lg space-y-8">
                              <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter">
                                 About The Artist
                             </h2>
@@ -141,7 +141,7 @@ export default function Home() {
                             <p className="text-lg text-muted-foreground leading-relaxed">
                                 My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt.
                             </p>
-                            <Button asChild size="lg" variant="outline">
+                            <Button asChild size="lg" variant="outline" className="animate-pulse">
                                 <Link href="/#contact">
                                     Work With Me <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
