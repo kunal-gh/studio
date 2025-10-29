@@ -28,8 +28,10 @@ export function Header() {
       <Link
         href={href}
         className={cn(
-          "text-lg md:text-sm font-medium transition-colors hover:text-primary",
-          isActive ? "text-primary" : "text-foreground/80"
+          "text-lg md:text-sm font-medium transition-colors hover:text-primary relative",
+          isActive ? "text-primary" : "text-foreground/80",
+          "after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:bg-primary after:scale-x-0 after:origin-left after:transition-transform after:duration-300",
+          isActive ? "after:scale-x-100" : "hover:after:scale-x-100"
         )}
         onClick={() => setIsMenuOpen(false)}
       >
@@ -39,15 +41,15 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
+    <header className="sticky top-0 z-50 w-full border-b border-border/20 bg-background/50 backdrop-blur-lg">
+      <div className="container flex h-20 items-center">
         <Link href="/" className="mr-6 flex items-center gap-2">
-          <Logo className="h-6 w-6" />
-          <span className="hidden font-bold sm:inline-block font-headline">
+          <Logo className="h-8 w-8 text-primary" />
+          <span className="hidden font-bold sm:inline-block font-headline text-xl">
             Through Hardik's Eye
           </span>
         </Link>
-        <nav className="hidden md:flex flex-1 items-center gap-6 text-sm">
+        <nav className="hidden md:flex flex-1 items-center gap-8 text-sm">
           {navLinks.map((link) => (
             <NavLink key={link.href} {...link} />
           ))}
@@ -60,7 +62,7 @@ export function Header() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden border-t border-border/20 bg-background/80 backdrop-blur-lg">
             <nav className="flex flex-col items-center gap-6 py-6">
                 {navLinks.map((link) => (
                     <NavLink key={link.href} {...link} />

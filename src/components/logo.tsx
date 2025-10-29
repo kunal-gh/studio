@@ -1,26 +1,27 @@
 import { cn } from "@/lib/utils";
 
 export const Logo = ({ className }: { className?: string }) => (
-  <svg
-    width="100"
-    height="100"
-    viewBox="0 0 100 100"
-    className={cn("text-foreground", className)}
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-label="Through Hardik's Eye Logo"
-  >
-    <g transform="translate(5, 5) scale(0.9)">
-      {/* T shape */}
-      <path d="M20 10 H 80 V 25 H 55 V 90 H 45 V 25 H 20 Z" />
-      {/* E shape - fragmented */}
-      <path d="M80 30 L 95 30 L 95 40 L 80 40 Z" />
-      <path d="M80 55 L 95 55 L 95 65 L 80 65 Z" />
-      <path d="M80 80 L 95 80 L 95 90 L 80 90 Z" />
-      {/* H shape - abstract */}
-      <path d="M5 30 L 20 30 L 20 40 L 5 40 Z" fillOpacity="0.7" />
-      <path d="M5 70 L 20 70 L 20 80 L 5 80 Z" fillOpacity="0.7" />
-      <path d="M12 40 L 12 70 L 25 70 L 25 40 Z" transform="skewY(-15)" />
-    </g>
-  </svg>
+    <svg 
+        viewBox="0 0 24 24" 
+        className={cn("text-foreground", className)}
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-label="Through Hardik's Eye Logo"
+    >
+        {/* Abstract Camera Lens/Eye */}
+        <path d="M12 15.5C14.2091 15.5 16 13.7091 16 11.5C16 9.29086 14.2091 7.5 12 7.5C9.79086 7.5 8 9.29086 8 11.5C8 13.7091 9.79086 15.5 12 15.5Z" />
+        <path d="M2 11.5C2 11.5 5 4.5 12 4.5C19 4.5 22 11.5 22 11.5C22 11.5 19 18.5 12 18.5C5 18.5 2 11.5 2 11.5Z" />
+        
+        {/* Initials "T H E" subtly integrated */}
+        {/* T */}
+        <line x1="10" y1="10" x2="14" y2="10" />
+        <line x1="12" y1="10" x2="12" y2="13" />
+
+        {/* H */}
+        <path d="M11 11.5H13" stroke="currentColor" strokeWidth="1" />
+    </svg>
 );
