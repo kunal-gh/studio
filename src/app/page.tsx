@@ -79,7 +79,7 @@ export default function Home() {
               Capturing Life's Fleeting Moments
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-sm">
-              Timeless photography for the modern romantic.
+              Through Hardik's Eye
             </p>
           </div>
         </section>
