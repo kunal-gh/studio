@@ -71,7 +71,7 @@ export default function Home() {
   return (
     <>
       <div className="bg-background text-foreground">
-        <section id="home" className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center text-white">
+        <section id="home" className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center text-white overflow-hidden">
           <AnimatedHero images={heroImages} />
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 p-4">
@@ -234,5 +234,3 @@ export default function Home() {
     </>
   );
 }
-
-    

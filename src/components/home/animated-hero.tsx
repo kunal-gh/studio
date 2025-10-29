@@ -36,21 +36,26 @@ export function AnimatedHero({ images }: AnimatedHeroProps) {
   return (
     <>
       {images.map((image, index) => (
-        <Image
+        <div
           key={image.id}
-          src={image.imageUrl}
-          alt={image.description}
-          fill
-          priority={index === 0}
           className={cn(
-            "object-cover transition-opacity duration-1000 ease-in-out",
+            "absolute inset-0 transition-opacity duration-1000 ease-in-out",
             index === currentIndex ? "opacity-100" : "opacity-0"
           )}
-          data-ai-hint={image.imageHint}
-        />
+        >
+          <Image
+            src={image.imageUrl}
+            alt={image.description}
+            fill
+            priority={index === 0}
+            className={cn(
+              "object-cover transition-transform duration-[6000ms] ease-in-out",
+              index === currentIndex ? "scale-105" : "scale-100"
+            )}
+            data-ai-hint={image.imageHint}
+          />
+        </div>
       ))}
     </>
   );
 }
-
-    
