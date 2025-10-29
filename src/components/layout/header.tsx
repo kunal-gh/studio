@@ -1,26 +1,46 @@
+
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#home", label: "Home" },
+  { href: "/#portfolio", label: "Portfolio" },
+  { href: "/#about", label: "About" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Header() {
   const pathname = usePathname();
+  const [activeLink, setActiveLink] = useState("/#home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navLinks.map(link => document.getElementById(link.href.substring(2)));
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        if (section && scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+          setActiveLink(`/${'#'}${section.id}`);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const NavLink = ({ href, label }: { href: string; label: string }) => {
-    const isActive = pathname === href;
+    const isActive = activeLink === href;
     return (
       <Link
         href={href}
@@ -28,7 +48,10 @@ export function Header() {
           "text-sm font-medium transition-colors hover:text-primary relative tracking-widest uppercase",
           isActive ? "text-primary" : "text-muted-foreground",
         )}
-        onClick={() => setIsMenuOpen(false)}
+        onClick={() => {
+          setIsMenuOpen(false);
+          setActiveLink(href);
+        }}
       >
         {label}
       </Link>
@@ -38,7 +61,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
       <div className="container flex h-24 items-center">
-        <Link href="/" className="mr-6 flex items-center gap-2">
+        <Link href="/#home" className="mr-6 flex items-center gap-2" onClick={() => setActiveLink('/#home')}>
           <span className="font-bold sm:inline-block font-headline text-2xl tracking-tighter">
             Through Hardik's Eye
           </span>

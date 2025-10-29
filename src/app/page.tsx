@@ -1,19 +1,69 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone, Star } from 'lucide-react';
 import Image from 'next/image';
 import { placeHolderImages } from '@/lib/placeholder-images';
 import { PortfolioGrid } from '@/components/portfolio/portfolio-grid';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { ContactForm } from "@/components/contact/contact-form";
+
+const testimonials = [
+  {
+    name: "Emily & John",
+    role: "Wedding Clients",
+    avatar: "https://picsum.photos/seed/avatar1/100/100",
+    rating: 5,
+    text: "Hardik was an absolute dream to work with for our wedding. The photos are breathtakingly beautiful, capturing the emotion of the day perfectly. We couldn't be happier!",
+  },
+  {
+    name: "Aisha Khan",
+    role: "Portrait Client",
+    avatar: "https://picsum.photos/seed/avatar2/100/100",
+    text: "The portrait session was so much fun and relaxed. Hardik has a true talent for making you feel comfortable and bringing out your personality in the photos. The results were stunning.",
+  },
+  {
+    name: "Music Fest Organizers",
+    role: "Event Client",
+    avatar: "https://picsum.photos/seed/avatar3/100/100",
+    rating: 5,
+    text: "Incredible event photography! The energy of our festival was captured in every shot. The photos are dynamic, vibrant, and tell the story of the event exactly as we hoped. Highly recommended.",
+  },
+  {
+    name: "Chloe Dubois",
+    role: "Fashion Designer",
+    avatar: "https://picsum.photos/seed/avatar4/100/100",
+    text: "Working with Hardik on our lookbook was a fantastic experience. The creativity and unique perspective brought our collection to life. The images are both art and fashion.",
+  },
+];
+
+const Rating = ({ rating }: { rating: number }) => (
+  <div className="flex items-center gap-1 text-primary">
+    {Array.from({ length: 5 }).map((_, i) => (
+      <Star key={i} className={i < rating ? "fill-current" : ""} />
+    ))}
+  </div>
+);
+
 
 export default function Home() {
   const heroImage = placeHolderImages.find(img => img.imageHint.includes('wedding couple'));
-  const featuredPortraits = placeHolderImages.filter(p => p.id.startsWith("portrait")).slice(0, 3);
+  const bioImage = placeHolderImages.find(img => img.imageHint.includes('portrait street'));
+
+  const categories = ["Weddings", "Portraits", "Events", "Fashion", "Concerts", "Street"];
+  
+  const imagesByCategory = categories.reduce((acc, category) => {
+    const categoryKey = category.toLowerCase().replace(' ', '');
+    acc[category] = placeHolderImages.filter(p => p.id.startsWith(categoryKey.slice(0, -1)));
+    return acc;
+  }, {} as Record<string, typeof placeHolderImages>);
 
   return (
     <>
       <div className="bg-background text-foreground">
-        <section className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center text-white">
+        <section id="home" className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center text-white">
           {heroImage && (
             <Image
               src={heroImage.imageUrl}
@@ -35,25 +85,147 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="font-headline text-4xl md:text-5xl font-semibold tracking-tighter">
-              Visual Storytelling
+        <section id="portfolio">
+           <div className="container mx-auto px-4 text-center">
+             <h2 className="font-headline text-4xl md:text-5xl font-semibold tracking-tighter">
+              Our Work
             </h2>
-            <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
-              Welcome to the world as seen through my lens. I am Hardik, a photographer passionate about freezing time and telling stories through portraits, events, fashion, and the raw energy of the streets.
+            <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
+              A curated selection of moments captured with passion and a unique perspective. Explore the stories told in each frame.
             </p>
-            <Button asChild size="lg" variant="outline" className="mt-8">
-              <Link href="/portfolio">
-                Explore My Work <ArrowRight className="ml-2" />
-              </Link>
-            </Button>
+          </div>
+          <div className="py-16 md:py-24 lg:py-28">
+            <Tabs defaultValue="Weddings" className="w-full">
+              <div className="container mx-auto px-4 flex justify-center">
+                <TabsList>
+                  {categories.map((category) => (
+                    <TabsTrigger key={category} value={category}>{category}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </div>
+              {categories.map((category, index) => (
+                <TabsContent key={category} value={category}>
+                  <div className="pt-12">
+                    <PortfolioGrid title="" images={imagesByCategory[category]} layout={index % 2 === 0 ? 'A' : 'B'} />
+                  </div>
+                </TabsContent>
+              ))}
+            </Tabs>
           </div>
         </section>
+
+        <section id="about">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter">
+                        About The Artist
+                    </h2>
+                    <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
+                        Discover the passion, inspiration, and story behind Through Hardik's Eye.
+                    </p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
+                      {bioImage && (
+                        <div className="relative aspect-[4/5]">
+                            <Image
+                            src={bioImage.imageUrl}
+                            alt={bioImage.description}
+                            fill
+                            className="object-cover rounded-lg"
+                            data-ai-hint={bioImage.imageHint}
+                            />
+                        </div>
+                    )}
+                    <div className="space-y-6">
+                        <h3 className="font-headline text-4xl font-semibold">Hardik — The Eye Behind the Lens</h3>
+                        <p className="text-lg text-muted-foreground">
+                            Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
+                        </p>
+                        <p className="text-lg text-muted-foreground">
+                            My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt. Whether I'm capturing the raw energy of the streets, the intimate connection of a portrait, or the vibrant chaos of an event, I aim for authenticity and emotion.
+                        </p>
+                          <p className="text-lg text-muted-foreground">
+                            Each photograph is a piece of a larger narrative, an invitation to see the world through my eyes. Thank you for joining me on this journey.
+                        </p>
+                          <Button asChild size="lg" variant="outline">
+                            <Link href="/#contact">
+                                Work With Me <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonials">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Client Voices</h2>
+                    <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+                        Stories from those who have trusted me to capture their most precious moments.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    {testimonials.map((testimonial, index) => (
+                    <Card key={index} className="flex flex-col">
+                        <CardHeader>
+                        <div className="flex items-start gap-4">
+                            <Avatar className="w-16 h-16 border-2 border-primary">
+                            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1">
+                            <h3 className="font-headline text-xl font-bold">{testimonial.name}</h3>
+                            <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                            {testimonial.rating && <Rating rating={testimonial.rating} />}
+                            </div>
+                        </div>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                        <p className="text-lg italic text-foreground/80">"{testimonial.text}"</p>
+                        </CardContent>
+                    </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Let's Create Together</h2>
+                    <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+                    Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
+                    </p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
+                    <div className="space-y-8">
+                    <h3 className="font-headline text-3xl font-bold">Get in Touch</h3>
+                    <div className="space-y-4 text-lg">
+                        <div className="flex items-center gap-4">
+                        <Mail className="h-5 w-5 text-primary" />
+                        <a href="mailto:contact@hardikseye.com" className="hover:text-primary transition-colors">contact@hardikseye.com</a>
+                        </div>
+                        <div className="flex items-center gap-4">
+                        <Phone className="h-5 w-5 text-primary" />
+                        <span>(123) 456-7890</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                        <MapPin className="h-5 w-5 text-primary" />
+                        <span>New York, NY | Available Worldwide</span>
+                        </div>
+                    </div>
+                    <p className="text-muted-foreground text-base">
+                        For inquiries about weddings, portraits, events, or collaborations, please use the form, and I will get back to you as soon as possible. I am excited to hear about your ideas and how we can work together to create something beautiful.
+                    </p>
+                    </div>
+                    <div>
+                    <ContactForm />
+                    </div>
+                </div>
+            </div>
+        </section>
       </div>
-      <section>
-          <PortfolioGrid title="Featured Work" images={featuredPortraits} layout="A" />
-      </section>
     </>
   );
 }

@@ -1,7 +1,7 @@
+
 "use server";
 
 import { z } from "zod";
-import { aiPortfolioCurator, type AIPortfolioCuratorInput } from "@/ai/flows/ai-portfolio-curator";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -27,14 +27,4 @@ export async function submitContactForm(formData: FormData) {
     success: true,
     message: "Thank you for your message! I'll get back to you soon.",
   };
-}
-
-export async function getCuratedPortfolio(input: AIPortfolioCuratorInput) {
-    try {
-        const result = await aiPortfolioCurator(input);
-        return { success: true, data: result };
-    } catch (error) {
-        console.error("AI Portfolio Curation Error:", error);
-        return { success: false, error: "Failed to curate portfolio. Please try again." };
-    }
 }
