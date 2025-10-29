@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ContactForm } from "@/components/contact/contact-form";
 import { Separator } from '@/components/ui/separator';
+import { AnimatedHero } from '@/components/home/animated-hero';
 
 const testimonials = [
   {
@@ -50,7 +51,6 @@ const Rating = ({ rating }: { rating: number }) => (
 
 
 export default function Home() {
-  const heroImage = placeHolderImages.find(img => img.imageHint.includes('wedding couple'));
   const bioImage = placeHolderImages.find(img => img.imageHint.includes('portrait street'));
 
   const categories = ["Weddings", "Portraits", "Events", "Fashion", "Concerts", "Street"];
@@ -60,27 +60,25 @@ export default function Home() {
     acc[category] = placeHolderImages.filter(p => p.id.startsWith(categoryKey.slice(0, -1)));
     return acc;
   }, {} as Record<string, typeof placeHolderImages>);
+  
+  const heroImages = [
+    placeHolderImages.find(img => img.imageHint.includes('wedding couple')),
+    placeHolderImages.find(img => img.imageHint.includes('fashion model')),
+    placeHolderImages.find(img => img.imageHint.includes('street city')),
+  ].filter(img => img !== undefined) as (typeof placeHolderImages[0])[];
+
 
   return (
     <>
       <div className="bg-background text-foreground">
         <section id="home" className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center text-white">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              priority
-              className="object-cover"
-              data-ai-hint={heroImage.imageHint}
-            />
-          )}
+          <AnimatedHero images={heroImages} />
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 p-4">
-            <h1 className="font-headline text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-white/90">
+            <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-white/90 drop-shadow-md">
               Capturing Life's Fleeting Moments
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl">
+            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-sm">
               Timeless photography for the modern romantic.
             </p>
           </div>
@@ -236,3 +234,5 @@ export default function Home() {
     </>
   );
 }
+
+    
