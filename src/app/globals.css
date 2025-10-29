@@ -56,8 +56,6 @@
   body {
     @apply bg-background text-foreground;
   }
-
-  section {
-    @apply w-full py-16 md:py-24 lg:py-28;
-  }
 }
+
+    
