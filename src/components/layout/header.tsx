@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -17,18 +16,20 @@ const navLinks = [
 ];
 
 export function Header() {
-  const pathname = usePathname();
   const [activeLink, setActiveLink] = useState("/#home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navLinks.map(link => document.getElementById(link.href.substring(2)));
+      const sections = navLinks.map(link => {
+        const id = link.href.substring(2);
+        return id ? document.getElementById(id) : null;
+      });
       const scrollPosition = window.scrollY + 150;
 
       for (const section of sections) {
         if (section && scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
-          setActiveLink(`/${'#'}${section.id}`);
+          setActiveLink(`/#${section.id}`);
           break;
         }
       }
@@ -44,8 +45,10 @@ export function Header() {
       <Link
         href={href}
         className={cn(
-          "relative text-sm font-medium transition-colors hover:text-primary",
-          isActive ? "text-primary" : "text-muted-foreground",
+          "px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300",
+          isActive
+            ? "bg-primary text-primary-foreground"
+            : "text-muted-foreground hover:bg-secondary/80"
         )}
         onClick={() => {
           setIsMenuOpen(false);
@@ -53,12 +56,6 @@ export function Header() {
         }}
       >
         {label}
-        <span
-          className={cn(
-            "absolute bottom-[-4px] left-0 h-[1px] w-full bg-primary transition-transform duration-300 ease-in-out",
-            isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-          )}
-        />
       </Link>
     );
   };
@@ -71,7 +68,7 @@ export function Header() {
             Through Hardik's Eye
           </span>
         </Link>
-        <nav className="hidden md:flex flex-1 items-center gap-8 text-sm">
+        <nav className="hidden md:flex flex-1 items-center gap-2 text-sm">
           {navLinks.map((link) => (
             <div key={link.href} className="group">
               <NavLink {...link} />
@@ -87,7 +84,7 @@ export function Header() {
       </div>
       {isMenuOpen && (
         <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-sm">
-            <nav className="flex flex-col items-center gap-6 py-6">
+            <nav className="flex flex-col items-center gap-4 py-6">
                 {navLinks.map((link) => (
                   <div key={link.href} className="group">
                     <NavLink {...link} />
