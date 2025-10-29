@@ -75,7 +75,7 @@ export default function Home() {
           <AnimatedHero images={heroImages} />
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 p-4">
-            <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-normal tracking-tight text-white/90 drop-shadow-md">
+            <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-white/90 drop-shadow-md">
               Capturing Life's Fleeting Moments
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-sm">
@@ -86,7 +86,7 @@ export default function Home() {
 
         <section id="portfolio" className="py-20 md:py-28 lg:py-32">
            <div className="container mx-auto px-4 text-center">
-             <h2 className="font-headline text-4xl md:text-5xl font-normal tracking-tight">
+             <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">
               Our Work
             </h2>
             <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
@@ -130,10 +130,10 @@ export default function Home() {
                         </div>
                     )}
                     <div className="space-y-6">
-                        <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight">
+                        <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                             About The Artist
                         </h2>
-                        <h3 className="font-headline text-3xl font-normal text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
+                        <h3 className="font-headline text-3xl font-bold text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
                         <p className="text-lg text-foreground/80 leading-relaxed">
                             Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
                         </p>
@@ -155,7 +155,7 @@ export default function Home() {
         <section id="testimonials" className="py-20 md:py-28 lg:py-32">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-20">
-                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight">Client Voices</h2>
+                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Client Voices</h2>
                     <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
                         Stories from those who have trusted me to capture their most precious moments.
                     </p>
@@ -170,7 +170,7 @@ export default function Home() {
                             <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                             </Avatar>
                             <div className="flex-1">
-                            <h3 className="font-headline text-2xl font-normal">{testimonial.name}</h3>
+                            <h3 className="font-headline text-2xl font-bold">{testimonial.name}</h3>
                             <p className="text-base text-muted-foreground">{testimonial.role}</p>
                             {testimonial.rating && <div className="mt-2"><Rating rating={testimonial.rating} /></div>}
                             </div>
@@ -190,14 +190,14 @@ export default function Home() {
         <section id="contact" className="py-20 md:py-28 lg:py-32">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-20">
-                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight">Let's Create Together</h2>
+                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Create Together</h2>
                     <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
                     Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
                     </p>
                 </div>
                 <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
                     <div className="space-y-8">
-                    <h3 className="font-headline text-3xl font-normal">Get in Touch</h3>
+                    <h3 className="font-headline text-3xl font-bold">Get in Touch</h3>
                     <div className="space-y-6 text-lg">
                         <div className="flex items-center gap-4">
                         <Mail className="h-5 w-5 text-primary" />
