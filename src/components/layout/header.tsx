@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -45,7 +44,7 @@ export function Header() {
       <Link
         href={href}
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary relative tracking-widest uppercase",
+          "relative text-sm font-medium transition-colors hover:text-primary",
           isActive ? "text-primary" : "text-muted-foreground",
         )}
         onClick={() => {
@@ -54,6 +53,12 @@ export function Header() {
         }}
       >
         {label}
+        <span
+          className={cn(
+            "absolute bottom-[-4px] left-0 h-[1px] w-full bg-primary transition-transform duration-300 ease-in-out",
+            isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+          )}
+        />
       </Link>
     );
   };
@@ -68,7 +73,9 @@ export function Header() {
         </Link>
         <nav className="hidden md:flex flex-1 items-center gap-8 text-sm">
           {navLinks.map((link) => (
-            <NavLink key={link.href} {...link} />
+            <div key={link.href} className="group">
+              <NavLink {...link} />
+            </div>
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end md:hidden">
@@ -82,7 +89,9 @@ export function Header() {
         <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-sm">
             <nav className="flex flex-col items-center gap-6 py-6">
                 {navLinks.map((link) => (
-                    <NavLink key={link.href} {...link} />
+                  <div key={link.href} className="group">
+                    <NavLink {...link} />
+                  </div>
                 ))}
             </nav>
         </div>
