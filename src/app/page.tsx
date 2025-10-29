@@ -77,7 +77,7 @@ export default function Home() {
           )}
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 p-4">
-            <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter">
+            <h1 className="font-headline text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-white/90">
               Capturing Life's Fleeting Moments
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl">
@@ -236,5 +236,3 @@ export default function Home() {
     </>
   );
 }
-
-    
