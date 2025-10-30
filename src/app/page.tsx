@@ -75,7 +75,7 @@ const portfolioCategories = [
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-2",
+        className: "md:col-span-1",
     },
     { 
         slug: 'events',
