@@ -71,17 +71,17 @@ const portfolioCategories = [
         className: "md:col-span-2",
     },
     { 
-        slug: 'fashion',
-        title: "Fashion", 
-        description: "Bringing your creative vision to life with striking imagery.",
-        coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-1",
-    },
-    { 
         slug: 'ai-generated',
         title: "AI Generated", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
+        className: "md:col-span-1",
+    },
+    { 
+        slug: 'fashion',
+        title: "Fashion", 
+        description: "Bringing your creative vision to life with striking imagery.",
+        coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
         className: "md:col-span-2",
     },
     { 
@@ -275,5 +275,3 @@ export default function Home() {
     </>
   );
 }
-
-    

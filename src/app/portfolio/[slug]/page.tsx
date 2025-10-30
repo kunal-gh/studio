@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 
-const categories = ["Weddings", "Portraits", "Events", "Fashion", "Concerts", "Street", "AI Generated"];
+const categories = ["Weddings", "Portraits", "Events", "AI Generated", "Concerts", "Street", "Fashion"];
 
 const categoryDescriptions: Record<string, string> = {
     weddings: "Capturing the love, joy, and candid moments that make your wedding day unforgettable. From the grand ceremony to the intimate details, we tell your unique love story.",
