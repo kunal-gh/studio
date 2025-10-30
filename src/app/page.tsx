@@ -54,14 +54,14 @@ const portfolioCategories = [
         title: "Weddings", 
         description: "Capturing the magic of your special day with timeless elegance.",
         coverImage: placeHolderImages.find(p => p.id === 'wedding-1')!,
-        className: "md:col-span-2 md:row-span-2",
+        className: "md:col-span-3 md:row-span-2",
     },
     { 
         slug: 'portraits',
         title: "Portraits", 
         description: "Revealing the essence of personality through captivating portraits.",
         coverImage: placeHolderImages.find(p => p.id === 'portrait-1')!,
-        className: "md:row-span-2",
+        className: "md:col-span-2 md:row-span-2",
     },
     { 
         slug: 'street',
@@ -82,14 +82,14 @@ const portfolioCategories = [
         title: "AI Generated", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
-        className: "md:col-span-1",
+        className: "md:col-span-2",
     },
     { 
         slug: 'events',
         title: "Events", 
         description: "Documenting the energy and emotion of every occasion.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "md:col-span-4",
+        className: "md:col-span-3",
     },
     { 
         slug: 'concerts',
@@ -136,7 +136,7 @@ export default function Home() {
             </p>
           </div>
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[20rem] gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 auto-rows-[20rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
                   key={category.slug}
@@ -275,3 +275,5 @@ export default function Home() {
     </>
   );
 }
+
+    
