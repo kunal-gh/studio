@@ -53,37 +53,43 @@ const portfolioCategories = [
         slug: 'weddings',
         title: "Weddings", 
         description: "Capturing the magic of your special day with timeless elegance.",
-        coverImage: placeHolderImages.find(p => p.id === 'wedding-1')! 
+        coverImage: placeHolderImages.find(p => p.id === 'wedding-1')!,
+        className: "md:col-span-2 md:row-span-2",
     },
     { 
         slug: 'portraits',
         title: "Portraits", 
         description: "Revealing the essence of personality through captivating portraits.",
-        coverImage: placeHolderImages.find(p => p.id === 'portrait-1')!
+        coverImage: placeHolderImages.find(p => p.id === 'portrait-1')!,
+        className: "",
     },
     { 
         slug: 'events',
         title: "Events", 
         description: "Documenting the energy and emotion of every occasion.",
-        coverImage: placeHolderImages.find(p => p.id === 'event-1')!
+        coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
+        className: "",
     },
     { 
         slug: 'fashion',
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
-        coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!
+        coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
+        className: "md:col-span-2",
     },
     { 
         slug: 'concerts',
         title: "Concerts", 
         description: "Freezing the high-energy moments of live performances.",
-        coverImage: placeHolderImages.find(p => p.id === 'concert-1')!
+        coverImage: placeHolderImages.find(p => p.id === 'concert-1')!,
+        className: "",
     },
     { 
         slug: 'street',
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
-        coverImage: placeHolderImages.find(p => p.id === 'street-1')!
+        coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
+        className: "md:col-span-2",
     },
 ];
 
@@ -123,15 +129,15 @@ export default function Home() {
             </p>
           </div>
           <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {portfolioCategories.map((category, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[24rem] gap-4">
+              {portfolioCategories.map((category) => (
                 <PortfolioCard 
                   key={category.slug}
                   slug={category.slug}
                   title={category.title}
                   description={category.description}
                   coverImage={category.coverImage}
-                  className={index === 0 || index === 5 ? 'lg:col-span-2' : ''}
+                  className={category.className}
                 />
               ))}
             </div>
@@ -251,5 +257,3 @@ export default function Home() {
     </>
   );
 }
-
-    

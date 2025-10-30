@@ -17,7 +17,7 @@ interface PortfolioCardProps {
 
 export function PortfolioCard({ slug, title, description, coverImage, className }: PortfolioCardProps) {
   return (
-    <Link href={`/portfolio/${slug}`} className={cn("group relative block aspect-[4/5] w-full overflow-hidden rounded-lg", className)}>
+    <Link href={`/portfolio/${slug}`} className={cn("group relative block w-full h-full overflow-hidden rounded-lg", className)}>
         <Image
             src={coverImage.imageUrl}
             alt={coverImage.description}
@@ -39,5 +39,3 @@ export function PortfolioCard({ slug, title, description, coverImage, className 
     </Link>
   );
 }
-
-    
