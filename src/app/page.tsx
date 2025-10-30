@@ -129,7 +129,7 @@ export default function Home() {
             </p>
           </div>
           <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[20rem] gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[24rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
                   key={category.slug}
@@ -149,12 +149,23 @@ export default function Home() {
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
+              {bioImage && (
+                  <div className="relative md:col-span-2 aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
+                      <Image
+                          src={bioImage.imageUrl}
+                          alt={bioImage.description}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={bioImage.imageHint}
+                      />
+                  </div>
+              )}
               <div className="md:col-span-3">
                 <div className="space-y-6">
+                  <h3 className="font-headline text-3xl font-bold text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
                   <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
                       About The Artist
                   </h2>
-                  <h3 className="font-headline text-3xl font-bold text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
                   <div className="text-lg text-foreground/80 leading-relaxed max-w-xl space-y-6">
                     <p>
                         Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
@@ -170,17 +181,6 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
-              {bioImage && (
-                  <div className="relative md:col-span-2 aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
-                      <Image
-                          src={bioImage.imageUrl}
-                          alt={bioImage.description}
-                          fill
-                          className="object-cover"
-                          data-ai-hint={bioImage.imageHint}
-                      />
-                  </div>
-              )}
             </div>
           </div>
         </section>
