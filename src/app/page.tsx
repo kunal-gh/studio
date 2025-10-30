@@ -64,18 +64,18 @@ const portfolioCategories = [
         className: "md:row-span-2",
     },
     { 
-        slug: 'events',
-        title: "Events", 
-        description: "Documenting the energy and emotion of every occasion.",
-        coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "md:row-span-1",
-    },
-    { 
         slug: 'fashion',
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
         className: "md:row-span-1",
+    },
+    { 
+        slug: 'events',
+        title: "Events", 
+        description: "Documenting the energy and emotion of every occasion.",
+        coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
+        className: "md:col-span-4 md:row-span-2",
     },
     { 
         slug: 'concerts',
@@ -89,7 +89,7 @@ const portfolioCategories = [
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
-        className: "md:col-span-1 md:row-span-2",
+        className: "md:col-span-2 md:row-span-1",
     },
 ];
 
