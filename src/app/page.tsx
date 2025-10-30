@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail, MapPin, Phone, Star } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone, Star, ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
 import { placeHolderImages } from '@/lib/placeholder-images';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -216,6 +216,13 @@ export default function Home() {
                         </CardContent>
                     </Card>
                     ))}
+                </div>
+                <div className="mt-20 text-center">
+                    <Button asChild size="lg" variant="outline">
+                        <Link href="/testimonials">
+                            View All Reviews <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
                 </div>
             </div>
         </section>
