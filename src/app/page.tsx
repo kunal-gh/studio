@@ -113,14 +113,14 @@ export default function Home() {
             <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
               Capturing Life's Fleeting Moments
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/80 drop-shadow-sm">
+            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl font-headline text-white/80 drop-shadow-sm">
               Through Hardik's Eye
             </p>
           </div>
         </section>
 
-        <section id="portfolio" className="py-20 md:py-28 lg:py-32 bg-secondary/30">
-           <div className="container mx-auto px-4 text-center">
+        <section id="portfolio" className="py-20 md:py-28 lg:py-32">
+           <div className="container mx-auto px-4 text-center mb-16 md:mb-24">
              <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">
               Our Work
             </h2>
@@ -128,7 +128,7 @@ export default function Home() {
               A curated selection of moments captured with passion and a unique perspective. Explore the stories told in each frame.
             </p>
           </div>
-          <div className="container mx-auto px-4 py-16 md:py-24">
+          <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[24rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
