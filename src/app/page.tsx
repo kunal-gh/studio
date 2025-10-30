@@ -54,7 +54,7 @@ const portfolioCategories = [
         title: "Weddings", 
         description: "Capturing the magic of your special day with timeless elegance.",
         coverImage: placeHolderImages.find(p => p.id === 'wedding-1')!,
-        className: "md:col-span-3 md:row-span-2",
+        className: "md:col-span-2 md:row-span-2",
     },
     { 
         slug: 'portraits',
@@ -75,6 +75,13 @@ const portfolioCategories = [
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
+        className: "md:col-span-1",
+    },
+    { 
+        slug: 'ai-generated',
+        title: "AI Generated", 
+        description: "Exploring the frontiers of creativity with AI-generated imagery.",
+        coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
         className: "md:col-span-1",
     },
     { 

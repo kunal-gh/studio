@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 
-const categories = ["Weddings", "Portraits", "Events", "Fashion", "Concerts", "Street"];
+const categories = ["Weddings", "Portraits", "Events", "Fashion", "Concerts", "Street", "AI Generated"];
 
 const categoryDescriptions: Record<string, string> = {
     weddings: "Capturing the love, joy, and candid moments that make your wedding day unforgettable. From the grand ceremony to the intimate details, we tell your unique love story.",
@@ -14,21 +14,30 @@ const categoryDescriptions: Record<string, string> = {
     fashion: "Collaborating with designers and brands to create striking lookbooks, editorials, and campaign imagery that brings your collection to life with style and creativity.",
     concerts: "Freezing the electrifying energy of live music. We capture artists in their element and the vibrant atmosphere of the crowd, from small gigs to large festivals.",
     street: "Finding beauty and narrative in the everyday. Our street photography captures the candid, fleeting moments of life in the city with an authentic, documentary style.",
+    "ai-generated": "Exploring the frontiers of creativity with AI-generated imagery. A showcase of art that blends technology and imagination.",
 };
 
 export async function generateStaticParams() {
     return categories.map((category) => ({
-      slug: category.toLowerCase(),
+      slug: category.toLowerCase().replace(' ', '-'),
     }));
 }
 
 export default function PortfolioCategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const categoryTitle = categories.find(c => c.toLowerCase() === slug) || "Portfolio";
+  const categoryTitle = categories.find(c => c.toLowerCase().replace(' ', '-') === slug) || "Portfolio";
 
   const images = placeHolderImages.filter(p => {
-    const categoryKey = categoryTitle.toLowerCase().replace(' ', '');
-    // Handle "weddings" -> "wedding"
+    const categoryKey = categoryTitle.toLowerCase().replace(' ', '-');
+    
+    // Handle special cases for matching image IDs
+    if (categoryKey === 'weddings') {
+        return p.id.startsWith('wedding');
+    }
+    if (categoryKey === 'ai-generated') {
+        return p.id.startsWith('ai');
+    }
+
     const singularKey = categoryKey.endsWith('s') ? categoryKey.slice(0, -1) : categoryKey;
     return p.id.startsWith(singularKey);
   });
@@ -57,5 +66,3 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
     </div>
   );
 }
-
-    
