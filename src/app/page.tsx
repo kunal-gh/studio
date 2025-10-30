@@ -54,14 +54,14 @@ const portfolioCategories = [
         title: "Weddings", 
         description: "Capturing the magic of your special day with timeless elegance.",
         coverImage: placeHolderImages.find(p => p.id === 'wedding-1')!,
-        className: "md:col-span-2 md:row-span-2",
+        className: "md:col-span-3 md:row-span-1",
     },
     { 
         slug: 'portraits',
         title: "Portraits", 
         description: "Revealing the essence of personality through captivating portraits.",
         coverImage: placeHolderImages.find(p => p.id === 'portrait-1')!,
-        className: "md:row-span-1",
+        className: "md:row-span-2",
     },
     { 
         slug: 'events',
@@ -75,21 +75,21 @@ const portfolioCategories = [
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-2",
+        className: "md:row-span-1",
     },
     { 
         slug: 'concerts',
         title: "Concerts", 
         description: "Freezing the high-energy moments of live performances.",
         coverImage: placeHolderImages.find(p => p.id === 'concert-1')!,
-        className: "md:row-span-1",
+        className: "md:col-span-2 md:row-span-2",
     },
     { 
         slug: 'street',
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
-        className: "md:col-span-2 md:row-span-2",
+        className: "md:col-span-1 md:row-span-2",
     },
 ];
 
@@ -129,7 +129,7 @@ export default function Home() {
             </p>
           </div>
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[24rem] gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[20rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
                   key={category.slug}
