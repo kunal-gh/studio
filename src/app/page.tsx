@@ -61,14 +61,14 @@ const portfolioCategories = [
         title: "Portraits", 
         description: "Revealing the essence of personality through captivating portraits.",
         coverImage: placeHolderImages.find(p => p.id === 'portrait-1')!,
-        className: "",
+        className: "md:row-span-1",
     },
     { 
         slug: 'events',
         title: "Events", 
         description: "Documenting the energy and emotion of every occasion.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "",
+        className: "md:row-span-1",
     },
     { 
         slug: 'fashion',
@@ -82,14 +82,14 @@ const portfolioCategories = [
         title: "Concerts", 
         description: "Freezing the high-energy moments of live performances.",
         coverImage: placeHolderImages.find(p => p.id === 'concert-1')!,
-        className: "",
+        className: "md:row-span-1",
     },
     { 
         slug: 'street',
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
-        className: "md:col-span-2",
+        className: "md:col-span-2 md:row-span-2",
     },
 ];
 
@@ -129,7 +129,7 @@ export default function Home() {
             </p>
           </div>
           <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[24rem] gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[20rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
                   key={category.slug}
@@ -147,38 +147,42 @@ export default function Home() {
         <Separator className="my-12 md:my-16" />
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
-            <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
-                    {bioImage && (
-                        <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
-                            <Image
-                                src={bioImage.imageUrl}
-                                alt={bioImage.description}
-                                fill
-                                className="object-cover"
-                                data-ai-hint={bioImage.imageHint}
-                            />
-                        </div>
-                    )}
-                    <div className="space-y-6">
-                        <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
-                            About The Artist
-                        </h2>
-                        <h3 className="font-headline text-3xl font-bold text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
-                        <p className="text-lg text-foreground/80 leading-relaxed">
-                            Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
-                        </p>
-                        <p className="text-lg text-foreground/80 leading-relaxed">
-                            My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt.
-                        </p>
-                        <Button asChild size="lg" variant="outline" className="text-base">
-                            <Link href="/#contact">
-                                Work With Me <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                        </Button>
-                    </div>
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
+              <div className="md:col-span-3">
+                <div className="space-y-6">
+                  <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
+                      About The Artist
+                  </h2>
+                  <h3 className="font-headline text-3xl font-bold text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
+                  <div className="text-lg text-foreground/80 leading-relaxed max-w-xl space-y-6">
+                    <p>
+                        Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
+                    </p>
+                    <p>
+                        My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt.
+                    </p>
+                  </div>
+                  <Button asChild size="lg" variant="outline" className="text-base">
+                      <Link href="/#contact">
+                          Work With Me <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                  </Button>
                 </div>
+              </div>
+              {bioImage && (
+                  <div className="relative md:col-span-2 aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
+                      <Image
+                          src={bioImage.imageUrl}
+                          alt={bioImage.description}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={bioImage.imageHint}
+                      />
+                  </div>
+              )}
             </div>
+          </div>
         </section>
         
         <Separator className="my-12 md:my-16" />
