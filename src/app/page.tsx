@@ -4,13 +4,12 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, MapPin, Phone, Star } from 'lucide-react';
 import Image from 'next/image';
 import { placeHolderImages } from '@/lib/placeholder-images';
-import { PortfolioGrid } from '@/components/portfolio/portfolio-grid';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ContactForm } from "@/components/contact/contact-form";
 import { Separator } from '@/components/ui/separator';
 import { AnimatedHero } from '@/components/home/animated-hero';
+import { PortfolioCard } from '@/components/portfolio/portfolio-card';
 
 const testimonials = [
   {
@@ -42,24 +41,54 @@ const testimonials = [
 ];
 
 const Rating = ({ rating }: { rating: number }) => (
-  <div className="flex items-center gap-1 text-primary">
+  <div className="flex items-center gap-1 text-yellow-400">
     {Array.from({ length: 5 }).map((_, i) => (
       <Star key={i} className={i < rating ? "fill-current" : ""} />
     ))}
   </div>
 );
 
+const portfolioCategories = [
+    { 
+        slug: 'weddings',
+        title: "Weddings", 
+        description: "Capturing the magic of your special day with timeless elegance.",
+        coverImage: placeHolderImages.find(p => p.id === 'wedding-1')! 
+    },
+    { 
+        slug: 'portraits',
+        title: "Portraits", 
+        description: "Revealing the essence of personality through captivating portraits.",
+        coverImage: placeHolderImages.find(p => p.id === 'portrait-1')!
+    },
+    { 
+        slug: 'events',
+        title: "Events", 
+        description: "Documenting the energy and emotion of every occasion.",
+        coverImage: placeHolderImages.find(p => p.id === 'event-1')!
+    },
+    { 
+        slug: 'fashion',
+        title: "Fashion", 
+        description: "Bringing your creative vision to life with striking imagery.",
+        coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!
+    },
+    { 
+        slug: 'concerts',
+        title: "Concerts", 
+        description: "Freezing the high-energy moments of live performances.",
+        coverImage: placeHolderImages.find(p => p.id === 'concert-1')!
+    },
+    { 
+        slug: 'street',
+        title: "Street", 
+        description: "Finding extraordinary stories in ordinary city life.",
+        coverImage: placeHolderImages.find(p => p.id === 'street-1')!
+    },
+];
 
 export default function Home() {
   const bioImage = placeHolderImages.find(img => img.imageHint.includes('portrait street'));
-
-  const categories = ["Weddings", "Portraits", "Events", "Fashion", "Concerts", "Street"];
-  
-  const imagesByCategory = categories.reduce((acc, category) => {
-    const categoryKey = category.toLowerCase().replace(' ', '');
-    acc[category] = placeHolderImages.filter(p => p.id.startsWith(categoryKey.slice(0, -1)));
-    return acc;
-  }, {} as Record<string, typeof placeHolderImages>);
   
   const heroImages = [
     placeHolderImages.find(img => img.imageHint.includes('wedding couple')),
@@ -75,16 +104,16 @@ export default function Home() {
           <AnimatedHero images={heroImages} />
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 p-4">
-            <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-white/90 drop-shadow-md">
+            <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
               Capturing Life's Fleeting Moments
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-sm">
+            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/80 drop-shadow-sm">
               Through Hardik's Eye
             </p>
           </div>
         </section>
 
-        <section id="portfolio" className="py-20 md:py-28 lg:py-32">
+        <section id="portfolio" className="py-20 md:py-28 lg:py-32 bg-secondary/30">
            <div className="container mx-auto px-4 text-center">
              <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">
               Our Work
@@ -93,23 +122,19 @@ export default function Home() {
               A curated selection of moments captured with passion and a unique perspective. Explore the stories told in each frame.
             </p>
           </div>
-          <div className="py-16 md:py-24">
-            <Tabs defaultValue="Weddings" className="w-full">
-              <div className="container mx-auto px-4 flex justify-center">
-                <TabsList>
-                  {categories.map((category) => (
-                    <TabsTrigger key={category} value={category}>{category}</TabsTrigger>
-                  ))}
-                </TabsList>
-              </div>
-              {categories.map((category, index) => (
-                <TabsContent key={category} value={category}>
-                  <div className="pt-12">
-                    <PortfolioGrid title="" images={imagesByCategory[category]} layout={index % 2 === 0 ? 'A' : 'B'} />
-                  </div>
-                </TabsContent>
+          <div className="container mx-auto px-4 py-16 md:py-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {portfolioCategories.map((category, index) => (
+                <PortfolioCard 
+                  key={category.slug}
+                  slug={category.slug}
+                  title={category.title}
+                  description={category.description}
+                  coverImage={category.coverImage}
+                  className={index === 0 || index === 5 ? 'lg:col-span-2' : ''}
+                />
               ))}
-            </Tabs>
+            </div>
           </div>
         </section>
 
@@ -119,7 +144,7 @@ export default function Home() {
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                     {bioImage && (
-                        <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
+                        <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
                             <Image
                                 src={bioImage.imageUrl}
                                 alt={bioImage.description}
@@ -130,7 +155,7 @@ export default function Home() {
                         </div>
                     )}
                     <div className="space-y-6">
-                        <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+                        <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
                             About The Artist
                         </h2>
                         <h3 className="font-headline text-3xl font-bold text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
@@ -140,7 +165,7 @@ export default function Home() {
                         <p className="text-lg text-foreground/80 leading-relaxed">
                             My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt.
                         </p>
-                        <Button asChild size="lg" variant="outline">
+                        <Button asChild size="lg" variant="outline" className="text-base">
                             <Link href="/#contact">
                                 Work With Me <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
@@ -152,7 +177,7 @@ export default function Home() {
         
         <Separator className="my-12 md:my-16" />
 
-        <section id="testimonials" className="py-20 md:py-28 lg:py-32">
+        <section id="testimonials" className="py-20 md:py-28 lg:py-32 bg-secondary/30">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-20">
                     <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Client Voices</h2>
@@ -162,7 +187,7 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     {testimonials.map((testimonial, index) => (
-                    <Card key={index} className="flex flex-col bg-card/50">
+                    <Card key={index} className="flex flex-col bg-card/50 border-border/50 shadow-lg">
                         <CardHeader className="p-8">
                         <div className="flex items-start gap-6">
                             <Avatar className="w-20 h-20 border-2 border-primary">
@@ -226,3 +251,5 @@ export default function Home() {
     </>
   );
 }
+
+    
