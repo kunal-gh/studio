@@ -53,7 +53,7 @@ const portfolioCategories = [
         slug: 'ai-generated',
         title: "AI Generated", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
-        coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
+        coverImage: placeHolderImages.find(p => p.id === 'ai-new-1')!,
         className: "md:col-span-2",
         sharp: true,
     },
