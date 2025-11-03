@@ -125,7 +125,7 @@ export default function Home() {
     <>
       <div className="bg-background text-foreground">
         <section id="home" className="py-0">
-            <div className="container mx-auto px-4">
+            <div className="px-4">
                 <div className="relative h-[110vh] w-full flex items-center justify-center text-center text-white">
                     <AnimatedHero images={heroImages} />
                     
