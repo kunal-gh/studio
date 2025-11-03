@@ -75,21 +75,21 @@ const portfolioCategories = [
         title: "AI Generated", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
-        className: "md:col-span-1",
+        className: "md:col-span-2",
     },
     { 
         slug: 'fashion',
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-2",
+        className: "md:col-span-1",
     },
     { 
         slug: 'events',
         title: "Events", 
         description: "Documenting the energy and emotion of every occasion.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "md:col-span-5 md:row-span-3",
+        className: "md:col-span-5 md:row-span-2",
     },
     { 
         slug: 'concerts',
@@ -117,17 +117,19 @@ export default function Home() {
   return (
     <>
       <div className="bg-background text-foreground">
-        <section id="home" className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center text-white overflow-hidden">
-          <AnimatedHero images={heroImages} />
-          <div className="absolute inset-0 bg-black/30"></div>
-          <div className="relative z-10 p-4">
-            <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
-              Capturing Life's Fleeting Moments
-            </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl font-headline text-white/80 drop-shadow-sm">
-              Through Hardik's Eye
-            </p>
-          </div>
+        <section id="home" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="relative h-[70vh] md:h-[90vh] w-full flex items-center justify-center text-center text-white overflow-hidden rounded-2xl">
+                <AnimatedHero images={heroImages} />
+                <div className="absolute inset-0 bg-black/30"></div>
+                <div className="relative z-10 p-4">
+                    <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
+                    Capturing Life's Fleeting Moments
+                    </h1>
+                    <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl font-headline text-white/80 drop-shadow-sm">
+                    Through Hardik's Eye
+                    </p>
+                </div>
+            </div>
         </section>
 
         <section id="portfolio" className="py-20 md:py-28 lg:py-32">
@@ -173,16 +175,16 @@ export default function Home() {
                 <div className="text-left">
                   <div className="text-xl text-foreground/80 leading-relaxed space-y-6">
                     <p>
-                        Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
+                        Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                     <p>
-                        My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions. My goal is to create images that are not just seen, but felt—images that transport you back to the moment they were taken.
+                        My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions. My goal is to create images that are not just seen, but felt—images that transport you back to the moment they were taken. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
                      <p>
-                        Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities.
+                        Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     </p>
                     <p>
-                        Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together.
+                        Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
                   </div>
                   <Button asChild size="lg" variant="outline" className="text-base mt-10">
