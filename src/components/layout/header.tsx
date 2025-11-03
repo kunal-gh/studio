@@ -64,19 +64,17 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
       <div className="container flex h-24 items-center justify-between">
-        <div className="flex items-center">
-            <Link href="/#home" onClick={() => setActiveLink('/#home')}>
-                <span className="font-bold sm:inline-block font-headline text-3xl tracking-[0.2em]">
-                    THE
-                </span>
-            </Link>
-        </div>
+        <Link href="/#home" onClick={() => setActiveLink('/#home')}>
+            <span className="font-bold sm:inline-block font-headline text-3xl tracking-[0.2em]">
+                THE
+            </span>
+        </Link>
         
-        <div className="hidden md:flex items-center gap-4 text-sm">
+        <nav className="hidden md:flex items-center gap-4 text-sm">
             {navLinks.map((link) => (
                 <NavLink key={link.href} {...link} />
             ))}
-        </div>
+        </nav>
 
         <div className="flex items-center md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
