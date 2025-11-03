@@ -64,9 +64,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
       <div className="container flex h-24 items-center justify-between">
-        <Link href="/#home" onClick={() => setActiveLink('/#home')}>
-            <span className="font-bold sm:inline-block font-headline text-3xl tracking-[0.2em]">
+        <Link href="/#home" onClick={() => setActiveLink('/#home')} className="flex items-baseline gap-3">
+            <span className="font-bold sm:inline-block font-headline text-4xl tracking-[0.2em]">
                 THE
+            </span>
+            <span className="hidden md:inline-block text-xs font-body text-muted-foreground tracking-widest uppercase whitespace-nowrap">
+                Through Hardik's Eye
             </span>
         </Link>
         
