@@ -69,13 +69,15 @@ export function Header() {
             THE
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-4 text-sm">
-          {navLinks.map((link) => (
-            <div key={link.href} className="group">
-              <NavLink {...link} />
-            </div>
-          ))}
-        </nav>
+        <div className="flex-1 flex justify-end">
+          <nav className="hidden md:flex items-center gap-4 text-sm">
+            {navLinks.map((link) => (
+              <div key={link.href} className="group">
+                <NavLink {...link} />
+              </div>
+            ))}
+          </nav>
+        </div>
         <div className="flex items-center md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
