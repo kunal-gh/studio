@@ -80,7 +80,7 @@ export function Header() {
             <span className="font-bold sm:inline-block font-headline text-5xl tracking-[0.2em]">
                 THE
             </span>
-            <span className="hidden md:inline-block text-xs font-body text-muted-foreground tracking-widest uppercase whitespace-nowrap">
+            <span className="hidden md:inline-block text-sm font-body text-muted-foreground tracking-widest uppercase whitespace-nowrap">
                 Through Hardik's Eye
             </span>
         </Link>
