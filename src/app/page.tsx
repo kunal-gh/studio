@@ -134,8 +134,8 @@ export default function Home() {
 
         <section id="portfolio" className="py-20 md:py-28 lg:py-32">
            <div className="container mx-auto px-4 text-center mb-16 md:mb-24">
-             <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">
-              Our Work
+             <h2 className="font-headline text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight">
+              My Work
             </h2>
             <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
               A curated selection of moments captured with passion and a unique perspective. Explore the stories told in each frame.
