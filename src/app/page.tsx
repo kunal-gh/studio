@@ -89,7 +89,7 @@ const portfolioCategories = [
         title: "Events", 
         description: "Documenting the energy and emotion of every occasion.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "md:col-span-5 md:row-span-2",
+        className: "md:col-span-5 md:row-span-3",
     },
     { 
         slug: 'concerts',
@@ -155,25 +155,27 @@ export default function Home() {
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
-              {bioImage && (
-                  <div className="relative md:col-span-2 aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
-                      <Image
-                          src={bioImage.imageUrl}
-                          alt={bioImage.description}
-                          fill
-                          className="object-cover"
-                          data-ai-hint={bioImage.imageHint}
-                      />
-                  </div>
-              )}
-              <div className="md:col-span-3">
-                <div className="space-y-6">
-                  <h3 className="font-headline text-3xl font-bold text-muted-foreground">Hardik — The Eye Behind the Lens</h3>
-                  <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
-                      About The Artist
-                  </h2>
-                  <div className="text-lg text-foreground/80 leading-relaxed max-w-xl space-y-6">
+            <div className="text-center max-w-4xl mx-auto">
+              <h3 className="font-headline text-2xl font-bold text-muted-foreground tracking-wide">
+                  Hardik — The Eye Behind the Lens
+              </h3>
+              <h2 className="mt-4 font-headline text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight">
+                  About The Artist
+              </h2>
+              <div className="mt-12 grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
+                {bioImage && (
+                    <div className="relative md:col-span-2 aspect-square md:aspect-[4/5] rounded-lg overflow-hidden shadow-2xl mx-auto w-full max-w-sm md:max-w-none">
+                        <Image
+                            src={bioImage.imageUrl}
+                            alt={bioImage.description}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={bioImage.imageHint}
+                        />
+                    </div>
+                )}
+                <div className="md:col-span-3 text-left">
+                  <div className="text-xl text-foreground/80 leading-relaxed space-y-6">
                     <p>
                         Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
                     </p>
@@ -181,7 +183,7 @@ export default function Home() {
                         My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt.
                     </p>
                   </div>
-                  <Button asChild size="lg" variant="outline" className="text-base">
+                  <Button asChild size="lg" variant="outline" className="text-base mt-10">
                       <Link href="/#contact">
                           Work With Me <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
@@ -275,5 +277,3 @@ export default function Home() {
     </>
   );
 }
-
-    
