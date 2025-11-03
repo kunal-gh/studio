@@ -101,7 +101,11 @@ const portfolioCategories = [
 ];
 
 export default function Home() {
-  const bioImage = placeHolderImages.find(img => img.imageHint.includes('portrait street'));
+  const bioImages = [
+    placeHolderImages.find(img => img.id === 'portrait-3'),
+    placeHolderImages.find(img => img.id === 'portrait-1'),
+    placeHolderImages.find(img => img.id === 'portrait-2'),
+  ].filter(img => img !== undefined) as (typeof placeHolderImages[0])[];
   
   const heroImages = [
     placeHolderImages.find(img => img.imageHint.includes('wedding couple')),
@@ -155,32 +159,30 @@ export default function Home() {
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="text-center max-w-4xl mx-auto">
-              <h3 className="font-headline text-2xl font-bold text-muted-foreground tracking-wide">
-                  Hardik — The Eye Behind the Lens
-              </h3>
-              <h2 className="mt-4 font-headline text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight">
-                  About The Artist
-              </h2>
-              <div className="mt-12 grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
-                {bioImage && (
-                    <div className="relative md:col-span-2 aspect-square md:aspect-[4/5] rounded-lg overflow-hidden shadow-2xl mx-auto w-full max-w-sm md:max-w-none">
-                        <Image
-                            src={bioImage.imageUrl}
-                            alt={bioImage.description}
-                            fill
-                            className="object-cover"
-                            data-ai-hint={bioImage.imageHint}
-                        />
-                    </div>
-                )}
-                <div className="md:col-span-3 text-left">
+            <div className="text-center max-w-5xl mx-auto">
+                <h3 className="font-headline text-2xl font-bold text-muted-foreground tracking-wide uppercase">
+                    Hardik — The Eye Behind the Lens
+                </h3>
+                <h2 className="mt-4 font-headline text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight">
+                    About The Artist
+                </h2>
+              <div className="mt-12 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+                  <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl group">
+                    <AnimatedHero images={bioImages} />
+                  </div>
+                <div className="text-left">
                   <div className="text-xl text-foreground/80 leading-relaxed space-y-6">
                     <p>
                         Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
                     </p>
                     <p>
-                        My approach is to blend classic portraiture with candid, documentary-style photography. My goal is to create images that are not just seen, but felt.
+                        My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions. My goal is to create images that are not just seen, but felt—images that transport you back to the moment they were taken.
+                    </p>
+                     <p>
+                        Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities.
+                    </p>
+                    <p>
+                        Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together.
                     </p>
                   </div>
                   <Button asChild size="lg" variant="outline" className="text-base mt-10">
