@@ -22,7 +22,7 @@ const portfolioCategories = [
         title: "Weddings", 
         description: "Capturing the magic of your special day with timeless elegance.",
         coverImage: placeHolderImages.find(p => p.id === 'wedding-1')!,
-        className: "md:col-span-3 md:row-span-2",
+        className: "md:col-span-5 md:row-span-3",
         sharp: true,
     },
     { 
