@@ -75,14 +75,14 @@ const portfolioCategories = [
         title: "AI Generated", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
-        className: "md:col-span-2",
+        className: "md:col-span-1",
     },
     { 
         slug: 'fashion',
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-1",
+        className: "md:col-span-2",
     },
     { 
         slug: 'events',
@@ -118,14 +118,14 @@ export default function Home() {
     <>
       <div className="bg-background text-foreground">
         <section id="home" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="relative h-[70vh] md:h-[90vh] w-full flex items-center justify-center text-center text-white overflow-hidden rounded-2xl">
+            <div className="relative h-[80vh] md:h-[95vh] w-full flex items-center justify-center text-center text-white overflow-hidden rounded-2xl">
                 <AnimatedHero images={heroImages} />
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative z-10 p-4">
-                    <h1 className="font-headline text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
+                    <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
                     Capturing Life's Fleeting Moments
                     </h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl font-headline text-white/80 drop-shadow-sm">
+                    <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-headline text-white/80 drop-shadow-sm">
                     Through Hardik's Eye
                     </p>
                 </div>
@@ -142,7 +142,7 @@ export default function Home() {
             </p>
           </div>
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-5 auto-rows-[20rem] gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 auto-rows-[20rem] md:auto-rows-[15rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
                   key={category.slug}
@@ -162,18 +162,18 @@ export default function Home() {
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-5xl mx-auto">
-                <h3 className="font-headline text-2xl font-bold text-muted-foreground tracking-wide uppercase">
+                <h3 className="font-headline text-xl md:text-2xl font-bold text-muted-foreground tracking-wide uppercase">
                     Hardik — The Eye Behind the Lens
                 </h3>
-                <h2 className="mt-4 font-headline text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight">
+                <h2 className="mt-4 font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight">
                     About The Artist
                 </h2>
               <div className="mt-12 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-                  <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl group">
+                  <div className="relative w-full aspect-[4/5] md:aspect-auto md:h-full rounded-lg overflow-hidden shadow-2xl group">
                     <AnimatedHero images={bioImages} />
                   </div>
                 <div className="text-left">
-                  <div className="text-xl text-foreground/80 leading-relaxed space-y-6">
+                  <div className="text-lg md:text-xl text-foreground/80 leading-relaxed space-y-6">
                     <p>
                         Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
@@ -184,7 +184,7 @@ export default function Home() {
                         Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     </p>
                     <p>
-                        Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
                   </div>
                   <Button asChild size="lg" variant="outline" className="text-base mt-10">
@@ -202,35 +202,35 @@ export default function Home() {
 
         <section id="testimonials" className="py-20 md:py-28 lg:py-32 bg-secondary/30">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-20">
+                <div className="text-center mb-12 md:mb-20">
                     <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Client Voices</h2>
                     <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
                         Stories from those who have trusted me to capture their most precious moments.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                     {testimonials.map((testimonial, index) => (
                     <Card key={index} className="flex flex-col bg-card/50 border-border/50 shadow-lg">
-                        <CardHeader className="p-8">
-                        <div className="flex items-start gap-6">
-                            <Avatar className="w-20 h-20 border-2 border-primary">
+                        <CardHeader className="p-6 md:p-8">
+                        <div className="flex items-start gap-4 md:gap-6">
+                            <Avatar className="w-16 h-16 md:w-20 md:h-20 border-2 border-primary">
                             <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                             <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                             </Avatar>
                             <div className="flex-1">
-                            <h3 className="font-headline text-2xl font-bold">{testimonial.name}</h3>
-                            <p className="text-base text-muted-foreground">{testimonial.role}</p>
+                            <h3 className="font-headline text-xl md:text-2xl font-bold">{testimonial.name}</h3>
+                            <p className="text-sm md:text-base text-muted-foreground">{testimonial.role}</p>
                             {testimonial.rating && <div className="mt-2"><Rating rating={testimonial.rating} /></div>}
                             </div>
                         </div>
                         </CardHeader>
-                        <CardContent className="flex-grow p-8 pt-0">
-                        <p className="text-lg italic text-foreground/80 leading-relaxed">"{testimonial.text}"</p>
+                        <CardContent className="flex-grow p-6 md:p-8 pt-0">
+                        <p className="text-base md:text-lg italic text-foreground/80 leading-relaxed">"{testimonial.text}"</p>
                         </CardContent>
                     </Card>
                     ))}
                 </div>
-                <div className="mt-20 text-center">
+                <div className="mt-16 md:mt-20 text-center">
                     <Button asChild size="lg" variant="outline">
                         <Link href="/testimonials">
                             View All Reviews <ArrowRight className="ml-2 h-4 w-4" />
@@ -244,7 +244,7 @@ export default function Home() {
 
         <section id="contact" className="py-20 md:py-28 lg:py-32">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-20">
+                <div className="text-center mb-12 md:mb-20">
                     <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Create Together</h2>
                     <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
                     Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
@@ -252,8 +252,8 @@ export default function Home() {
                 </div>
                 <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
                     <div className="space-y-8">
-                    <h3 className="font-headline text-3xl font-bold">Get in Touch</h3>
-                    <div className="space-y-6 text-lg">
+                    <h3 className="font-headline text-2xl md:text-3xl font-bold">Get in Touch</h3>
+                    <div className="space-y-6 text-base md:text-lg">
                         <div className="flex items-center gap-4">
                         <Mail className="h-5 w-5 text-primary" />
                         <a href="mailto:contact@hardikseye.com" className="hover:text-primary transition-colors">contact@hardikseye.com</a>
@@ -267,7 +267,7 @@ export default function Home() {
                         <span>New York, NY | Available Worldwide</span>
                         </div>
                     </div>
-                    <p className="text-muted-foreground text-base leading-relaxed">
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                         For inquiries about weddings, portraits, events, or collaborations, please use the form, and I will get back to you as soon as possible. I am excited to hear about your ideas and how we can work together to create something beautiful.
                     </p>
                     </div>
