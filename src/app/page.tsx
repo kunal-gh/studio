@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, MapPin, Phone, Star } from 'lucide-react';
 import Image from 'next/image';
-import { placeHolderImages } from '@/lib/placeholder-images';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ContactForm } from "@/components/contact/contact-form";
@@ -15,43 +14,7 @@ import { PortfolioCard } from '@/components/portfolio/portfolio-card';
 import { useCollection, useMemoFirebase } from '@/firebase';
 import { collection, query, where } from 'firebase/firestore';
 import { useFirestore } from '@/firebase/provider';
-
-const testimonials = [
-  {
-    name: "Emily & John",
-    role: "Wedding Clients",
-    avatar: "https://picsum.photos/seed/avatar1/100/100",
-    rating: 5,
-    text: "Hardik was an absolute dream to work with for our wedding. The photos are breathtakingly beautiful, capturing the emotion of the day perfectly. We couldn't be happier!",
-  },
-  {
-    name: "Aisha Khan",
-    role: "Portrait Client",
-    avatar: "https://picsum.photos/seed/avatar2/100/100",
-    text: "The portrait session was so much fun and relaxed. Hardik has a true talent for making you feel comfortable and bringing out your personality in the photos. The results were stunning.",
-  },
-  {
-    name: "Music Fest Organizers",
-    role: "Event Client",
-    avatar: "https://picsum.photos/seed/avatar3/100/100",
-    rating: 5,
-    text: "Incredible event photography! The energy of our festival was captured in every shot. The photos are dynamic, vibrant, and tell the story of the event exactly as we hoped. Highly recommended.",
-  },
-  {
-    name: "Chloe Dubois",
-    role: "Fashion Designer",
-    avatar: "https://picsum.photos/seed/avatar4/100/100",
-    text: "Working with Hardik on our lookbook was a fantastic experience. The creativity and unique perspective brought our collection to life. The images are both art and fashion.",
-  },
-];
-
-const Rating = ({ rating }: { rating: number }) => (
-  <div className="flex items-center gap-1 text-yellow-400">
-    {Array.from({ length: 5 }).map((_, i) => (
-      <Star key={i} className={i < rating ? "fill-current" : ""} />
-    ))}
-  </div>
-);
+import { placeHolderImages } from '@/lib/placeholder-images';
 
 const portfolioCategories = [
     { 
@@ -112,6 +75,15 @@ const portfolioCategories = [
     },
 ];
 
+const Rating = ({ rating }: { rating: number }) => (
+  <div className="flex items-center gap-1 text-yellow-400">
+    {Array.from({ length: 5 }).map((_, i) => (
+      <Star key={i} className={i < rating ? "fill-current" : ""} />
+    ))}
+  </div>
+);
+
+
 export default function Home() {
   const firestore = useFirestore();
   const photographsQuery = useMemoFirebase(() => {
@@ -121,6 +93,13 @@ export default function Home() {
 
   const { data: photographs } = useCollection(photographsQuery);
   const categories = photographs ? [...new Set(photographs.map(p => p.category))] : [];
+  
+  const testimonialsQuery = useMemoFirebase(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, 'testimonials'));
+  }, [firestore]);
+
+  const { data: testimonials } = useCollection(testimonialsQuery);
   
   const bioImages = [
     placeHolderImages.find(img => img.id === 'portrait-3'),
@@ -147,7 +126,7 @@ export default function Home() {
                     Capturing Life's Fleeting Moments
                     </h1>
                     <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-body text-white/80 drop-shadow-sm">
-                    Through Hardik's Eye
+                    Visual stories, captured with soul.
                     </p>
                 </div>
             </div>
@@ -162,7 +141,7 @@ export default function Home() {
               A curated selection of moments captured with passion and a unique perspective. Explore the stories told in each frame.
             </p>
           </div>
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-2">
             <div className="grid grid-cols-1 md:grid-cols-5 auto-rows-[20rem] md:auto-rows-[15rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
@@ -172,7 +151,6 @@ export default function Home() {
                   description={category.description}
                   coverImage={category.coverImage}
                   className={category.className}
-                  sharp
                 />
               ))}
             </div>
@@ -183,8 +161,8 @@ export default function Home() {
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center max-w-6xl mx-auto">
-                <div className="relative w-full aspect-[4/5] group">
+            <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center max-w-7xl mx-auto">
+                <div className="relative w-full aspect-square group">
                     <AnimatedHero images={bioImages} />
                 </div>
                 <div className="text-left">
@@ -203,9 +181,6 @@ export default function Home() {
                         </p>
                          <p>
                             Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        </p>
-                        <p>
-                            Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
                     </div>
                     <Button asChild size="lg" variant="outline" className="text-base mt-10">
@@ -229,16 +204,16 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                    {testimonials.map((testimonial, index) => (
+                    {testimonials?.map((testimonial, index) => (
                     <Card key={index} className="flex flex-col bg-card/50 border-border/50 shadow-lg">
                         <CardHeader className="p-6 md:p-8">
                         <div className="flex items-start gap-4 md:gap-6">
                             <Avatar className="w-16 h-16 md:w-20 md:h-20 border-2 border-primary">
-                            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                            <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                            <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
                             </Avatar>
                             <div className="flex-1">
-                            <h3 className="font-headline text-xl md:text-2xl font-bold">{testimonial.name}</h3>
+                            <h3 className="font-headline text-xl md:text-2xl font-bold">{testimonial.author}</h3>
                             <p className="text-sm md:text-base text-muted-foreground">{testimonial.role}</p>
                             {testimonial.rating && <div className="mt-2"><Rating rating={testimonial.rating} /></div>}
                             </div>
@@ -263,39 +238,35 @@ export default function Home() {
         <Separator className="my-12 md:my-16" />
 
         <section id="contact" className="py-20 md:py-28 lg:py-32 bg-background">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-12 md:mb-20">
-                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Create Together</h2>
-                    <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
-                    Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
-                    </p>
-                </div>
-                <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
-                    <div className="space-y-8 bg-secondary/30 p-10 rounded-lg">
-                        <h3 className="font-headline text-2xl md:text-3xl font-bold">Get in Touch</h3>
-                        <p className="text-muted-foreground text-lg leading-relaxed">
-                            For inquiries about weddings, portraits, events, or collaborations, please use the form, and I will get back to you as soon as possible. I am excited to hear about your ideas and how we can work together to create something beautiful.
-                        </p>
-                        <div className="space-y-6 text-lg">
-                            <div className="flex items-center gap-4">
-                                <Mail className="h-6 w-6 text-primary" />
-                                <a href="mailto:contact@hardikseye.com" className="hover:text-primary transition-colors">contact@hardikseye.com</a>
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <Phone className="h-6 w-6 text-primary" />
-                                <span>(123) 456-7890</span>
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <MapPin className="h-6 w-6 text-primary" />
-                                <span>New York, NY | Available Worldwide</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <ContactForm />
-                    </div>
-                </div>
-            </div>
+          <div className="container mx-auto px-4">
+              <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
+                  <div className="space-y-8">
+                      <div className="text-left">
+                          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Create Together</h2>
+                          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+                          Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
+                          </p>
+                      </div>
+                      <div className="space-y-6 text-lg">
+                          <div className="flex items-center gap-4">
+                              <Mail className="h-6 w-6 text-primary" />
+                              <a href="mailto:contact@hardikseye.com" className="hover:text-primary transition-colors">contact@hardikseye.com</a>
+                          </div>
+                          <div className="flex items-center gap-4">
+                              <Phone className="h-6 w-6 text-primary" />
+                              <span>(123) 456-7890</span>
+                          </div>
+                          <div className="flex items-center gap-4">
+                              <MapPin className="h-6 w-6 text-primary" />
+                              <span>New York, NY | Available Worldwide</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div>
+                      <ContactForm />
+                  </div>
+              </div>
+          </div>
         </section>
       </div>
     </>
