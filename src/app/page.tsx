@@ -138,7 +138,7 @@ export default function Home() {
               My Work
             </h2>
             <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
-              A curated selection of moments captured with passion and a unique perspective. Explore the stories told in each frame.
+              My lens seeks the poetry in motion, the quiet narratives hidden in plain sight. This collection is more than just images; it's a gallery of feelings and fleeting instants. I hope they resonate with you as much as they did with me.
             </p>
           </div>
           <div className="container mx-auto px-2">
