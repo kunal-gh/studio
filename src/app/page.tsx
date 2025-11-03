@@ -133,7 +133,7 @@ export default function Home() {
         </section>
 
         <section id="portfolio" className="py-20 md:py-28 lg:py-32">
-           <div className="container mx-auto px-4 text-center mb-16 md:mb-24">
+           <div className="container mx-auto px-4 text-center mb-12 md:mb-16">
              <h2 className="font-headline text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight">
               My Work
             </h2>
