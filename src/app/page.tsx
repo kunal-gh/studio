@@ -116,8 +116,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-background text-foreground">
-        <section id="home" className="h-screen w-screen flex items-center justify-center">
+      <div className="bg-background text-foreground w-full overflow-x-hidden">
+        <section id="home" className="h-screen w-full flex items-center justify-center">
             <div className="relative w-[94%] h-[95vh] flex items-center justify-center text-center text-white">
                 <AnimatedHero images={heroImages} />
                 
