@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -19,9 +19,12 @@ const navLinks = [
 export function Header() {
   const [activeLink, setActiveLink] = useState("/#home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isClicking = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      if (isClicking.current) return;
+      
       const sections = navLinks.map(link => {
         const id = link.href.substring(2);
         return id ? document.getElementById(id) : null;
@@ -40,6 +43,16 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLinkClick = (href: string) => {
+    setIsMenuOpen(false);
+    setActiveLink(href);
+    isClicking.current = true;
+    setTimeout(() => {
+        isClicking.current = false;
+    }, 1000); // Reset after 1 second
+  };
+
+
   const NavLink = ({ href, label }: { href: string; label: string }) => {
     const isActive = activeLink === href;
     return (
@@ -53,10 +66,7 @@ export function Header() {
           "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-primary after:transition-transform after:duration-300 after:origin-left",
           isActive ? "after:scale-x-100" : "after:scale-x-0"
         )}
-        onClick={() => {
-          setIsMenuOpen(false);
-          setActiveLink(href);
-        }}
+        onClick={() => handleLinkClick(href)}
       >
         <span>{label}</span>
       </Link>
@@ -66,7 +76,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
       <div className="container flex h-24 items-center justify-between px-0 sm:px-4">
-        <Link href="/#home" onClick={() => setActiveLink('/#home')} className="flex items-baseline gap-3">
+        <Link href="/#home" onClick={() => handleLinkClick('/#home')} className="flex items-baseline gap-3">
             <span className="font-bold sm:inline-block font-headline text-5xl tracking-[0.2em]">
                 THE
             </span>
