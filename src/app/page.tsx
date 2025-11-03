@@ -55,6 +55,7 @@ const portfolioCategories = [
         description: "Capturing the magic of your special day with timeless elegance.",
         coverImage: placeHolderImages.find(p => p.id === 'wedding-1')!,
         className: "md:col-span-3 md:row-span-2",
+        sharp: true,
     },
     { 
         slug: 'portraits',
@@ -62,6 +63,7 @@ const portfolioCategories = [
         description: "Revealing the essence of personality through captivating portraits.",
         coverImage: placeHolderImages.find(p => p.id === 'portrait-1')!,
         className: "md:col-span-2 md:row-span-2",
+        sharp: true,
     },
     { 
         slug: 'street',
@@ -69,20 +71,23 @@ const portfolioCategories = [
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
         className: "md:col-span-2",
-    },
-    { 
-        slug: 'fashion',
-        title: "Fashion", 
-        description: "Bringing your creative vision to life with striking imagery.",
-        coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-1",
+        sharp: true,
     },
     { 
         slug: 'ai-generated',
         title: "AI Generated", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
+        className: "md:col-span-1",
+        sharp: true,
+    },
+    { 
+        slug: 'fashion',
+        title: "Fashion", 
+        description: "Bringing your creative vision to life with striking imagery.",
+        coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
         className: "md:col-span-2",
+        sharp: true,
     },
     { 
         slug: 'events',
@@ -90,6 +95,7 @@ const portfolioCategories = [
         description: "Documenting the energy and emotion of every occasion.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
         className: "md:col-span-5 md:row-span-3",
+        sharp: true,
     },
     { 
         slug: 'concerts',
@@ -97,6 +103,7 @@ const portfolioCategories = [
         description: "Freezing the high-energy moments of live performances.",
         coverImage: placeHolderImages.find(p => p.id === 'concert-1')!,
         className: "md:col-span-3",
+        sharp: true,
     },
 ];
 
@@ -118,7 +125,7 @@ export default function Home() {
     <>
       <div className="bg-background text-foreground">
         <section id="home" className="py-0">
-            <div className="relative h-[95vh] md:h-[110vh] w-full flex items-center justify-center text-center text-white mx-auto sm:px-2 lg:px-4">
+            <div className="relative h-[110vh] w-full flex items-center justify-center text-center text-white mx-4 sm:mx-8 md:mx-12 lg:mx-16">
                 <AnimatedHero images={heroImages} />
                 
                 <div className="relative z-10 p-4">
@@ -151,6 +158,7 @@ export default function Home() {
                   description={category.description}
                   coverImage={category.coverImage}
                   className={category.className}
+                  sharp={category.sharp}
                 />
               ))}
             </div>
@@ -161,39 +169,39 @@ export default function Home() {
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="text-center max-w-5xl mx-auto">
+            <div className="text-center mb-16 md:mb-20">
                 <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
                     Hardik — The Eye Behind the Lens
                 </h3>
-                <h2 className="mt-4 font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight">
+                <h2 className="mt-4 font-headline text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
                     About The Artist
                 </h2>
-              <div className="mt-12 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-                  <div className="relative w-full aspect-[4/5] md:aspect-auto md:h-full group">
+            </div>
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div className="relative w-full aspect-[4/5] group">
                     <AnimatedHero images={bioImages} />
-                  </div>
-                <div className="text-left">
-                  <div className="text-lg md:text-xl text-foreground/80 leading-relaxed space-y-6">
-                    <p>
-                        Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                    <p>
-                        My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions. My goal is to create images that are not just seen, but felt—images that transport you back to the moment they were taken. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                     <p>
-                        Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    </p>
-                    <p>
-                        Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                  </div>
-                  <Button asChild size="lg" variant="outline" className="text-base mt-10">
-                      <Link href="/#contact">
-                          Work With Me <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                  </Button>
                 </div>
-              </div>
+                <div className="text-left">
+                    <div className="text-base md:text-lg text-foreground/80 leading-relaxed space-y-6">
+                        <p>
+                            Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        </p>
+                        <p>
+                            My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions. My goal is to create images that are not just seen, but felt—images that transport you back to the moment they were taken. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                         <p>
+                            Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                        <p>
+                            Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </div>
+                    <Button asChild size="lg" variant="outline" className="text-base mt-10">
+                        <Link href="/#contact">
+                            Work With Me <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
+                </div>
             </div>
           </div>
         </section>
@@ -242,7 +250,7 @@ export default function Home() {
         
         <Separator className="my-12 md:my-16" />
 
-        <section id="contact" className="py-20 md:py-28 lg:py-32 bg-secondary/30">
+        <section id="contact" className="py-20 md:py-28 lg:py-32 bg-background">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12 md:mb-20">
                     <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Create Together</h2>
@@ -251,7 +259,7 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
-                    <div className="space-y-8">
+                    <div className="space-y-8 bg-secondary/30 p-10 rounded-lg">
                         <h3 className="font-headline text-2xl md:text-3xl font-bold">Get in Touch</h3>
                         <p className="text-muted-foreground text-lg leading-relaxed">
                             For inquiries about weddings, portraits, events, or collaborations, please use the form, and I will get back to you as soon as possible. I am excited to hear about your ideas and how we can work together to create something beautiful.
