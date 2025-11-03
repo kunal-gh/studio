@@ -75,7 +75,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
-      <div className="container flex h-24 items-center justify-between px-0 sm:px-4">
+      <div className="container flex h-20 items-center justify-between px-0 sm:px-4">
         <Link href="/#home" onClick={() => handleLinkClick('/#home')} className="flex items-baseline gap-3">
             <span className="font-bold sm:inline-block font-headline text-5xl tracking-[0.2em]">
                 THE
