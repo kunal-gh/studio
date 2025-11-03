@@ -1,4 +1,6 @@
 
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, MapPin, Phone, Star } from 'lucide-react';
@@ -10,6 +12,9 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { Separator } from '@/components/ui/separator';
 import { AnimatedHero } from '@/components/home/animated-hero';
 import { PortfolioCard } from '@/components/portfolio/portfolio-card';
+import { useCollection, useMemoFirebase } from '@/firebase';
+import { collection, query, where } from 'firebase/firestore';
+import { useFirestore } from '@/firebase/provider';
 
 const testimonials = [
   {
@@ -108,6 +113,15 @@ const portfolioCategories = [
 ];
 
 export default function Home() {
+  const firestore = useFirestore();
+  const photographsQuery = useMemoFirebase(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, 'photographs'));
+  }, [firestore]);
+
+  const { data: photographs } = useCollection(photographsQuery);
+  const categories = photographs ? [...new Set(photographs.map(p => p.category))] : [];
+  
   const bioImages = [
     placeHolderImages.find(img => img.id === 'portrait-3'),
     placeHolderImages.find(img => img.id === 'portrait-1'),
@@ -160,7 +174,6 @@ export default function Home() {
                   description={category.description}
                   coverImage={category.coverImage}
                   className={category.className}
-                  sharp={category.sharp}
                 />
               ))}
             </div>
@@ -171,7 +184,7 @@ export default function Home() {
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center max-w-6xl mx-auto">
                 <div className="relative w-full aspect-[4/5] group">
                     <AnimatedHero images={bioImages} />
                 </div>

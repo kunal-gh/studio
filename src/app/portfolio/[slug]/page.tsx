@@ -1,11 +1,13 @@
 
+'use client';
+
 import { placeHolderImages } from '@/lib/placeholder-images';
 import { PortfolioGrid } from '@/components/portfolio/portfolio-grid';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-
-const categories = ["Weddings", "Portraits", "Events", "AI Generated", "Concerts", "Street", "Fashion"];
+import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
+import { collection, query, where } from 'firebase/firestore';
 
 const categoryDescriptions: Record<string, string> = {
     weddings: "Capturing the love, joy, and candid moments that make your wedding day unforgettable. From the grand ceremony to the intimate details, we tell your unique love story.",
@@ -17,30 +19,18 @@ const categoryDescriptions: Record<string, string> = {
     "ai-generated": "Exploring the frontiers of creativity with AI-generated imagery. A showcase of art that blends technology and imagination.",
 };
 
-export async function generateStaticParams() {
-    return categories.map((category) => ({
-      slug: category.toLowerCase().replace(' ', '-'),
-    }));
-}
-
 export default function PortfolioCategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const categoryTitle = categories.find(c => c.toLowerCase().replace(' ', '-') === slug) || "Portfolio";
+  const firestore = useFirestore();
 
-  const images = placeHolderImages.filter(p => {
-    const categoryKey = categoryTitle.toLowerCase().replace(' ', '-');
-    
-    // Handle special cases for matching image IDs
-    if (categoryKey === 'weddings') {
-        return p.id.startsWith('wedding');
-    }
-    if (categoryKey === 'ai-generated') {
-        return p.id.startsWith('ai');
-    }
+  const categoryTitle = slug.charAt(0).toUpperCase() + slug.slice(1).replace('-', ' ');
 
-    const singularKey = categoryKey.endsWith('s') ? categoryKey.slice(0, -1) : categoryKey;
-    return p.id.startsWith(singularKey);
-  });
+  const photographsQuery = useMemoFirebase(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, 'photographs'), where('category', '==', categoryTitle.toLowerCase()));
+  }, [firestore, categoryTitle]);
+
+  const { data: images, isLoading } = useCollection(photographsQuery);
 
   return (
     <div className="py-20 md:py-28 lg:py-32">
@@ -52,7 +42,10 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
                 </p>
             </div>
             
-            <PortfolioGrid title="" images={images} layout="B" />
+            {isLoading && <p className="text-center">Loading images...</p>}
+            {!isLoading && images && <PortfolioGrid title="" images={images.map(img => ({...img, imageHint: ''}))} layout="B" />}
+            {!isLoading && !images && <p className="text-center">No images in this category yet.</p>}
+
 
             <div className="mt-24 text-center">
                 <Button asChild variant="outline" size="lg">
@@ -66,3 +59,4 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
     </div>
   );
 }
+

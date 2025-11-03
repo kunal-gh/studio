@@ -1,68 +1,11 @@
+
 {
   "entities": {
-    "Portfolio": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Portfolio",
-      "type": "object",
-      "description": "Represents the main portfolio of Hardik's photography.",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Portfolio entity."
-        },
-        "name": {
-          "type": "string",
-          "description": "The name of the portfolio (e.g., 'Through Hardik's Eye')."
-        },
-        "description": {
-          "type": "string",
-          "description": "A brief description of the portfolio."
-        },
-        "logoUrl": {
-          "type": "string",
-          "description": "URL to the portfolio logo image.",
-          "format": "uri"
-        },
-        "primaryColor": {
-          "type": "string",
-          "description": "The primary color of the portfolio (e.g., '#87CEEB')."
-        },
-        "backgroundColor": {
-          "type": "string",
-          "description": "The background color of the portfolio (e.g., '#F0F8FF')."
-        },
-        "accentColor": {
-          "type": "string",
-          "description": "The accent color of the portfolio (e.g., '#E07A5F')."
-        },
-        "headlineFont": {
-          "type": "string",
-          "description": "The font used for headlines (e.g., 'Playfair')."
-        },
-        "bodyFont": {
-          "type": "string",
-          "description": "The font used for the body text (e.g., 'PT Sans')."
-        }
-      },
-      "required": [
-        "id",
-        "name"
-      ]
-    },
     "Photograph": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Photograph",
       "type": "object",
       "description": "Represents a single photograph in the portfolio.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Photograph entity."
-        },
-        "portfolioId": {
-          "type": "string",
-          "description": "Reference to Portfolio. (Relationship: Portfolio 1:N Photograph)"
-        },
         "title": {
           "type": "string",
           "description": "The title of the photograph."
@@ -78,43 +21,20 @@
         },
         "category": {
           "type": "string",
-          "description": "The category of the photograph (e.g., 'Portraits', 'Events')."
+          "description": "The category of the photograph (e.g., 'portraits', 'events')."
         },
         "order": {
           "type": "number",
           "description": "The order in which the photograph should be displayed within its category."
-        },
-        "customerSentimentScore": {
-          "type": "number",
-          "description": "Customer sentiment score calculated by GenAI tools"
-        },
-        "seasonalDemandScore": {
-          "type": "number",
-          "description": "Seasonal demand score calculated by GenAI tools"
         }
       },
-      "required": [
-        "id",
-        "portfolioId",
-        "title",
-        "imageUrl",
-        "category"
-      ]
+      "required": ["title", "imageUrl", "category"]
     },
     "Testimonial": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Testimonial",
       "type": "object",
       "description": "Represents a testimonial from a client.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Testimonial entity."
-        },
-        "portfolioId": {
-          "type": "string",
-          "description": "Reference to Portfolio. (Relationship: Portfolio 1:N Testimonial)"
-        },
         "author": {
           "type": "string",
           "description": "The name of the testimonial author."
@@ -127,135 +47,34 @@
           "type": "string",
           "description": "The date the testimonial was given.",
           "format": "date-time"
+        },
+        "role": {
+            "type": "string",
+            "description": "The role of the client (e.g. 'Wedding Client')."
+        },
+        "avatar": {
+            "type": "string",
+            "description": "URL for the client's avatar image."
+        },
+        "rating": {
+            "type": "number",
+            "description": "Rating given by the client."
         }
       },
-      "required": [
-        "id",
-        "portfolioId",
-        "author",
-        "text"
-      ]
-    },
-    "ContactInfo": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "ContactInfo",
-      "type": "object",
-      "description": "Represents contact information for the photographer.",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the ContactInfo entity."
-        },
-        "portfolioId": {
-          "type": "string",
-          "description": "Reference to Portfolio. (Relationship: Portfolio 1:N ContactInfo)"
-        },
-        "email": {
-          "type": "string",
-          "description": "The photographer's email address.",
-          "format": "email"
-        },
-        "phone": {
-          "type": "string",
-          "description": "The photographer's phone number."
-        },
-        "address": {
-          "type": "string",
-          "description": "The photographer's address."
-        }
-      },
-      "required": [
-        "id",
-        "portfolioId",
-        "email"
-      ]
+      "required": ["author", "text"]
     }
   },
   "auth": {
-    "providers": [
-      "password",
-      "anonymous"
-    ]
+    "providers": ["anonymous"]
   },
   "firestore": {
-    "structure": [
-      {
-        "path": "/portfolios/{portfolioId}",
-        "definition": {
-          "entityName": "Portfolio",
-          "schema": {
-            "$ref": "#/backend/entities/Portfolio"
-          },
-          "description": "Stores portfolio data, including design preferences and other relevant details.  Includes portfolio identifier.",
-          "params": [
-            {
-              "name": "portfolioId",
-              "description": "The unique identifier for the portfolio."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/portfolios/{portfolioId}/photographs/{photographId}",
-        "definition": {
-          "entityName": "Photograph",
-          "schema": {
-            "$ref": "#/backend/entities/Photograph"
-          },
-          "description": "Stores photographs belonging to a specific portfolio. Includes portfolio identifier.",
-          "params": [
-            {
-              "name": "portfolioId",
-              "description": "The unique identifier for the portfolio."
-            },
-            {
-              "name": "photographId",
-              "description": "The unique identifier for the photograph."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/portfolios/{portfolioId}/testimonials/{testimonialId}",
-        "definition": {
-          "entityName": "Testimonial",
-          "schema": {
-            "$ref": "#/backend/entities/Testimonial"
-          },
-          "description": "Stores testimonials related to a specific portfolio. Includes portfolio identifier.",
-          "params": [
-            {
-              "name": "portfolioId",
-              "description": "The unique identifier for the portfolio."
-            },
-            {
-              "name": "testimonialId",
-              "description": "The unique identifier for the testimonial."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/portfolios/{portfolioId}/contactInfo/{contactInfoId}",
-        "definition": {
-          "entityName": "ContactInfo",
-          "schema": {
-            "$ref": "#/backend/entities/ContactInfo"
-          },
-          "description": "Stores contact information for a specific portfolio. Includes portfolio identifier.",
-          "params": [
-            {
-              "name": "portfolioId",
-              "description": "The unique identifier for the portfolio."
-            },
-            {
-              "name": "contactInfoId",
-              "description": "The unique identifier for the contact information."
-            }
-          ]
-        }
-      }
-    ],
-    "reasoning": "This design prioritizes security, scalability, and ease of debugging by adhering to Authorization Independence, Structural Segregation, and Access Modeling principles.\n\n1.  **Authorization Independence:**\n    *   The design avoids `get()` calls in security rules by denormalizing necessary authorization data.\n\n2.  **Structural Segregation:**\n    *   Each collection serves a specific purpose and contains documents with uniform security requirements. This simplifies security rules and improves maintainability.\n\n3.  **Access Modeling:**\n    *   Path-based ownership is used for entities related to a specific portfolio. This is secure and efficient.\n\n**QAPs Support:**\n\nThe structure supports secure `list` operations by segregating data based on ownership and access control requirements. Since all documents within a collection share the same security profile, rules can be written to allow listing based on the user's role or ownership of the parent document, without exposing unintended data.\n\n**Explanation of Paths:**\n\n*   `/portfolios/{portfolioId}`: Stores portfolio information, including design preferences. This is the root entity.\n*   `/portfolios/{portfolioId}/photographs/{photographId}`: Stores photographs belonging to a specific portfolio.\n*   `/portfolios/{portfolioId}/testimonials/{testimonialId}`: Stores testimonials related to a specific portfolio.\n*   `/portfolios/{portfolioId}/contactInfo/{contactInfoId}`: Stores contact information for a specific portfolio.\n\nThis structure facilitates the required AI portfolio curator tool, since each photograph contains the `customerSentimentScore` and `seasonalDemandScore` in the Photograph entity."
+    "photographs": {
+      "schema": { "$ref": "#/entities/Photograph" },
+      "description": "Stores all photographs for the portfolio."
+    },
+    "testimonials": {
+      "schema": { "$ref": "#/entities/Testimonial" },
+      "description": "Stores all testimonials from clients."
+    }
   }
 }
