@@ -63,20 +63,20 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
-      <div className="container flex h-24 items-center">
-        <Link href="/#home" className="mr-6 flex items-center gap-2" onClick={() => setActiveLink('/#home')}>
+      <div className="container flex h-24 items-center justify-between">
+        <Link href="/#home" className="flex items-center" onClick={() => setActiveLink('/#home')}>
           <span className="font-bold sm:inline-block font-headline text-3xl tracking-[0.2em]">
             THE
           </span>
         </Link>
-        <nav className="hidden md:flex flex-1 items-center gap-2 text-sm">
+        <nav className="hidden md:flex items-center gap-4 text-sm">
           {navLinks.map((link) => (
             <div key={link.href} className="group">
               <NavLink {...link} />
             </div>
           ))}
         </nav>
-        <div className="flex flex-1 items-center justify-end md:hidden">
+        <div className="flex items-center md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             <span className="sr-only">Toggle Menu</span>
