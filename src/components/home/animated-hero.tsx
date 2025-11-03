@@ -24,7 +24,7 @@ export function AnimatedHero({ images }: AnimatedHeroProps) {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 8000); // Change image every 8 seconds
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -39,7 +39,7 @@ export function AnimatedHero({ images }: AnimatedHeroProps) {
         <div
           key={image.id}
           className={cn(
-            "absolute inset-0 transition-opacity duration-1000 ease-in-out",
+            "absolute inset-0 transition-opacity duration-[3000ms] ease-in-out",
             index === currentIndex ? "opacity-100" : "opacity-0"
           )}
         >
@@ -49,7 +49,7 @@ export function AnimatedHero({ images }: AnimatedHeroProps) {
             fill
             priority={index === 0}
             className={cn(
-              "object-cover transition-transform duration-[6000ms] ease-in-out",
+              "object-cover transition-transform duration-[9000ms] ease-in-out",
               index === currentIndex ? "scale-105" : "scale-100"
             )}
             data-ai-hint={image.imageHint}
