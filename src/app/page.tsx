@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail, MapPin, Phone, Star, ArrowLeft } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone, Star } from 'lucide-react';
 import Image from 'next/image';
 import { placeHolderImages } from '@/lib/placeholder-images';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -71,13 +71,6 @@ const portfolioCategories = [
         className: "md:col-span-2",
     },
     { 
-        slug: 'ai-generated',
-        title: "AI Generated", 
-        description: "Exploring the frontiers of creativity with AI-generated imagery.",
-        coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
-        className: "md:col-span-2",
-    },
-    { 
         slug: 'fashion',
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
@@ -85,11 +78,18 @@ const portfolioCategories = [
         className: "md:col-span-1",
     },
     { 
+        slug: 'ai-generated',
+        title: "AI Generated", 
+        description: "Exploring the frontiers of creativity with AI-generated imagery.",
+        coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
+        className: "md:col-span-2",
+    },
+    { 
         slug: 'events',
         title: "Events", 
         description: "Documenting the energy and emotion of every occasion.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "md:col-span-5 md:row-span-2",
+        className: "md:col-span-5 md:row-span-3",
     },
     { 
         slug: 'concerts',
@@ -117,10 +117,10 @@ export default function Home() {
   return (
     <>
       <div className="bg-background text-foreground">
-        <section id="home" className="py-8">
-            <div className="relative h-[90vh] md:h-[95vh] w-full flex items-center justify-center text-center text-white mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="home" className="py-0">
+            <div className="relative h-[95vh] md:h-[110vh] w-full flex items-center justify-center text-center text-white mx-auto sm:px-2 lg:px-4">
                 <AnimatedHero images={heroImages} />
-                <div className="absolute inset-0 bg-black/30"></div>
+                
                 <div className="relative z-10 p-4">
                     <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
                     Capturing Life's Fleeting Moments
@@ -175,16 +175,16 @@ export default function Home() {
                 <div className="text-left">
                   <div className="text-lg md:text-xl text-foreground/80 leading-relaxed space-y-6">
                     <p>
-                        Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                     <p>
-                        My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions. My goal is to create images that are not just seen, but felt—images that transport you back to the moment they were taken. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions. My goal is to create images that are not just seen, but felt—images that transport you back to the moment they were taken. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                      <p>
                         Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     </p>
                     <p>
-                        Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Thank you for considering me to be a part of your story. I look forward to the possibility of creating something truly beautiful together. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </p>
                   </div>
                   <Button asChild size="lg" variant="outline" className="text-base mt-10">
