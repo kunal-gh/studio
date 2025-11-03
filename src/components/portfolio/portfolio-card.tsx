@@ -22,7 +22,7 @@ export function PortfolioCard({ slug, title, description, coverImage, className 
             src={coverImage.imageUrl}
             alt={coverImage.description}
             fill
-            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             data-ai-hint={coverImage.imageHint}
         />
