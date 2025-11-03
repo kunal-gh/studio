@@ -138,19 +138,17 @@ export default function Home() {
   return (
     <>
       <div className="bg-background text-foreground">
-        <section id="home" className="py-0">
-            <div className="px-2">
-                <div className="relative h-[110vh] w-full flex items-center justify-center text-center text-white">
-                    <AnimatedHero images={heroImages} />
-                    
-                    <div className="relative z-10 p-4">
-                        <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
-                        Capturing Life's Fleeting Moments
-                        </h1>
-                        <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-body text-white/80 drop-shadow-sm">
-                        Through Hardik's Eye
-                        </p>
-                    </div>
+        <section id="home" className="h-screen w-screen flex items-center justify-center">
+            <div className="relative w-[94%] h-[95vh] flex items-center justify-center text-center text-white">
+                <AnimatedHero images={heroImages} />
+                
+                <div className="relative z-10 p-4">
+                    <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
+                    Capturing Life's Fleeting Moments
+                    </h1>
+                    <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-body text-white/80 drop-shadow-sm">
+                    Through Hardik's Eye
+                    </p>
                 </div>
             </div>
         </section>
@@ -174,6 +172,7 @@ export default function Home() {
                   description={category.description}
                   coverImage={category.coverImage}
                   className={category.className}
+                  sharp
                 />
               ))}
             </div>
@@ -195,7 +194,7 @@ export default function Home() {
                     <h2 className="mt-4 font-headline text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
                         About The Artist
                     </h2>
-                    <div className="mt-8 text-lg md:text-xl text-foreground/80 leading-relaxed space-y-8">
+                    <div className="mt-8 text-xl text-foreground/80 leading-relaxed space-y-8">
                         <p>
                             Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                         </p>
