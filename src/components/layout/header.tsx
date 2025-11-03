@@ -64,20 +64,20 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
       <div className="container flex h-24 items-center justify-between">
-        <Link href="/#home" className="flex items-center" onClick={() => setActiveLink('/#home')}>
-          <span className="font-bold sm:inline-block font-headline text-3xl tracking-[0.2em]">
-            THE
-          </span>
-        </Link>
-        <div className="flex-1 flex justify-end">
-          <nav className="hidden md:flex items-center gap-4 text-sm">
-            {navLinks.map((link) => (
-              <div key={link.href} className="group">
-                <NavLink {...link} />
-              </div>
-            ))}
-          </nav>
+        <div className="flex items-center">
+            <Link href="/#home" onClick={() => setActiveLink('/#home')}>
+                <span className="font-bold sm:inline-block font-headline text-3xl tracking-[0.2em]">
+                    THE
+                </span>
+            </Link>
         </div>
+        
+        <div className="hidden md:flex items-center gap-4 text-sm">
+            {navLinks.map((link) => (
+                <NavLink key={link.href} {...link} />
+            ))}
+        </div>
+
         <div className="flex items-center md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -89,9 +89,7 @@ export function Header() {
         <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-sm">
             <nav className="flex flex-col items-center gap-4 py-6">
                 {navLinks.map((link) => (
-                  <div key={link.href} className="group">
-                    <NavLink {...link} />
-                  </div>
+                  <NavLink key={link.href} {...link} />
                 ))}
             </nav>
         </div>
