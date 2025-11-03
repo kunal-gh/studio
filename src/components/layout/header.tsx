@@ -46,17 +46,19 @@ export function Header() {
       <Link
         href={href}
         className={cn(
-          "px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300",
+          "relative py-2 text-sm font-medium transition-colors duration-300",
           isActive
-            ? "bg-primary text-primary-foreground"
-            : "text-muted-foreground hover:bg-secondary/80"
+            ? "text-primary"
+            : "text-muted-foreground hover:text-primary",
+          "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-primary after:transition-transform after:duration-300",
+          isActive ? "after:scale-x-100" : "after:scale-x-0 group-hover:after:scale-x-100"
         )}
         onClick={() => {
           setIsMenuOpen(false);
           setActiveLink(href);
         }}
       >
-        {label}
+        <span className="group">{label}</span>
       </Link>
     );
   };
