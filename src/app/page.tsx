@@ -118,14 +118,14 @@ export default function Home() {
     <>
       <div className="bg-background text-foreground">
         <section id="home" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="relative h-[80vh] md:h-[95vh] w-full flex items-center justify-center text-center text-white overflow-hidden rounded-2xl">
+            <div className="relative h-[90vh] md:h-[95vh] w-full flex items-center justify-center text-center text-white overflow-hidden rounded-2xl">
                 <AnimatedHero images={heroImages} />
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative z-10 p-4">
                     <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
                     Capturing Life's Fleeting Moments
                     </h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-headline text-white/80 drop-shadow-sm">
+                    <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-body text-white/80 drop-shadow-sm">
                     Through Hardik's Eye
                     </p>
                 </div>
@@ -162,7 +162,7 @@ export default function Home() {
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-5xl mx-auto">
-                <h3 className="font-headline text-xl md:text-2xl font-bold text-muted-foreground tracking-wide uppercase">
+                <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
                     Hardik — The Eye Behind the Lens
                 </h3>
                 <h2 className="mt-4 font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight">
