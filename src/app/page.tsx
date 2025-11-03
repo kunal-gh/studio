@@ -38,7 +38,7 @@ const portfolioCategories = [
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
-        className: "md:col-span-2",
+        className: "md:col-span-2 md:row-span-2",
         sharp: true,
     },
     { 
@@ -46,7 +46,7 @@ const portfolioCategories = [
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-1",
+        className: "md:col-span-3",
         sharp: true,
     },
     { 
