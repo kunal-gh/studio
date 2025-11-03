@@ -74,18 +74,18 @@ const portfolioCategories = [
         sharp: true,
     },
     { 
-        slug: 'ai-generated',
-        title: "AI Generated", 
-        description: "Exploring the frontiers of creativity with AI-generated imagery.",
-        coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
-        className: "md:col-span-1",
-        sharp: true,
-    },
-    { 
         slug: 'fashion',
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
+        className: "md:col-span-1",
+        sharp: true,
+    },
+    { 
+        slug: 'ai-generated',
+        title: "AI Generated", 
+        description: "Exploring the frontiers of creativity with AI-generated imagery.",
+        coverImage: placeHolderImages.find(p => p.id === 'ai-1')!,
         className: "md:col-span-2",
         sharp: true,
     },
@@ -125,16 +125,18 @@ export default function Home() {
     <>
       <div className="bg-background text-foreground">
         <section id="home" className="py-0">
-            <div className="relative h-[110vh] w-full flex items-center justify-center text-center text-white mx-4 sm:mx-8 md:mx-12 lg:mx-16">
-                <AnimatedHero images={heroImages} />
-                
-                <div className="relative z-10 p-4">
-                    <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
-                    Capturing Life's Fleeting Moments
-                    </h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-body text-white/80 drop-shadow-sm">
-                    Through Hardik's Eye
-                    </p>
+            <div className="container mx-auto px-4">
+                <div className="relative h-[110vh] w-full flex items-center justify-center text-center text-white">
+                    <AnimatedHero images={heroImages} />
+                    
+                    <div className="relative z-10 p-4">
+                        <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90 drop-shadow-md">
+                        Capturing Life's Fleeting Moments
+                        </h1>
+                        <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-body text-white/80 drop-shadow-sm">
+                        Through Hardik's Eye
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -169,20 +171,18 @@ export default function Home() {
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16 md:mb-20">
-                <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
-                    Hardik — The Eye Behind the Lens
-                </h3>
-                <h2 className="mt-4 font-headline text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
-                    About The Artist
-                </h2>
-            </div>
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div className="relative w-full aspect-[4/5] group">
                     <AnimatedHero images={bioImages} />
                 </div>
                 <div className="text-left">
-                    <div className="text-base md:text-lg text-foreground/80 leading-relaxed space-y-6">
+                    <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
+                        Hardik — The Eye Behind the Lens
+                    </h3>
+                    <h2 className="mt-4 font-headline text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
+                        About The Artist
+                    </h2>
+                    <div className="mt-8 text-base md:text-lg text-foreground/80 leading-relaxed space-y-6">
                         <p>
                             Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                         </p>
