@@ -1,4 +1,3 @@
-import { Instagram, Twitter, Facebook } from 'lucide-react';
 import Link from 'next/link';
 
 export function Footer() {
@@ -12,15 +11,7 @@ export function Footer() {
             &copy; {year} Through Hardik's Eye
           </p>
           <div className="flex items-center gap-4">
-            <Link href="#" aria-label="Twitter">
-              <Twitter className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
-            </Link>
-            <Link href="#" aria-label="Facebook">
-              <Facebook className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
-            </Link>
-            <Link href="#" aria-label="Instagram">
-              <Instagram className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
-            </Link>
+            {/* Social icons moved to header */}
           </div>
         </div>
       </div>

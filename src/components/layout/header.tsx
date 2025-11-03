@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram, Twitter, Facebook } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -85,11 +85,24 @@ export function Header() {
             </span>
         </Link>
         
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-            {navLinks.map((link) => (
-                <NavLink key={link.href} {...link} />
-            ))}
-        </nav>
+        <div className="hidden md:flex items-center gap-10">
+          <nav className="flex items-center gap-6 text-sm">
+              {navLinks.map((link) => (
+                  <NavLink key={link.href} {...link} />
+              ))}
+          </nav>
+          <div className="flex items-center gap-4">
+            <Link href="#" aria-label="Twitter">
+              <Twitter className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+            </Link>
+            <Link href="#" aria-label="Facebook">
+              <Facebook className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+            </Link>
+            <Link href="#" aria-label="Instagram">
+              <Instagram className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+            </Link>
+          </div>
+        </div>
 
         <div className="flex items-center md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
