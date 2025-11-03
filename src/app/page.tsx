@@ -125,7 +125,7 @@ export default function Home() {
                     <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tighter text-white/90 drop-shadow-md">
                     Capturing Life's Fleeting Moments
                     </h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-body text-white/80 drop-shadow-sm">
+                    <p className="mt-4 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl font-body text-white/80 drop-shadow-sm">
                     Visual stories, captured with soul.
                     </p>
                 </div>
@@ -272,5 +272,3 @@ export default function Home() {
     </>
   );
 }
-
-    
