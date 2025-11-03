@@ -242,7 +242,7 @@ export default function Home() {
         
         <Separator className="my-12 md:my-16" />
 
-        <section id="contact" className="py-20 md:py-28 lg:py-32">
+        <section id="contact" className="py-20 md:py-28 lg:py-32 bg-secondary/30">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12 md:mb-20">
                     <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Create Together</h2>
@@ -250,29 +250,29 @@ export default function Home() {
                     Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
                     </p>
                 </div>
-                <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
+                <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
                     <div className="space-y-8">
-                    <h3 className="font-headline text-2xl md:text-3xl font-bold">Get in Touch</h3>
-                    <div className="space-y-6 text-base md:text-lg">
-                        <div className="flex items-center gap-4">
-                        <Mail className="h-5 w-5 text-primary" />
-                        <a href="mailto:contact@hardikseye.com" className="hover:text-primary transition-colors">contact@hardikseye.com</a>
+                        <h3 className="font-headline text-2xl md:text-3xl font-bold">Get in Touch</h3>
+                        <p className="text-muted-foreground text-lg leading-relaxed">
+                            For inquiries about weddings, portraits, events, or collaborations, please use the form, and I will get back to you as soon as possible. I am excited to hear about your ideas and how we can work together to create something beautiful.
+                        </p>
+                        <div className="space-y-6 text-lg">
+                            <div className="flex items-center gap-4">
+                                <Mail className="h-6 w-6 text-primary" />
+                                <a href="mailto:contact@hardikseye.com" className="hover:text-primary transition-colors">contact@hardikseye.com</a>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <Phone className="h-6 w-6 text-primary" />
+                                <span>(123) 456-7890</span>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <MapPin className="h-6 w-6 text-primary" />
+                                <span>New York, NY | Available Worldwide</span>
+                            </div>
                         </div>
-                        <div className="flex items-center gap-4">
-                        <Phone className="h-5 w-5 text-primary" />
-                        <span>(123) 456-7890</span>
-                        </div>
-                        <div className="flex items-center gap-4">
-                        <MapPin className="h-5 w-5 text-primary" />
-                        <span>New York, NY | Available Worldwide</span>
-                        </div>
-                    </div>
-                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                        For inquiries about weddings, portraits, events, or collaborations, please use the form, and I will get back to you as soon as possible. I am excited to hear about your ideas and how we can work together to create something beautiful.
-                    </p>
                     </div>
                     <div>
-                    <ContactForm />
+                        <ContactForm />
                     </div>
                 </div>
             </div>
