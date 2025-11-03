@@ -50,15 +50,15 @@ export function Header() {
           isActive
             ? "text-primary"
             : "text-muted-foreground hover:text-primary",
-          "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-primary after:transition-transform after:duration-300",
-          isActive ? "after:scale-x-100" : "after:scale-x-0 group-hover:after:scale-x-100"
+          "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-primary after:transition-transform after:duration-300 after:origin-left",
+          isActive ? "after:scale-x-100" : "after:scale-x-0"
         )}
         onClick={() => {
           setIsMenuOpen(false);
           setActiveLink(href);
         }}
       >
-        <span className="group">{label}</span>
+        <span>{label}</span>
       </Link>
     );
   };
