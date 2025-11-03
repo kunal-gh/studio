@@ -70,7 +70,7 @@ export function Header() {
             </span>
         </Link>
         
-        <nav className="hidden md:flex items-center gap-4 text-sm">
+        <nav className="hidden md:flex items-center gap-6 text-sm">
             {navLinks.map((link) => (
                 <NavLink key={link.href} {...link} />
             ))}
