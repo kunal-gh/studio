@@ -70,7 +70,7 @@ const portfolioCategories = [
         title: "Concerts", 
         description: "Freezing the high-energy moments of live performances.",
         coverImage: placeHolderImages.find(p => p.id === 'concert-1')!,
-        className: "md:col-span-3",
+        className: "md:col-span-3 md:row-span-2",
         sharp: true,
     },
 ];
