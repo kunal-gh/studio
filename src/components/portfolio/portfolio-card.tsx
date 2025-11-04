@@ -33,7 +33,7 @@ export function PortfolioCard({ slug, title, description, coverImage, className,
       
       <div className="absolute inset-0 flex items-center justify-center p-4">
         <h3 
-          className="font-headline text-6xl md:text-8xl lg:text-9xl font-normal uppercase tracking-tighter text-center text-white"
+          className="font-headline text-6xl md:text-7xl lg:text-8xl font-normal uppercase tracking-tighter text-center text-white"
         >
           {title}
         </h3>
