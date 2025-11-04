@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Link from 'next/link';
@@ -22,7 +23,7 @@ const portfolioCategories = [
         title: "Weddings", 
         description: "Capturing the magic of your special day with timeless elegance.",
         coverImage: placeHolderImages.find(p => p.id === 'wedding-1')!,
-        className: "md:col-span-5 md:row-span-2",
+        className: "md:col-span-10 md:row-span-2",
         sharp: true,
     },
     { 
@@ -30,7 +31,7 @@ const portfolioCategories = [
         title: "Portraits", 
         description: "Revealing the essence of personality through captivating portraits.",
         coverImage: placeHolderImages.find(p => p.id === 'portrait-1')!,
-        className: "md:col-span-2 md:row-span-2",
+        className: "md:col-span-4 md:row-span-2",
         sharp: true,
     },
     { 
@@ -38,7 +39,7 @@ const portfolioCategories = [
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
-        className: "md:col-span-3 md:row-span-2",
+        className: "md:col-span-6 md:row-span-2",
         sharp: true,
     },
     { 
@@ -46,7 +47,7 @@ const portfolioCategories = [
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-4",
+        className: "md:col-span-7",
         sharp: true,
     },
     { 
@@ -54,7 +55,7 @@ const portfolioCategories = [
         title: "AI Generated", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'ai-new-1')!,
-        className: "md:col-span-1",
+        className: "md:col-span-3",
         sharp: true,
     },
     { 
@@ -62,7 +63,7 @@ const portfolioCategories = [
         title: "Events", 
         description: "Documenting the energy and emotion of every occasion.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "md:col-span-5 md:row-span-2",
+        className: "md:col-span-10 md:row-span-2",
         sharp: true,
     },
     { 
@@ -70,7 +71,7 @@ const portfolioCategories = [
         title: "Concerts", 
         description: "Freezing the high-energy moments of live performances.",
         coverImage: placeHolderImages.find(p => p.id === 'concert-1')!,
-        className: "md:col-span-3 md:row-span-2",
+        className: "md:col-span-10 md:row-span-2",
         sharp: true,
     },
 ];
@@ -142,7 +143,7 @@ export default function Home() {
             </p>
           </div>
           <div className="container mx-auto px-2">
-            <div className="grid grid-cols-1 md:grid-cols-5 auto-rows-[20rem] md:auto-rows-[15rem] gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-10 auto-rows-[20rem] md:auto-rows-[15rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
                   key={category.slug}
@@ -239,7 +240,7 @@ export default function Home() {
               <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
                   <div className="space-y-8">
                       <div className="text-left">
-                          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Create Together</h2>
+                          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl fontbold tracking-tight">Let's Create Together</h2>
                           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
                           Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
                           </p>
@@ -269,3 +270,4 @@ export default function Home() {
     </>
   );
 }
+
