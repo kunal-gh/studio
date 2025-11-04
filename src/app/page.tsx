@@ -174,13 +174,10 @@ export default function Home() {
                     </h2>
                     <div className="mt-8 text-xl text-foreground/80 leading-relaxed space-y-8">
                         <p>
-                            Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
                         </p>
                         <p>
-                            My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions. My goal is to create images that are not just seen, but felt—images that transport you back to the moment they were taken. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                         <p>
-                            Whether I'm capturing the intimate vows of a wedding, the quiet confidence of a portrait, or the vibrant energy of an event, I strive to create a comfortable and collaborative atmosphere. This allows me to capture my subjects in a natural, unposed way, revealing their true personalities. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions, and I strive to create a comfortable, collaborative atmosphere where my subjects can reveal their true personalities. My goal is to create images that are not just seen, but felt.
                         </p>
                     </div>
                     <Button asChild size="lg" variant="outline" className="text-base mt-10">
