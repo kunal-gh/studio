@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import Link from 'next/link';
@@ -144,6 +143,7 @@ export default function Home() {
                   description={category.description}
                   coverImage={category.coverImage}
                   className={category.className}
+                  sharp={category.sharp}
                 />
               ))}
             </div>
