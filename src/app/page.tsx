@@ -71,7 +71,7 @@ const portfolioCategories = [
         title: "Concerts", 
         description: "Freezing the high-energy moments of live performances.",
         coverImage: placeHolderImages.find(p => p.id === 'concert-1')!,
-        className: "md:col-span-10 md:row-span-2",
+        className: "md:col-span-10",
         sharp: true,
     },
 ];
@@ -175,10 +175,10 @@ export default function Home() {
                     </h2>
                     <div className="mt-8 text-xl text-foreground/80 leading-relaxed space-y-8">
                         <p>
-                            Welcome! I'm Hardik, a photographer driven by a desire to capture the fleeting moments that tell a larger story. My journey began with a simple camera and a curiosity for the world around me, which has since blossomed into a full-fledged passion for visual storytelling.
+                            I'm Hardik, a photographer driven to capture the fleeting moments that tell a larger story. My approach blends classic portraiture with candid, documentary-style photography to create images that are not just seen, but felt.
                         </p>
                         <p>
-                            My approach is to blend classic portraiture with candid, documentary-style photography. I believe the best photographs are born from genuine moments and authentic emotions, and I strive to create a comfortable, collaborative atmosphere where my subjects can reveal their true personalities. My goal is to create images that are not just seen, but felt.
+                            I strive to create a comfortable, collaborative atmosphere where my subjects can reveal their true personalities, resulting in images that are both genuine and timeless.
                         </p>
                     </div>
                     <Button asChild size="lg" variant="outline" className="text-base mt-10">
@@ -270,4 +270,3 @@ export default function Home() {
     </>
   );
 }
-
