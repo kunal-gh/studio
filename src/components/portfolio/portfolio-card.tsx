@@ -26,9 +26,9 @@ export function PortfolioCard({ slug, title, description, coverImage, className 
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             data-ai-hint={coverImage.imageHint}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300" />
         <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-white">
-            <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+            <div className="transform transition-transform duration-500 ease-in-out">
                 <h3 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">{title}</h3>
                 <div className="mt-4 max-h-0 overflow-hidden opacity-0 transition-all duration-500 group-hover:max-h-40 group-hover:opacity-100">
                     <p className="text-white/90">{description}</p>
