@@ -46,7 +46,7 @@ const portfolioCategories = [
         title: "Fashion", 
         description: "Bringing your creative vision to life with striking imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'fashion-1')!,
-        className: "md:col-span-3",
+        className: "md:col-span-4",
         sharp: true,
     },
     { 
@@ -54,7 +54,7 @@ const portfolioCategories = [
         title: "AI Generated", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
         coverImage: placeHolderImages.find(p => p.id === 'ai-new-1')!,
-        className: "md:col-span-2",
+        className: "md:col-span-1",
         sharp: true,
     },
     { 
