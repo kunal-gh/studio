@@ -29,7 +29,7 @@ export function PortfolioCard({ slug, title, description, coverImage, className 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300" />
         <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-white">
             <div className="transform transition-transform duration-500 ease-in-out">
-                <h3 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">{title}</h3>
+                <h3 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">{title}</h3>
                 <div className="mt-4 max-h-0 overflow-hidden opacity-0 transition-all duration-500 group-hover:max-h-40 group-hover:opacity-100">
                     <p className="text-white/90">{description}</p>
                     <div className="mt-4 flex items-center font-semibold">
