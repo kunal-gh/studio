@@ -12,9 +12,8 @@ import { collection, query, where } from 'firebase/firestore';
 const categoryDescriptions: Record<string, string> = {
     weddings: "Capturing the love, joy, and candid moments that make your wedding day unforgettable. From the grand ceremony to the intimate details, we tell your unique love story.",
     portraits: "Whether for professional headshots, family photos, or creative concepts, our portrait sessions are tailored to capture your essence in a relaxed and artful way.",
-    events: "From corporate functions and conferences to private parties and celebrations, we document the energy and key moments of any event with professionalism and a keen eye.",
+    "live-events": "From corporate functions and high-energy concerts to private parties and celebrations, we document the energy and key moments of any event with professionalism and a keen eye.",
     fashion: "Collaborating with designers and brands to create striking lookbooks, editorials, and campaign imagery that brings your collection to life with style and creativity.",
-    concerts: "Freezing the electrifying energy of live music. We capture artists in their element and the vibrant atmosphere of the crowd, from small gigs to large festivals.",
     street: "Finding beauty and narrative in the everyday. Our street photography captures the candid, fleeting moments of life in the city with an authentic, documentary style.",
     "ai-generated": "Exploring the frontiers of creativity with AI-generated imagery. A showcase of art that blends technology and imagination.",
 };
@@ -27,8 +26,11 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
 
   const photographsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
-    return query(collection(firestore, 'photographs'), where('category', '==', categoryTitle.toLowerCase()));
-  }, [firestore, categoryTitle]);
+    if (slug === 'live-events') {
+        return query(collection(firestore, 'photographs'), where('category', 'in', ['events', 'concerts']));
+    }
+    return query(collection(firestore, 'photographs'), where('category', '==', slug));
+  }, [firestore, slug]);
 
   const { data: images, isLoading } = useCollection(photographsQuery);
 
@@ -59,4 +61,3 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
     </div>
   );
 }
-

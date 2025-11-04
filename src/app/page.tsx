@@ -59,19 +59,11 @@ const portfolioCategories = [
         sharp: true,
     },
     { 
-        slug: 'events',
-        title: "Events", 
-        description: "Documenting the energy and emotion of every occasion.",
+        slug: 'live-events',
+        title: "Live Events", 
+        description: "Documenting the energy and emotion of every occasion, from concerts to conferences.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
         className: "md:col-span-10 md:row-span-2",
-        sharp: true,
-    },
-    { 
-        slug: 'concerts',
-        title: "Concerts", 
-        description: "Freezing the high-energy moments of live performances.",
-        coverImage: placeHolderImages.find(p => p.id === 'concert-1')!,
-        className: "md:col-span-7 md:row-span-2",
         sharp: true,
     },
 ];
