@@ -43,17 +43,19 @@ export function AnimatedHero({ images }: AnimatedHeroProps) {
             index === currentIndex ? "opacity-100" : "opacity-0"
           )}
         >
-          <Image
-            src={image.imageUrl}
-            alt={image.description}
-            fill
-            priority={index === 0}
-            className={cn(
-              "object-cover transition-transform duration-[6000ms] ease-in-out",
-              index === currentIndex ? "scale-105" : "scale-100"
-            )}
-            data-ai-hint={image.imageHint}
-          />
+          <div className="relative w-full h-full rounded-lg shadow-2xl overflow-hidden">
+            <Image
+              src={image.imageUrl}
+              alt={image.description}
+              fill
+              priority={index === 0}
+              className={cn(
+                "object-cover transition-transform duration-[6000ms] ease-in-out",
+                index === currentIndex ? "scale-105" : "scale-100"
+              )}
+              data-ai-hint={image.imageHint}
+            />
+          </div>
         </div>
       ))}
     </>
