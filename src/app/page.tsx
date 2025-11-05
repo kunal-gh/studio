@@ -316,7 +316,7 @@ export default function Home() {
                             <Mail className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
                           </div>
                           <div>
-                            <p className="font-semibold">Email</p>
+                            <p className="font-semibold transition-colors group-hover:text-primary">Email</p>
                             <a href="mailto:contact@hardikseye.com" className="text-muted-foreground group-hover:text-primary transition-colors">contact@hardikseye.com</a>
                           </div>
                       </div>
@@ -325,7 +325,7 @@ export default function Home() {
                             <Phone className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
                           </div>
                           <div>
-                            <p className="font-semibold">Phone</p>
+                            <p className="font-semibold transition-colors group-hover:text-primary">Phone</p>
                             <span className="text-muted-foreground group-hover:text-primary transition-colors">(123) 456-7890</span>
                           </div>
                       </div>
@@ -334,7 +334,7 @@ export default function Home() {
                             <MapPin className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
                           </div>
                           <div>
-                            <p className="font-semibold">Location</p>
+                            <p className="font-semibold transition-colors group-hover:text-primary">Location</p>
                             <span className="text-muted-foreground group-hover:text-primary transition-colors">New York, NY | Available Worldwide</span>
                           </div>
                       </div>
