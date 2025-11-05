@@ -15,6 +15,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import React from 'react';
+import Autoplay from "embla-carousel-autoplay"
 
 const Rating = ({ rating }: { rating: number }) => (
   <div className="flex items-center gap-1 text-yellow-400">
@@ -71,6 +73,10 @@ export default function TestimonialsPage() {
 
   const { data: testimonialsFromDB, isLoading } = useCollection(testimonialsQuery);
   const testimonials = sampleTestimonials;
+  
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  )
 
   return (
     <div className="py-20 md:py-28 lg:py-32 bg-background">
@@ -89,8 +95,12 @@ export default function TestimonialsPage() {
             opts={{
               align: "start",
               loop: true,
+              dragFree: true,
             }}
+            plugins={[plugin.current]}
             className="w-full max-w-6xl mx-auto"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (

@@ -17,6 +17,7 @@
     "@radix-ui/react-toast": "^1.2.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.1.5",
     "embla-carousel-react": "^8.1.5",
     "firebase": "^10.12.2",
     "lucide-react": "^0.395.0",
