@@ -149,7 +149,6 @@ function TestimonialsSection() {
                     opts={{
                         align: "center",
                         loop: true,
-                        dragFree: true,
                     }}
                     className="w-full max-w-6xl mx-auto"
                   >
@@ -300,35 +299,51 @@ export default function Home() {
         
         <Separator className="my-12 md:my-16" />
 
-        <section id="contact" className="py-20 md:py-28 lg:py-32 bg-background">
+        <section id="contact" className="py-20 md:py-28 lg:py-32 bg-muted/20">
           <div className="container mx-auto px-4">
-              <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
-                  <div className="space-y-8">
-                      <div className="text-left">
-                          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl fontbold tracking-tight">Let's Create Together</h2>
-                          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-                          Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
-                          </p>
-                      </div>
-                      <div className="space-y-6 text-lg">
-                          <div className="flex items-center gap-4">
-                              <Mail className="h-6 w-6 text-primary" />
-                              <a href="mailto:contact@hardikseye.com" className="hover:text-primary transition-colors">contact@hardikseye.com</a>
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Create Together</h2>
+              <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
+                Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
+              </p>
+            </div>
+            <div className="max-w-4xl mx-auto grid md:grid-cols-5 gap-8 bg-card p-8 rounded-2xl shadow-lg border border-border/10">
+              <div className="md:col-span-2 space-y-8">
+                  <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
+                  <div className="space-y-6 text-base">
+                      <div className="flex items-start gap-4">
+                          <div className="p-2 bg-primary/10 rounded-full mt-1">
+                            <Mail className="h-5 w-5 text-primary" />
                           </div>
-                          <div className="flex items-center gap-4">
-                              <Phone className="h-6 w-6 text-primary" />
-                              <span>(123) 456-7890</span>
-                          </div>
-                          <div className="flex items-center gap-4">
-                              <MapPin className="h-6 w-6 text-primary" />
-                              <span>New York, NY | Available Worldwide</span>
+                          <div>
+                            <p className="font-semibold">Email</p>
+                            <a href="mailto:contact@hardikseye.com" className="text-muted-foreground hover:text-primary transition-colors">contact@hardikseye.com</a>
                           </div>
                       </div>
-                  </div>
-                  <div>
-                      <ContactForm />
+                      <div className="flex items-start gap-4">
+                          <div className="p-2 bg-primary/10 rounded-full mt-1">
+                            <Phone className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-semibold">Phone</p>
+                            <span className="text-muted-foreground">(123) 456-7890</span>
+                          </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                          <div className="p-2 bg-primary/10 rounded-full mt-1">
+                            <MapPin className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-semibold">Location</p>
+                            <span className="text-muted-foreground">New York, NY | Available Worldwide</span>
+                          </div>
+                      </div>
                   </div>
               </div>
+              <div className="md:col-span-3">
+                  <ContactForm />
+              </div>
+            </div>
           </div>
         </section>
       </div>
