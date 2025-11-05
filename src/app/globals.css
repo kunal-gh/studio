@@ -57,3 +57,26 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .embla__slide {
+    @apply transition-transform duration-300 ease-in-out;
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  .embla__slide.is-selected {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .embla__slide.is-selected .testimonial-card {
+    @apply cursor-default;
+  }
+  .embla__slide:not(.is-selected) .testimonial-card {
+    @apply cursor-pointer;
+  }
+
+  .embla__slide.is-selected .testimonial-card:hover {
+    @apply scale-105 shadow-2xl;
+  }
+}
+

@@ -29,7 +29,6 @@ type CarouselContextProps = {
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
-  mainSelectedIndex: number;
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -69,24 +68,13 @@ const Carousel = React.forwardRef<
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
-    const [mainSelectedIndex, setMainSelectedIndex] = React.useState(0);
-
 
     const onSelect = React.useCallback((api: CarouselApi) => {
       if (!api) {
         return
       }
-
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
-      
-      const slidesInView = api.slidesInView();
-      if (slidesInView.length > 0) {
-        const middleIndexInView = Math.floor(slidesInView.length / 2);
-        setMainSelectedIndex(slidesInView[middleIndexInView]);
-      } else {
-        setMainSelectedIndex(api.selectedScrollSnap());
-      }
     }, [])
 
     const scrollPrev = React.useCallback(() => {
@@ -126,12 +114,10 @@ const Carousel = React.forwardRef<
       onSelect(api)
       api.on("reInit", onSelect)
       api.on("select", onSelect)
-      api.on("scroll", onSelect);
 
       return () => {
         api?.off("select", onSelect)
         api?.off("reInit", onSelect)
-        api?.off("scroll", onSelect)
       }
     }, [api, onSelect])
 
@@ -147,7 +133,6 @@ const Carousel = React.forwardRef<
           scrollNext,
           canScrollPrev,
           canScrollNext,
-          mainSelectedIndex,
         }}
       >
         <div
@@ -192,14 +177,13 @@ const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & { index?: number }
 >(({ className, index, ...props }, ref) => {
-  const { api, mainSelectedIndex, orientation } = useCarousel();
-  const isSelected = mainSelectedIndex === index;
+  const { api } = useCarousel()
 
   const handleClick = () => {
     if (api && index !== undefined) {
-      api.scrollTo(index);
+      api.scrollTo(index)
     }
-  };
+  }
 
   return (
     <div
@@ -207,32 +191,15 @@ const CarouselItem = React.forwardRef<
       role="group"
       aria-roledescription="slide"
       onClick={handleClick}
-      className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
-        !isSelected && "cursor-pointer",
-        className
-      )}
+      className={cn("min-w-0 shrink-0 grow-0 basis-full pl-4", className)}
       {...props}
     >
-      <div
-        className={cn(
-          "transition-all duration-300",
-          isSelected ? "scale-100 opacity-100" : "scale-90 opacity-60"
-        )}
-      >
-        <div
-          className={cn(
-            "transition-all duration-300",
-            isSelected && "hover:scale-110 hover:shadow-2xl"
-          )}
-        >
-          {props.children}
-        </div>
+      <div className="h-full w-full">
+        {props.children}
       </div>
     </div>
-  );
-});
+  )
+})
 CarouselItem.displayName = "CarouselItem"
 
 const CarouselPrevious = React.forwardRef<
