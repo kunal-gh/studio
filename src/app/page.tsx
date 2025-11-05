@@ -24,7 +24,6 @@ import {
     CarouselPrevious,
   } from "@/components/ui/carousel"
 import React from 'react';
-import Autoplay from "embla-carousel-autoplay"
 
 const portfolioCategories = [
     { 
@@ -155,10 +154,6 @@ export default function Home() {
     placeHolderImages.find(img => img.imageHint.includes('street city')),
   ].filter(img => img !== undefined) as (typeof placeHolderImages[0])[];
 
-  const plugin = React.useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
-  )
-
   return (
     <>
       <div className="bg-background text-foreground w-full overflow-x-hidden">
@@ -258,10 +253,7 @@ export default function Home() {
                             loop: true,
                             dragFree: true,
                         }}
-                        plugins={[plugin.current]}
                         className="w-full max-w-6xl mx-auto"
-                        onMouseEnter={plugin.current.stop}
-                        onMouseLeave={plugin.current.reset}
                     >
                         <CarouselContent>
                         {testimonials.map((testimonial, index) => (
