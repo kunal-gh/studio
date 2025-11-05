@@ -1,7 +1,7 @@
 
 'use client';
 
-import { collection, writeBatch, getDocs, Firestore } from 'firebase/firestore';
+import { collection, writeBatch, getDocs, Firestore, doc } from 'firebase/firestore';
 
 // Data from placeholder-images.json, mapped to the Photograph entity structure
 const photographs = [
@@ -15,10 +15,10 @@ const photographs = [
     { "id": "portrait-2", "title": "Thoughtful", "description": "A man looking thoughtfully out of a window.", "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwb3J0cmFpdCUyMG1hbnxlbnwwfHx8fDE3NjE2NDExMDB8MA&ixlib=rb-4.1.0&q=80&w=1080", "category": "portraits", "order": 2, "imageHint": "portrait man" },
     { "id": "portrait-3", "title": "City Vibe", "description": "A street style portrait of a person in a vibrant city.", "imageUrl": "https://images.unsplash.com/photo-1684824473141-b086f8cbe18e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMHN0cmVldHxlbnwwfHx8fDE3NjE2NzYxNjB8MA&ixlib=rb-4.1.0&q=80&w=1080", "category": "portraits", "order": 3, "imageHint": "portrait street" },
     
-    // Live Events (Using 'events' category)
-    { "id": "event-1", "title": "Crowd Fun", "description": "A crowd of people enjoying a public event.", "imageUrl": "https://images.unsplash.com/photo-1580688027085-8220709e3d84?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxldmVudCUyMGNyb3dkfGVufDB8fHx8MTc2MTYxODQ3Nnww&ixlib=rb-4.1.0&q=80&w=1080", "category": "events", "order": 1, "imageHint": "event crowd" },
-    { "id": "event-2", "title": "Conference Speaker", "description": "A speaker on stage at a conference.", "imageUrl": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxldmVudCUyMGNvbmZlcmVuY2V8ZW58MHx8fHwxNzYxNjQzODAxfDA&ixlib=rb-4.1.0&q=80&w=1080", "category": "events", "order": 2, "imageHint": "event conference" },
-    { "id": "event-3", "title": "Night Fireworks", "description": "Colorful fireworks at a night event.", "imageUrl": "https://images.unsplash.com/photo-1626314096024-ad9bcfb3a58a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxldmVudCUyMGZpcmV3b3Jrc3xlbnwwfHx8fDE3NjE3MjQxMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080", "category": "events", "order": 3, "imageHint": "event fireworks" },
+    // Live Events
+    { "id": "event-1", "title": "Crowd Fun", "description": "A crowd of people enjoying a public event.", "imageUrl": "https://images.unsplash.com/photo-1580688027085-8220709e3d84?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxldmVudCUyMGNyb3dkfGVufDB8fHx8MTc2MTYxODQ3Nnww&ixlib=rb-4.1.0&q=80&w=1080", "category": "live-events", "order": 1, "imageHint": "event crowd" },
+    { "id": "event-2", "title": "Conference Speaker", "description": "A speaker on stage at a conference.", "imageUrl": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxldmVudCUyMGNvbmZlcmVuY2V8ZW58MHx8fHwxNzYxNjQzODAxfDA&ixlib=rb-4.1.0&q=80&w=1080", "category": "live-events", "order": 2, "imageHint": "event conference" },
+    { "id": "event-3", "title": "Night Fireworks", "description": "Colorful fireworks at a night event.", "imageUrl": "https://images.unsplash.com/photo-1626314096024-ad9bcfb3a58a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxldmVudCUyMGZpcmV3b3Jrc3xlbnwwfHx8fDE3NjE3MjQxMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080", "category": "live-events", "order": 3, "imageHint": "event fireworks" },
     
     // Fashion
     { "id": "fashion-1", "title": "High Fashion", "description": "A model posing in a high-fashion outfit.", "imageUrl": "https://images.unsplash.com/photo-1619086303291-0ef7699e4b31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZmFzaGlvbiUyMG1vZGVsfGVufDB8fHx8MTc2MTY2MDgxMHww&ixlib=rb-4.1.0&q=80&w=1080", "category": "fashion", "order": 1, "imageHint": "fashion model" },
@@ -50,7 +50,7 @@ export async function seedPhotographs(db: Firestore) {
 
   photographs.forEach(photo => {
     // The document ID will be the photo.id
-    const docRef = photographsRef.doc(photo.id); 
+    const docRef = doc(photographsRef, photo.id); 
     
     // We can remove the 'id' from the data being written to Firestore
     const { id, ...dataToWrite } = photo;
@@ -65,3 +65,5 @@ export async function seedPhotographs(db: Firestore) {
     console.error("Error seeding photographs collection: ", error);
   }
 }
+
+    

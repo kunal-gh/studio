@@ -34,16 +34,8 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
 
   const photographsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
-    let categoryQuery;
-
-    // The slug 'live-events' needs to query for the 'events' category in Firestore
-    if (slug === 'live-events') {
-      categoryQuery = where('category', '==', 'events');
-    } else {
-      categoryQuery = where('category', '==', slug);
-    }
     
-    return query(collection(firestore, 'photographs'), categoryQuery, orderBy('order'));
+    return query(collection(firestore, 'photographs'), where('category', '==', slug), orderBy('order'));
   }, [firestore, slug]);
 
   const { data: images, isLoading } = useCollection(photographsQuery);
@@ -83,3 +75,5 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
     </div>
   );
 }
+
+    
