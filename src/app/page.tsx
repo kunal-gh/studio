@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Link from 'next/link';
@@ -71,7 +72,7 @@ const portfolioCategories = [
         title: "Live Events", 
         description: "Documenting the energy and emotion of every occasion, from concerts to conferences.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "md:col-span-10",
+        className: "md:col-span-10 md:row-span-2",
         sharp: true,
     },
 ];
