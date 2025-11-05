@@ -269,7 +269,7 @@ export default function Home() {
                     <div className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] rounded-lg shadow-2xl overflow-hidden">
                          <AnimatedHero images={bioImages} />
                     </div>
-                    <div className="md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:w-3/5 lg:w-1/2 p-8 lg:p-12 bg-background/80 backdrop-blur-md rounded-lg shadow-xl mt-8 md:mt-0">
+                    <div className="md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:w-1/2 lg:w-2/5 p-8 lg:p-12 bg-background/80 backdrop-blur-md rounded-lg shadow-xl mt-8 md:mt-0">
                         <div className="text-left">
                             <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
                                 Hardik — The Eye Behind the Lens
