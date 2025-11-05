@@ -29,6 +29,7 @@ type CarouselContextProps = {
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
+  selectedIndex: number
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -68,15 +69,15 @@ const Carousel = React.forwardRef<
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
-    const [_, setSelectedIndex] = React.useState(0)
+    const [selectedIndex, setSelectedIndex] = React.useState(0)
 
     const onSelect = React.useCallback((api: CarouselApi) => {
       if (!api) {
         return
       }
+      setSelectedIndex(api.selectedScrollSnap())
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
-      setSelectedIndex(api.selectedScrollSnap())
     }, [])
 
     const scrollPrev = React.useCallback(() => {
@@ -99,14 +100,6 @@ const Carousel = React.forwardRef<
       },
       [scrollPrev, scrollNext]
     )
-
-    React.useEffect(() => {
-      if (!api || !setApi) {
-        return
-      }
-
-      setApi(api)
-    }, [api, setApi])
 
     React.useEffect(() => {
       if (!api) {
@@ -134,6 +127,7 @@ const Carousel = React.forwardRef<
           scrollNext,
           canScrollPrev,
           canScrollNext,
+          selectedIndex
         }}
       >
         <div
@@ -178,7 +172,8 @@ const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & { index?: number }
 >(({ className, index, ...props }, ref) => {
-  const { api } = useCarousel()
+  const { api, selectedIndex } = useCarousel()
+  const isSelected = index === selectedIndex;
 
   const handleClick = React.useCallback(() => {
     if (api && index !== undefined) {
@@ -194,6 +189,7 @@ const CarouselItem = React.forwardRef<
       onClick={handleClick}
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full pl-4 embla__slide",
+        isSelected && "is-selected",
         className
       )}
       {...props}

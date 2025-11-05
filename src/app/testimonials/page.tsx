@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/carousel";
 import React from 'react';
 
+
 const Rating = ({ rating }: { rating: number }) => (
   <div className="flex items-center gap-1 text-yellow-400">
     {Array.from({ length: 5 }).map((_, i) => (
@@ -63,15 +64,49 @@ const sampleTestimonials = [
     }
   ];
 
-export default function TestimonialsPage() {
-  const firestore = useFirestore();
-  const testimonialsQuery = useMemoFirebase(() => {
-    if (!firestore) return null;
-    return query(collection(firestore, 'testimonials'));
-  }, [firestore]);
+function TestimonialsContent() {
+    const firestore = useFirestore();
+    const testimonialsQuery = useMemoFirebase(() => {
+        if (!firestore) return null;
+        return query(collection(firestore, 'testimonials'));
+    }, [firestore]);
 
-  const { data: testimonialsFromDB, isLoading } = useCollection(testimonialsQuery);
-  const testimonials = sampleTestimonials;
+    const { data: testimonialsFromDB, isLoading } = useCollection(testimonialsQuery);
+    const testimonials = sampleTestimonials;
+
+    return (
+        <>
+            {isLoading && <p className="text-center text-muted-foreground">Loading testimonials...</p>}
+
+            {testimonials && testimonials.length > 0 && (
+            <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
+                    <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card transition-all duration-300">
+                    <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <CardContent className="p-0 flex-grow">
+                        <p className="text-base italic text-foreground/70 mb-6">"{testimonial.text}"</p>
+                        <h3 className="font-headline text-xl font-semibold text-foreground">{testimonial.author}</h3>
+                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                        {testimonial.rating && <div className="mt-4"><Rating rating={testimonial.rating} /></div>}
+                    </CardContent>
+                    </Card>
+                </CarouselItem>
+                ))}
+            </CarouselContent>
+            )}
+
+            {!isLoading && (!testimonials || testimonials.length === 0) && (
+            <p className="text-center text-muted-foreground">No testimonials yet.</p>
+            )}
+        </>
+    );
+}
+
+export default function TestimonialsPage() {
 
   return (
     <div className="py-20 md:py-28 lg:py-32 bg-background">
@@ -83,10 +118,7 @@ export default function TestimonialsPage() {
           </p>
         </div>
         
-        {isLoading && <p className="text-center text-muted-foreground">Loading testimonials...</p>}
-
-        {testimonials && testimonials.length > 0 && (
-          <Carousel
+        <Carousel
             opts={{
               align: "start",
               loop: true,
@@ -94,32 +126,10 @@ export default function TestimonialsPage() {
             }}
             className="w-full max-w-6xl mx-auto"
           >
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
-                  <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card transition-all duration-300">
-                    <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
-                        <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <CardContent className="p-0 flex-grow">
-                      <p className="text-base italic text-foreground/70 mb-6">"{testimonial.text}"</p>
-                      <h3 className="font-headline text-xl font-semibold text-foreground">{testimonial.author}</h3>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                      {testimonial.rating && <div className="mt-4"><Rating rating={testimonial.rating} /></div>}
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
+            <TestimonialsContent />
             <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
             <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
-          </Carousel>
-        )}
-
-        {!isLoading && (!testimonials || testimonials.length === 0) && (
-          <p className="text-center text-muted-foreground">No testimonials yet.</p>
-        )}
+        </Carousel>
 
         <div className="mt-24 text-center">
             <Button asChild variant="outline" size="lg">

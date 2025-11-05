@@ -121,6 +121,77 @@ const sampleTestimonials = [
     }
   ];
 
+function TestimonialsSection() {
+    const firestore = useFirestore();
+    const testimonialsQuery = useMemoFirebase(() => {
+        if (!firestore) return null;
+        return query(collection(firestore, 'testimonials'));
+    }, [firestore]);
+
+    // Using sample testimonials for now
+    const { data: testimonialsFromDB, isLoading: testimonialsLoading } = useCollection(testimonialsQuery);
+    const testimonials = sampleTestimonials;
+    
+    return (
+        <section id="testimonials" className="py-20 md:py-28 lg:py-32 bg-background">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-12 md:mb-20">
+                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Client Voices</h2>
+                    <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
+                        Words from those who have seen through my eye.
+                    </p>
+                </div>
+                
+                {testimonialsLoading && <p className="text-center text-muted-foreground">Loading testimonials...</p>}
+
+                {testimonials && testimonials.length > 0 && (
+                  <Carousel
+                    opts={{
+                        align: "center",
+                        loop: true,
+                        dragFree: true,
+                    }}
+                    className="w-full max-w-6xl mx-auto"
+                  >
+                    <CarouselContent>
+                    {testimonials.map((testimonial, index) => (
+                        <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
+                            <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card transition-all duration-300">
+                                <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
+                                    <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                                    <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                                </Avatar>
+                                <CardContent className="p-0 flex-grow">
+                                    <p className="text-base italic text-foreground/70 mb-6">"{testimonial.text}"</p>
+                                    <h3 className="font-headline text-xl font-semibold text-foreground">{testimonial.author}</h3>
+                                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                                    {testimonial.rating && <div className="mt-4"><Rating rating={testimonial.rating} /></div>}
+                                </CardContent>
+                            </Card>
+                        </CarouselItem>
+                    ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
+                    <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
+                  </Carousel>
+                )}
+                
+                {!testimonialsLoading && (!testimonials || testimonials.length === 0) && (
+                    <p className="text-center text-muted-foreground">No testimonials yet.</p>
+                )}
+
+
+                <div className="mt-16 md:mt-20 text-center">
+                    <Button asChild size="lg" variant="outline">
+                        <Link href="/testimonials">
+                            View All Reviews <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
+                </div>
+            </div>
+        </section>
+    )
+}
 
 export default function Home() {
   const firestore = useFirestore();
@@ -131,15 +202,6 @@ export default function Home() {
 
   const { data: photographs } = useCollection(photographsQuery);
   const categories = photographs ? [...new Set(photographs.map(p => p.category))] : [];
-  
-  const testimonialsQuery = useMemoFirebase(() => {
-    if (!firestore) return null;
-    return query(collection(firestore, 'testimonials'));
-  }, [firestore]);
-
-  // Using sample testimonials for now
-  const { data: testimonialsFromDB, isLoading: testimonialsLoading } = useCollection(testimonialsQuery);
-  const testimonials = sampleTestimonials;
   
   const bioImages = [
     placeHolderImages.find(img => img.id === 'portrait-3'),
@@ -234,63 +296,7 @@ export default function Home() {
         
         <Separator className="my-12 md:my-16" />
 
-        <section id="testimonials" className="py-20 md:py-28 lg:py-32 bg-background">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-12 md:mb-20">
-                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Client Voices</h2>
-                    <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
-                        Words from those who have seen through my eye.
-                    </p>
-                </div>
-                
-                {testimonialsLoading && <p className="text-center text-muted-foreground">Loading testimonials...</p>}
-
-                {testimonials && testimonials.length > 0 && (
-                    <Carousel
-                        opts={{
-                            align: "start",
-                            loop: true,
-                            dragFree: true,
-                        }}
-                        className="w-full max-w-6xl mx-auto"
-                    >
-                        <CarouselContent>
-                        {testimonials.map((testimonial, index) => (
-                            <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
-                                <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card transition-all duration-300">
-                                    <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
-                                        <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
-                                    </Avatar>
-                                    <CardContent className="p-0 flex-grow">
-                                        <p className="text-base italic text-foreground/70 mb-6">"{testimonial.text}"</p>
-                                        <h3 className="font-headline text-xl font-semibold text-foreground">{testimonial.author}</h3>
-                                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                                        {testimonial.rating && <div className="mt-4"><Rating rating={testimonial.rating} /></div>}
-                                    </CardContent>
-                                </Card>
-                            </CarouselItem>
-                        ))}
-                        </CarouselContent>
-                        <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
-                        <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
-                    </Carousel>
-                )}
-                
-                {!testimonialsLoading && (!testimonials || testimonials.length === 0) && (
-                    <p className="text-center text-muted-foreground">No testimonials yet.</p>
-                )}
-
-
-                <div className="mt-16 md:mt-20 text-center">
-                    <Button asChild size="lg" variant="outline">
-                        <Link href="/testimonials">
-                            View All Reviews <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                    </Button>
-                </div>
-            </div>
-        </section>
+        <TestimonialsSection />
         
         <Separator className="my-12 md:my-16" />
 
