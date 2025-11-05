@@ -312,7 +312,7 @@ export default function Home() {
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
-                <Separator orientation="vertical" className="hidden md:block h-auto" />
+                <Separator orientation="vertical" className="hidden md:block h-auto bg-border/50 w-px" />
                 <div className="md:col-span-1 space-y-8">
                   <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
                   <div className="space-y-6 text-base">
