@@ -264,34 +264,36 @@ export default function Home() {
         <Separator className="my-12 md:my-16" />
 
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center max-w-7xl mx-auto">
-                <div className="relative w-full h-full min-h-[500px] group">
-                    <AnimatedHero images={bioImages} />
-                </div>
-                <div className="text-left">
-                    <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
-                        Hardik — The Eye Behind the Lens
-                    </h3>
-                    <h2 className="mt-4 font-headline text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
-                        About The Artist
-                    </h2>
-                    <div className="mt-8 text-xl text-foreground/80 leading-relaxed space-y-8">
-                        <p>
-                            I'm Hardik, a photographer driven to capture the fleeting moments that tell a larger story. My approach blends classic portraiture with candid, documentary-style photography to create images that are not just seen, but felt.
-                        </p>
-                        <p>
-                            I strive to create a comfortable, collaborative atmosphere where my subjects can reveal their true personalities, resulting in images that are both genuine and timeless.
-                        </p>
+            <div className="container mx-auto px-4">
+                <div className="relative max-w-7xl mx-auto">
+                    <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[2/1] rounded-lg shadow-2xl overflow-hidden">
+                         <AnimatedHero images={bioImages} />
                     </div>
-                    <Button asChild size="lg" variant="outline" className="text-base mt-10">
-                        <Link href="/#contact">
-                            Work With Me <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                    </Button>
+                    <div className="md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:w-1/2 lg:w-2/5 p-8 lg:p-12 bg-background/80 backdrop-blur-md rounded-lg shadow-xl mt-8 md:mt-0">
+                        <div className="text-left">
+                            <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
+                                Hardik — The Eye Behind the Lens
+                            </h3>
+                            <h2 className="mt-4 font-headline text-4xl sm:text-5xl font-bold tracking-tighter leading-tight">
+                                About The Artist
+                            </h2>
+                            <div className="mt-6 text-lg text-foreground/80 leading-relaxed space-y-6">
+                                <p>
+                                    I'm Hardik, a photographer driven to capture the fleeting moments that tell a larger story. My approach blends classic portraiture with candid, documentary-style photography to create images that are not just seen, but felt.
+                                </p>
+                                <p>
+                                    I strive to create a comfortable, collaborative atmosphere where my subjects can reveal their true personalities, resulting in images that are both genuine and timeless.
+                                </p>
+                            </div>
+                            <Button asChild size="lg" variant="outline" className="text-base mt-8">
+                                <Link href="/#contact">
+                                    Work With Me <ArrowRight className="ml-2 h-4 w-4" />
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
         </section>
         
         <Separator className="my-12 md:my-16" />
