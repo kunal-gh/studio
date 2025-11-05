@@ -188,28 +188,36 @@ const CarouselContent = React.forwardRef<
 CarouselContent.displayName = "CarouselContent"
 
 const CarouselItem = React.forwardRef<
-    HTMLDivElement,
-    React.HTMLAttributes<HTMLDivElement> & { index?: number }
->(({ className, index, ...props }, ref) => {
-    const { orientation, mainSelectedIndex } = useCarousel();
-    const isSelected = mainSelectedIndex === index;
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { index?: number }
+>(({ className, index, children, ...props }, ref) => {
+  const { orientation, mainSelectedIndex } = useCarousel();
+  const isSelected = mainSelectedIndex === index;
 
-    return (
-        <div
-            ref={ref}
-            role="group"
-            aria-roledescription="slide"
-            className={cn(
-                "min-w-0 shrink-0 grow-0 basis-full transition-all duration-300",
-                orientation === "horizontal" ? "pl-4" : "pt-4",
-                isSelected
-                  ? "scale-100 opacity-100 hover:scale-105 hover:shadow-2xl" 
-                  : "scale-90 opacity-60",
-                className
-            )}
-            {...props}
-        />
-    );
+  return (
+    <div
+      ref={ref}
+      role="group"
+      aria-roledescription="slide"
+      className={cn(
+        "min-w-0 shrink-0 grow-0 basis-full",
+        orientation === "horizontal" ? "pl-4" : "pt-4",
+        className
+      )}
+      {...props}
+    >
+      <div
+        className={cn(
+          "transition-all duration-300",
+          isSelected
+            ? "scale-100 opacity-100"
+            : "scale-90 opacity-60"
+        )}
+      >
+        {children}
+      </div>
+    </div>
+  );
 });
 CarouselItem.displayName = "CarouselItem"
 
@@ -279,5 +287,3 @@ export {
   CarouselPrevious,
   CarouselNext,
 }
-
-    
