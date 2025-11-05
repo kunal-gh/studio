@@ -155,7 +155,7 @@ function TestimonialsSection() {
                     <CarouselContent>
                     {testimonials.map((testimonial, index) => (
                         <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
-                            <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card">
+                            <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card transition-all duration-300">
                                 <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
                                     <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
                                     <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
@@ -343,13 +343,13 @@ export default function Home() {
                     <h4 className="font-headline text-lg font-semibold">Follow Me</h4>
                     <div className="flex items-center gap-4">
                       <Link href="#" aria-label="Twitter" className="group">
-                        <Twitter className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
+                        <Twitter className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
                       </Link>
                       <Link href="#" aria-label="Facebook" className="group">
-                        <Facebook className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
+                        <Facebook className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
                       </Link>
                       <Link href="#" aria-label="Instagram" className="group">
-                        <Instagram className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
+                        <Instagram className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
                       </Link>
                     </div>
                   </div>
@@ -364,3 +364,5 @@ export default function Home() {
     </>
   );
 }
+
+    
