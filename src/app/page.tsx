@@ -312,52 +312,56 @@ export default function Home() {
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
-                <Separator orientation="vertical" className="hidden md:block h-full" />
-                <div className="md:col-span-1 space-y-8">
-                  <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
-                  <div className="space-y-6 text-base">
-                      <div className="flex items-start gap-4 group">
-                          <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
-                            <Mail className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
+                <Separator orientation="vertical" className="hidden md:block h-auto" />
+                <div className="md:col-span-1">
+                  <Card className="p-8 shadow-lg">
+                    <div className="space-y-8">
+                      <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
+                      <div className="space-y-6 text-base">
+                          <div className="flex items-start gap-4 group">
+                              <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
+                                <Mail className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
+                              </div>
+                              <div>
+                                <p className="font-semibold transition-colors group-hover:text-primary">Email</p>
+                                <a href="mailto:contact@hardikseye.com" className="text-muted-foreground group-hover:text-primary transition-colors">contact@hardikseye.com</a>
+                              </div>
                           </div>
-                          <div>
-                            <p className="font-semibold transition-colors group-hover:text-primary">Email</p>
-                            <a href="mailto:contact@hardikseye.com" className="text-muted-foreground group-hover:text-primary transition-colors">contact@hardikseye.com</a>
+                          <div className="flex items-start gap-4 group">
+                              <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
+                                <Phone className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
+                              </div>
+                              <div>
+                                <p className="font-semibold transition-colors group-hover:text-primary">Phone</p>
+                                <span className="text-muted-foreground group-hover:text-primary transition-colors">(123) 456-7890</span>
+                              </div>
+                          </div>
+                          <div className="flex items-start gap-4 group">
+                              <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
+                                <MapPin className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
+                              </div>
+                              <div>
+                                <p className="font-semibold transition-colors group-hover:text-primary">Location</p>
+                                <span className="text-muted-foreground group-hover:text-primary transition-colors">New York, NY | Available Worldwide</span>
+                              </div>
                           </div>
                       </div>
-                      <div className="flex items-start gap-4 group">
-                          <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
-                            <Phone className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
-                          </div>
-                          <div>
-                            <p className="font-semibold transition-colors group-hover:text-primary">Phone</p>
-                            <span className="text-muted-foreground group-hover:text-primary transition-colors">(123) 456-7890</span>
-                          </div>
-                      </div>
-                      <div className="flex items-start gap-4 group">
-                          <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
-                            <MapPin className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
-                          </div>
-                          <div>
-                            <p className="font-semibold transition-colors group-hover:text-primary">Location</p>
-                            <span className="text-muted-foreground group-hover:text-primary transition-colors">New York, NY | Available Worldwide</span>
-                          </div>
+                       <div className="space-y-4 pt-4">
+                        <h3 className="font-headline text-2xl font-semibold">Follow Me</h3>
+                        <div className="flex items-center gap-4">
+                          <Link href="#" aria-label="Twitter" className="group">
+                            <Twitter className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
+                          </Link>
+                          <Link href="#" aria-label="Facebook" className="group">
+                            <Facebook className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
+                          </Link>
+                          <Link href="#" aria-label="Instagram" className="group">
+                            <Instagram className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
+                          </Link>
+                        </div>
                       </div>
                   </div>
-                   <div className="space-y-4 pt-4">
-                    <h3 className="font-headline text-2xl font-semibold">Follow Me</h3>
-                    <div className="flex items-center gap-4">
-                      <Link href="#" aria-label="Twitter" className="group">
-                        <Twitter className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
-                      </Link>
-                      <Link href="#" aria-label="Facebook" className="group">
-                        <Facebook className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
-                      </Link>
-                      <Link href="#" aria-label="Instagram" className="group">
-                        <Instagram className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
-                      </Link>
-                    </div>
-                  </div>
+                  </Card>
               </div>
             </div>
           </div>
