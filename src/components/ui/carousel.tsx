@@ -80,11 +80,13 @@ const Carousel = React.forwardRef<
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
       
-      const slidesInView = api.slidesInView(true);
-      const middleIndex = Math.floor(slidesInView.length / 2);
-      const middleSlide = slidesInView[middleIndex];
-      setMainSelectedIndex(middleSlide);
-
+      const slidesInView = api.slidesInView();
+      if (slidesInView.length > 0) {
+        const middleIndexInView = Math.floor(slidesInView.length / 2);
+        setMainSelectedIndex(slidesInView[middleIndexInView]);
+      } else {
+        setMainSelectedIndex(api.selectedScrollSnap());
+      }
     }, [])
 
     const scrollPrev = React.useCallback(() => {
@@ -124,13 +126,12 @@ const Carousel = React.forwardRef<
       onSelect(api)
       api.on("reInit", onSelect)
       api.on("select", onSelect)
-      api.on("slidesInView", onSelect)
-
+      api.on("scroll", onSelect);
 
       return () => {
         api?.off("select", onSelect)
         api?.off("reInit", onSelect)
-        api?.off("slidesInView", onSelect)
+        api?.off("scroll", onSelect)
       }
     }, [api, onSelect])
 
@@ -191,7 +192,7 @@ const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & { index?: number }
 >(({ className, index, children, ...props }, ref) => {
-  const { orientation, mainSelectedIndex } = useCarousel();
+  const { mainSelectedIndex, orientation } = useCarousel();
   const isSelected = mainSelectedIndex === index;
 
   return (
@@ -200,22 +201,18 @@ const CarouselItem = React.forwardRef<
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full",
+        "min-w-0 shrink-0 grow-0 basis-full transition-transform duration-300",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
       {...props}
     >
-      <div
-        className={cn(
-          "transition-all duration-300",
-          isSelected
-            ? "scale-100 opacity-100"
-            : "scale-90 opacity-60"
-        )}
-      >
-        {children}
-      </div>
+        <div className={cn("transition-all duration-300", 
+            isSelected ? "scale-100 opacity-100" : "scale-90 opacity-60",
+            isSelected && "hover:scale-105 hover:shadow-2xl"
+        )}>
+            {children}
+        </div>
     </div>
   );
 });
