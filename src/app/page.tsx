@@ -57,7 +57,7 @@ const portfolioCategories = [
         className: "md:col-span-7",
         sharp: true,
     },
-    { 
+    { _id: 'ai-generated',
         slug: 'ai-generated',
         title: "That's AI", 
         description: "Exploring the frontiers of creativity with AI-generated imagery.",
@@ -312,7 +312,7 @@ export default function Home() {
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
-                <Separator orientation="vertical" className="hidden md:block h-auto bg-border/50 w-px" />
+                <div className="hidden md:block w-px bg-border/20 shadow-[2px_0_10px_hsl(var(--border)),-2px_0_10px_hsl(var(--border))] h-full"></div>
                 <div className="md:col-span-1 space-y-8">
                   <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
                   <div className="space-y-6 text-base">
@@ -366,3 +366,5 @@ export default function Home() {
     </>
   );
 }
+
+    
