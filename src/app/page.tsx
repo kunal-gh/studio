@@ -310,11 +310,13 @@ export default function Home() {
                 Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
               </p>
             </div>
-            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] items-start gap-8 md:gap-16 bg-card p-8 md:p-12 rounded-2xl shadow-2xl border border-border/10">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] items-start gap-8 md:gap-16 bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border/10">
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
-                <div className="hidden md:block w-px bg-border shadow-[0_0_15px_2px_hsl(var(--ring))] h-full"></div>
+                <div className="hidden md:flex items-center justify-center">
+                    <Separator orientation="vertical" className="h-48" />
+                </div>
                 <div className="md:col-span-1">
                   <h3 className="font-headline text-3xl font-semibold pt-2">Contact Information</h3>
                   <div className="space-y-6 text-base mt-8">
