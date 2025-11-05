@@ -316,33 +316,33 @@ export default function Home() {
                 <div className="md:col-span-1">
                   <h3 className="font-headline text-3xl font-semibold pt-2">Contact Information</h3>
                   <div className="space-y-6 text-base mt-8">
-                      <div className="flex items-start gap-4 group">
+                      <a href="mailto:contact@hardikseye.com" className="flex items-start gap-4 group">
                           <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
-                            <Mail className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
+                            <Mail className="h-5 w-5 text-primary transition-transform group-hover:scale-125" />
                           </div>
                           <div>
                             <p className="font-semibold transition-colors group-hover:text-primary">Email</p>
-                            <a href="mailto:contact@hardikseye.com" className="text-muted-foreground group-hover:text-primary transition-colors">contact@hardikseye.com</a>
+                            <span className="text-muted-foreground group-hover:text-primary transition-colors">contact@hardikseye.com</span>
                           </div>
-                      </div>
-                      <div className="flex items-start gap-4 group">
+                      </a>
+                      <a href="tel:+1-123-456-7890" className="flex items-start gap-4 group">
                           <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
-                            <Phone className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
+                            <Phone className="h-5 w-5 text-primary transition-transform group-hover:scale-125" />
                           </div>
                           <div>
                             <p className="font-semibold transition-colors group-hover:text-primary">Phone</p>
                             <span className="text-muted-foreground group-hover:text-primary transition-colors">(123) 456-7890</span>
                           </div>
-                      </div>
-                      <div className="flex items-start gap-4 group">
+                      </a>
+                      <a href="https://www.google.com/maps/search/?api=1&query=New+York+NY" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group">
                           <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
-                            <MapPin className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
+                            <MapPin className="h-5 w-5 text-primary transition-transform group-hover:scale-125" />
                           </div>
                           <div>
                             <p className="font-semibold transition-colors group-hover:text-primary">Location</p>
                             <span className="text-muted-foreground group-hover:text-primary transition-colors">New York, NY | Available Worldwide</span>
                           </div>
-                      </div>
+                      </a>
                   </div>
                     <div className="space-y-4 pt-8 mt-8 border-t border-border/20">
                     <h3 className="font-headline text-2xl font-semibold">Follow Me</h3>
