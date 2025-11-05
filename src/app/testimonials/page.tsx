@@ -96,7 +96,7 @@ export default function TestimonialsPage() {
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4 embla__slide">
+                <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
                   <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card transition-all duration-300">
                     <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
                         <AvatarImage src={testimonial.avatar} alt={testimonial.author} />

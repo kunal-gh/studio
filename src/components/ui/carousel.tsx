@@ -117,7 +117,6 @@ const Carousel = React.forwardRef<
 
       return () => {
         api?.off("select", onSelect)
-        api?.off("reInit", onSelect)
       }
     }, [api, onSelect])
 
@@ -179,11 +178,11 @@ const CarouselItem = React.forwardRef<
 >(({ className, index, ...props }, ref) => {
   const { api } = useCarousel()
 
-  const handleClick = () => {
+  const handleClick = React.useCallback(() => {
     if (api && index !== undefined) {
-      api.scrollTo(index)
+      api.scrollTo(index);
     }
-  }
+  }, [api, index]);
 
   return (
     <div
@@ -192,7 +191,7 @@ const CarouselItem = React.forwardRef<
       aria-roledescription="slide"
       onClick={handleClick}
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full pl-4",
+        "min-w-0 shrink-0 grow-0 basis-full pl-4 embla__slide",
         className
       )}
       {...props}
