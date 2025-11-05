@@ -314,8 +314,13 @@ export default function Home() {
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
-                <div className="hidden md:flex items-center justify-center">
-                    <Separator orientation="vertical" className="h-48" />
+                <div className="hidden md:flex h-full flex-col items-center justify-center relative">
+                    <Separator orientation="vertical" className="flex-grow" />
+                    <div className="absolute my-4 p-2 bg-card">
+                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
+                            <path d="M8 0L16 8L8 16L0 8L8 0Z" fill="currentColor"/>
+                         </svg>
+                    </div>
                 </div>
                 <div className="md:col-span-1">
                   <h3 className="font-headline text-3xl font-semibold pt-2">Contact Information</h3>
