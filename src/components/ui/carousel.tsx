@@ -203,7 +203,7 @@ const CarouselItem = React.forwardRef<
                 "min-w-0 shrink-0 grow-0 basis-full transition-all duration-300",
                 orientation === "horizontal" ? "pl-4" : "pt-4",
                 isSelected
-                  ? "scale-100 opacity-100 hover:scale-105 hover:shadow-2xl" 
+                  ? "scale-100 opacity-100 hover:scale-[1.05] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]" 
                   : "scale-90 opacity-60",
                 className
             )}
