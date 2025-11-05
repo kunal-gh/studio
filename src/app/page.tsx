@@ -23,7 +23,6 @@ import {
     CarouselNext,
     CarouselPrevious,
   } from "@/components/ui/carousel"
-import { cn } from '@/lib/utils';
 import React from 'react';
 import Autoplay from "embla-carousel-autoplay"
 
@@ -49,7 +48,7 @@ const portfolioCategories = [
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
-        className: "md:col-span-6 md:row-span-2",
+        className: "md:col-span-6 md:row-span-4",
         sharp: true,
     },
     { 
