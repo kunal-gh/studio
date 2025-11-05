@@ -314,13 +314,9 @@ export default function Home() {
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
-                <div 
-                    className="hidden md:flex w-px h-full mx-auto"
-                    style={{
-                        backgroundImage: "radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)",
-                        backgroundSize: "1px 8px"
-                    }}
-                />
+                <div className="hidden md:flex justify-center items-center h-full">
+                    <Separator orientation="vertical" className="h-full w-[2px]" />
+                </div>
                 <div className="md:col-span-1">
                   <h3 className="font-headline text-3xl font-semibold pt-2">Contact Information</h3>
                   <div className="space-y-6 text-base mt-8">
@@ -374,5 +370,3 @@ export default function Home() {
     </>
   );
 }
-
-    
