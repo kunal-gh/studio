@@ -308,16 +308,12 @@ export default function Home() {
                 Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
               </p>
             </div>
-            <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-5 gap-8 bg-card p-8 rounded-2xl shadow-lg border border-border/10">
-                <div className="sm:col-span-3">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 bg-card p-8 md:p-12 rounded-2xl shadow-lg border border-border/10">
+                <div className="md:col-span-1">
                     <ContactForm />
                 </div>
                 
-                <div className="hidden sm:flex justify-center">
-                    <Separator orientation="vertical" />
-                </div>
-
-                <div className="sm:col-span-2 space-y-8">
+                <div className="md:col-span-1 space-y-8">
                   <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
                   <div className="space-y-6 text-base">
                       <div className="flex items-start gap-4 group">
