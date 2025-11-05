@@ -101,7 +101,7 @@ export default function Home() {
     return query(collection(firestore, 'testimonials'));
   }, [firestore]);
 
-  const { data: testimonials } = useCollection(testimonialsQuery);
+  const { data: testimonials, isLoading: testimonialsLoading } = useCollection(testimonialsQuery);
   
   const bioImages = [
     placeHolderImages.find(img => img.id === 'portrait-3'),
@@ -205,6 +205,44 @@ export default function Home() {
                         Words from those who have seen through my eye.
                     </p>
                 </div>
+                
+                {testimonialsLoading && <p className="text-center text-muted-foreground">Loading testimonials...</p>}
+
+                {testimonials && testimonials.length > 0 && (
+                    <Carousel
+                        opts={{
+                        align: "start",
+                        loop: true,
+                        }}
+                        className="w-full max-w-6xl mx-auto"
+                    >
+                        <CarouselContent>
+                        {testimonials.map((testimonial, index) => (
+                            <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
+                                <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg">
+                                    <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
+                                        <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                                    </Avatar>
+                                    <CardContent className="p-0 flex-grow">
+                                        <p className="text-base italic text-foreground/70 mb-6">"{testimonial.text}"</p>
+                                        <h3 className="font-headline text-xl font-semibold text-foreground">{testimonial.author}</h3>
+                                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                                        {testimonial.rating && <div className="mt-4"><Rating rating={testimonial.rating} /></div>}
+                                    </CardContent>
+                                </Card>
+                            </CarouselItem>
+                        ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
+                        <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
+                    </Carousel>
+                )}
+                
+                {!testimonialsLoading && (!testimonials || testimonials.length === 0) && (
+                    <p className="text-center text-muted-foreground">No testimonials yet.</p>
+                )}
+
 
                 <div className="mt-16 md:mt-20 text-center">
                     <Button asChild size="lg" variant="outline">
