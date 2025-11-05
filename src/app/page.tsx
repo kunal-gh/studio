@@ -343,7 +343,7 @@ export default function Home() {
                       </div>
                   </div>
                    <div className="space-y-4 pt-4">
-                    <h4 className="font-headline text-lg font-semibold">Follow Me</h4>
+                    <h3 className="font-headline text-2xl font-semibold">Follow Me</h3>
                     <div className="flex items-center gap-4">
                       <Link href="#" aria-label="Twitter" className="group">
                         <Twitter className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-125" />
@@ -364,3 +364,5 @@ export default function Home() {
     </>
   );
 }
+
+    
