@@ -308,6 +308,9 @@ export default function Home() {
               </p>
             </div>
             <div className="max-w-4xl mx-auto grid md:grid-cols-5 gap-8 bg-card p-8 rounded-2xl shadow-lg border border-border/10">
+              <div className="md:col-span-3">
+                  <ContactForm />
+              </div>
               <div className="md:col-span-2 space-y-8">
                   <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
                   <div className="space-y-6 text-base">
@@ -354,9 +357,6 @@ export default function Home() {
                     </div>
                   </div>
               </div>
-              <div className="md:col-span-3">
-                  <ContactForm />
-              </div>
             </div>
           </div>
         </section>
@@ -364,5 +364,3 @@ export default function Home() {
     </>
   );
 }
-
-    
