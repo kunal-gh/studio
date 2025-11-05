@@ -313,9 +313,9 @@ export default function Home() {
                     <ContactForm />
                 </div>
                 <div className="hidden md:block w-px bg-border/20 shadow-[2px_0_10px_hsl(var(--ring)),-2px_0_10px_hsl(var(--ring))] h-full"></div>
-                <div className="md:col-span-1 space-y-8">
+                <div className="md:col-span-1">
                   <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
-                  <div className="space-y-6 text-base">
+                  <div className="space-y-6 text-base mt-8">
                       <div className="flex items-start gap-4 group">
                           <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
                             <Mail className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
@@ -344,7 +344,7 @@ export default function Home() {
                           </div>
                       </div>
                   </div>
-                    <div className="space-y-4 pt-4">
+                    <div className="space-y-4 pt-8 mt-8 border-t border-border/20">
                     <h3 className="font-headline text-2xl font-semibold">Follow Me</h3>
                     <div className="flex items-center gap-4">
                       <Link href="#" aria-label="Twitter" className="group">
@@ -366,5 +366,3 @@ export default function Home() {
     </>
   );
 }
-
-    
