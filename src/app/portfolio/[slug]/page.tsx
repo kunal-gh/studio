@@ -1,13 +1,14 @@
 
 'use client';
 
-import { placeHolderImages } from '@/lib/placeholder-images';
 import { PortfolioGrid } from '@/components/portfolio/portfolio-grid';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection, query, where } from 'firebase/firestore';
+import { collection, query, where, orderBy } from 'firebase/firestore';
+import { seedPhotographs } from '@/lib/seed-db';
+import { useEffect } from 'react';
 
 const categoryDescriptions: Record<string, string> = {
     weddings: "Capturing the love, joy, and candid moments that make your wedding day unforgettable. From the grand ceremony to the intimate details, we tell your unique love story.",
@@ -22,20 +23,42 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
   const { slug } = params;
   const firestore = useFirestore();
 
-  const categoryTitle = slug.charAt(0).toUpperCase() + slug.slice(1).replace('-', ' ');
+  // Seed the database if it's empty
+  useEffect(() => {
+    if (firestore) {
+      seedPhotographs(firestore);
+    }
+  }, [firestore]);
+
+  const categoryTitle = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   const photographsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
+    let categoryQuery;
+
+    // The slug 'live-events' needs to query for the 'events' category in Firestore
     if (slug === 'live-events') {
-        return query(collection(firestore, 'photographs'), where('category', 'in', ['events', 'concerts']));
+      categoryQuery = where('category', '==', 'events');
+    } else {
+      categoryQuery = where('category', '==', slug);
     }
-    return query(collection(firestore, 'photographs'), where('category', '==', slug));
+    
+    return query(collection(firestore, 'photographs'), categoryQuery, orderBy('order'));
   }, [firestore, slug]);
 
   const { data: images, isLoading } = useCollection(photographsQuery);
 
+  const getLayoutForSlug = (slug: string): "A" | "B" | "C" => {
+    switch(slug) {
+        case 'weddings': return 'B';
+        case 'portraits': return 'C';
+        case 'fashion': return 'A';
+        default: return 'B';
+    }
+  }
+
   return (
-    <div className="py-20 md:py-28 lg:py-32">
+    <div className="py-20 md:py-28 lg:py-32 bg-background animate-in fade-in-50 duration-500">
         <div className="container mx-auto px-4">
             <div className="mb-16 text-center">
                 <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">{categoryTitle}</h1>
@@ -44,10 +67,9 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
                 </p>
             </div>
             
-            {isLoading && <p className="text-center">Loading images...</p>}
-            {!isLoading && images && <PortfolioGrid title="" images={images.map(img => ({...img, imageHint: ''}))} layout="B" />}
-            {!isLoading && !images && <p className="text-center">No images in this category yet.</p>}
-
+            {isLoading && <p className="text-center text-muted-foreground">Loading gallery...</p>}
+            {!isLoading && images && images.length > 0 && <PortfolioGrid title="" images={images} layout={getLayoutForSlug(slug)} />}
+            {!isLoading && (!images || images.length === 0) && <p className="text-center text-muted-foreground">This gallery is empty for now. Check back soon!</p>}
 
             <div className="mt-24 text-center">
                 <Button asChild variant="outline" size="lg">

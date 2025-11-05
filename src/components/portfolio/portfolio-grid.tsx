@@ -15,9 +15,9 @@ interface PortfolioGridProps {
 }
 
 const layoutClasses = {
-  A: "grid grid-cols-2 md:grid-cols-3 gap-4",
-  B: "grid grid-cols-1 md:grid-cols-5 gap-4",
-  C: "grid grid-cols-2 md:grid-cols-4 gap-4",
+  A: "grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-fr",
+  B: "grid grid-cols-1 md:grid-cols-5 gap-4 auto-rows-fr",
+  C: "grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-fr",
 };
 
 const itemClasses = {
@@ -72,15 +72,21 @@ export function PortfolioGrid({ title, images, layout = "A" }: PortfolioGridProp
       )}
       <div className={cn(layoutClasses[layout])}>
         {images.map((image, index) => (
-          <div key={image.id} className={cn("relative aspect-[4/5] md:aspect-auto overflow-hidden rounded-lg", itemClasses[layout](index))}>
+          <div key={image.id} className={cn("group relative aspect-[4/5] md:aspect-auto overflow-hidden rounded-lg", itemClasses[layout](index))}>
             <Image
               src={image.imageUrl}
               alt={image.description}
               fill
-              className="object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105"
+              className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               data-ai-hint={image.imageHint}
+              priority={index < 4}
             />
+             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-0 left-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-sm font-semibold">{image.title}</p>
+                <p className="text-xs text-white/80">{image.description}</p>
+            </div>
           </div>
         ))}
       </div>
