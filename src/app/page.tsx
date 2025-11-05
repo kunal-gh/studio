@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, MapPin, Phone, Star } from 'lucide-react';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { ContactForm } from "@/components/contact/contact-form";
 import { Separator } from '@/components/ui/separator';
 import { AnimatedHero } from '@/components/home/animated-hero';
@@ -15,6 +15,15 @@ import { useCollection, useMemoFirebase } from '@/firebase';
 import { collection, query, where } from 'firebase/firestore';
 import { useFirestore } from '@/firebase/provider';
 import { placeHolderImages } from '@/lib/placeholder-images';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+  } from "@/components/ui/carousel"
+import { cn } from '@/lib/utils';
+import React from 'react';
 
 const portfolioCategories = [
     { 
@@ -187,36 +196,45 @@ export default function Home() {
         
         <Separator className="my-12 md:my-16" />
 
-        <section id="testimonials" className="py-20 md:py-28 lg:py-32 bg-secondary/30">
+        <section id="testimonials" className="py-20 md:py-28 lg:py-32 bg-background">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12 md:mb-20">
                     <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Client Voices</h2>
                     <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
-                        Stories from those who have trusted me to capture their most precious moments.
+                        Words from those who have seen through my eye.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                    {testimonials?.map((testimonial, index) => (
-                    <Card key={index} className="flex flex-col bg-card/50 border-border/50 shadow-lg">
-                        <CardHeader className="p-6 md:p-8">
-                        <div className="flex items-start gap-4 md:gap-6">
-                            <Avatar className="w-16 h-16 md:w-20 md:h-20 border-2 border-primary">
-                            <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                            <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                            <h3 className="font-headline text-xl md:text-2xl font-bold">{testimonial.author}</h3>
-                            <p className="text-sm md:text-base text-muted-foreground">{testimonial.role}</p>
-                            {testimonial.rating && <div className="mt-2"><Rating rating={testimonial.rating} /></div>}
-                            </div>
-                        </div>
-                        </CardHeader>
-                        <CardContent className="flex-grow p-6 md:p-8 pt-0">
-                        <p className="text-base md:text-lg italic text-foreground/80 leading-relaxed">"{testimonial.text}"</p>
-                        </CardContent>
-                    </Card>
+
+                {testimonials && testimonials.length > 0 && (
+                <Carousel
+                    opts={{
+                    align: "start",
+                    loop: true,
+                    }}
+                    className="w-full max-w-5xl mx-auto"
+                >
+                    <CarouselContent>
+                    {testimonials.map((testimonial, index) => (
+                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4">
+                            <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg">
+                                <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
+                                    <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                                    <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                                </Avatar>
+                                <CardContent className="p-0 flex-grow">
+                                <p className="text-base italic text-foreground/70 mb-6">"{testimonial.text}"</p>
+                                <h3 className="font-headline text-xl font-semibold text-foreground">{testimonial.author}</h3>
+                                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                                </CardContent>
+                            </Card>
+                        </CarouselItem>
                     ))}
-                </div>
+                    </CarouselContent>
+                    <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
+                    <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
+                </Carousel>
+                )}
+
                 <div className="mt-16 md:mt-20 text-center">
                     <Button asChild size="lg" variant="outline">
                         <Link href="/testimonials">
@@ -264,3 +282,5 @@ export default function Home() {
     </>
   );
 }
+
+    

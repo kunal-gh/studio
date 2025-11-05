@@ -1,52 +1,20 @@
 
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Star } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-
-const allTestimonials = [
-  {
-    name: "Emily & John",
-    role: "Wedding Clients",
-    avatar: "https://picsum.photos/seed/avatar1/100/100",
-    rating: 5,
-    text: "Hardik was an absolute dream to work with for our wedding. The photos are breathtakingly beautiful, capturing the emotion of the day perfectly. We couldn't be happier!",
-  },
-  {
-    name: "Aisha Khan",
-    role: "Portrait Client",
-    avatar: "https://picsum.photos/seed/avatar2/100/100",
-    text: "The portrait session was so much fun and relaxed. Hardik has a true talent for making you feel comfortable and bringing out your personality in the photos. The results were stunning.",
-  },
-  {
-    name: "Music Fest Organizers",
-    role: "Event Client",
-    avatar: "https://picsum.photos/seed/avatar3/100/100",
-    rating: 5,
-    text: "Incredible event photography! The energy of our festival was captured in every shot. The photos are dynamic, vibrant, and tell the story of the event exactly as we hoped. Highly recommended.",
-  },
-  {
-    name: "Chloe Dubois",
-    role: "Fashion Designer",
-    avatar: "https://picsum.photos/seed/avatar4/100/100",
-    text: "Working with Hardik on our lookbook was a fantastic experience. The creativity and unique perspective brought our collection to life. The images are both art and fashion.",
-  },
-  {
-    name: "David Chen",
-    role: "Corporate Headshots",
-    avatar: "https://picsum.photos/seed/avatar5/100/100",
-    rating: 5,
-    text: "Fast, professional, and excellent results. Hardik made the process of getting new company headshots completely painless. The team looks great!",
-  },
-  {
-    name: "Maria Rodriguez",
-    role: "Family Portraits",
-    avatar: "https://picsum.photos/seed/avatar6/100/100",
-    rating: 5,
-    text: "We will treasure these family photos forever. Hardik was amazing with our kids and managed to capture their personalities perfectly. The photos are so natural and full of joy.",
-  },
-];
+import { Card, CardContent } from "@/components/ui/card";
+import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
+import { collection, query } from 'firebase/firestore';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Rating = ({ rating }: { rating: number }) => (
   <div className="flex items-center gap-1 text-yellow-400">
@@ -57,8 +25,16 @@ const Rating = ({ rating }: { rating: number }) => (
 );
 
 export default function TestimonialsPage() {
+  const firestore = useFirestore();
+  const testimonialsQuery = useMemoFirebase(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, 'testimonials'));
+  }, [firestore]);
+
+  const { data: testimonials, isLoading } = useCollection(testimonialsQuery);
+
   return (
-    <div className="py-20 md:py-28 lg:py-32 bg-secondary/30">
+    <div className="py-20 md:py-28 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-20">
           <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">Client Voices</h1>
@@ -66,28 +42,44 @@ export default function TestimonialsPage() {
             Stories from those who have trusted me to capture their most precious moments.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {allTestimonials.map((testimonial, index) => (
-            <Card key={index} className="flex flex-col bg-card/50 border-border/50 shadow-lg">
-              <CardHeader className="p-8">
-                <div className="flex items-start gap-6">
-                  <Avatar className="w-20 h-20 border-2 border-primary">
-                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <h3 className="font-headline text-2xl font-bold">{testimonial.name}</h3>
-                    <p className="text-base text-muted-foreground">{testimonial.role}</p>
-                    {testimonial.rating && <div className="mt-2"><Rating rating={testimonial.rating} /></div>}
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow p-8 pt-0">
-                <p className="text-lg italic text-foreground/80 leading-relaxed">"{testimonial.text}"</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        
+        {isLoading && <p className="text-center text-muted-foreground">Loading testimonials...</p>}
+
+        {testimonials && testimonials.length > 0 && (
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4">
+                  <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg">
+                    <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <CardContent className="p-0 flex-grow">
+                      <p className="text-base italic text-foreground/70 mb-6">"{testimonial.text}"</p>
+                      <h3 className="font-headline text-xl font-semibold text-foreground">{testimonial.author}</h3>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      {testimonial.rating && <div className="mt-4"><Rating rating={testimonial.rating} /></div>}
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
+            <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
+          </Carousel>
+        )}
+
+        {!isLoading && (!testimonials || testimonials.length === 0) && (
+          <p className="text-center text-muted-foreground">No testimonials yet.</p>
+        )}
+
         <div className="mt-24 text-center">
             <Button asChild variant="outline" size="lg">
                 <Link href="/">
@@ -100,3 +92,5 @@ export default function TestimonialsPage() {
     </div>
   );
 }
+
+    
