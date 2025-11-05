@@ -312,7 +312,7 @@ export default function Home() {
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
-                <div className="hidden md:block w-px bg-border/20 shadow-[2px_0_10px_hsl(var(--border)),-2px_0_10px_hsl(var(--border))] h-full"></div>
+                <div className="hidden md:block w-px bg-border/20 shadow-[2px_0_10px_hsl(var(--ring)),-2px_0_10px_hsl(var(--ring))] h-full"></div>
                 <div className="md:col-span-1 space-y-8">
                   <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
                   <div className="space-y-6 text-base">
@@ -366,5 +366,3 @@ export default function Home() {
     </>
   );
 }
-
-    
