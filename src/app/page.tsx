@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail, MapPin, Phone, Star } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone, Star, Instagram, Twitter, Facebook } from 'lucide-react';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
@@ -338,6 +338,20 @@ export default function Home() {
                             <span className="text-muted-foreground group-hover:text-primary transition-colors">New York, NY | Available Worldwide</span>
                           </div>
                       </div>
+                  </div>
+                   <div className="space-y-4 pt-4">
+                    <h4 className="font-headline text-lg font-semibold">Follow Me</h4>
+                    <div className="flex items-center gap-4">
+                      <Link href="#" aria-label="Twitter">
+                        <Twitter className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
+                      </Link>
+                      <Link href="#" aria-label="Facebook">
+                        <Facebook className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
+                      </Link>
+                      <Link href="#" aria-label="Instagram">
+                        <Instagram className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
+                      </Link>
+                    </div>
                   </div>
               </div>
               <div className="md:col-span-3">
