@@ -202,7 +202,9 @@ const CarouselItem = React.forwardRef<
             className={cn(
                 "min-w-0 shrink-0 grow-0 basis-full transition-all duration-300",
                 orientation === "horizontal" ? "pl-4" : "pt-4",
-                isSelected ? "scale-100 opacity-100" : "scale-90 opacity-60",
+                isSelected
+                  ? "scale-100 opacity-100 hover:scale-105 hover:shadow-xl" 
+                  : "scale-90 opacity-60",
                 className
             )}
             {...props}
