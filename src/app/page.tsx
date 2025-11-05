@@ -155,7 +155,7 @@ function TestimonialsSection() {
                     <CarouselContent>
                     {testimonials.map((testimonial, index) => (
                         <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
-                            <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card transition-all duration-300">
+                            <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card">
                                 <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
                                     <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
                                     <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
@@ -311,27 +311,27 @@ export default function Home() {
               <div className="md:col-span-2 space-y-8">
                   <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
                   <div className="space-y-6 text-base">
-                      <div className="flex items-start gap-4">
-                          <div className="p-2 bg-primary/10 rounded-full mt-1">
-                            <Mail className="h-5 w-5 text-primary" />
+                      <div className="flex items-start gap-4 group">
+                          <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
+                            <Mail className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
                           </div>
                           <div>
                             <p className="font-semibold">Email</p>
                             <a href="mailto:contact@hardikseye.com" className="text-muted-foreground hover:text-primary transition-colors">contact@hardikseye.com</a>
                           </div>
                       </div>
-                      <div className="flex items-start gap-4">
-                          <div className="p-2 bg-primary/10 rounded-full mt-1">
-                            <Phone className="h-5 w-5 text-primary" />
+                      <div className="flex items-start gap-4 group">
+                          <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
+                            <Phone className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
                           </div>
                           <div>
                             <p className="font-semibold">Phone</p>
                             <span className="text-muted-foreground">(123) 456-7890</span>
                           </div>
                       </div>
-                      <div className="flex items-start gap-4">
-                          <div className="p-2 bg-primary/10 rounded-full mt-1">
-                            <MapPin className="h-5 w-5 text-primary" />
+                      <div className="flex items-start gap-4 group">
+                          <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
+                            <MapPin className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
                           </div>
                           <div>
                             <p className="font-semibold">Location</p>
