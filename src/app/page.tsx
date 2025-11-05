@@ -266,7 +266,7 @@ export default function Home() {
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="relative max-w-7xl mx-auto">
-                    <div className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] rounded-lg shadow-2xl overflow-hidden">
+                    <div className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] rounded-lg shadow-2xl overflow-hidden">
                          <AnimatedHero images={bioImages} />
                     </div>
                     <div className="md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:w-3/5 lg:w-1/2 p-8 lg:p-12 bg-background/80 backdrop-blur-md rounded-lg shadow-xl mt-8 md:mt-0">
