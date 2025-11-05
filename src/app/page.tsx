@@ -46,7 +46,7 @@ const portfolioCategories = [
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
-        className: "md:col-span-6 md:row-span-4",
+        className: "md:col-span-6 md:row-span-2",
         sharp: true,
     },
     { 
