@@ -317,7 +317,7 @@ export default function Home() {
                           </div>
                           <div>
                             <p className="font-semibold">Email</p>
-                            <a href="mailto:contact@hardikseye.com" className="text-muted-foreground hover:text-primary transition-colors">contact@hardikseye.com</a>
+                            <a href="mailto:contact@hardikseye.com" className="text-muted-foreground group-hover:text-primary transition-colors">contact@hardikseye.com</a>
                           </div>
                       </div>
                       <div className="flex items-start gap-4 group">
@@ -326,7 +326,7 @@ export default function Home() {
                           </div>
                           <div>
                             <p className="font-semibold">Phone</p>
-                            <span className="text-muted-foreground">(123) 456-7890</span>
+                            <span className="text-muted-foreground group-hover:text-primary transition-colors">(123) 456-7890</span>
                           </div>
                       </div>
                       <div className="flex items-start gap-4 group">
@@ -335,7 +335,7 @@ export default function Home() {
                           </div>
                           <div>
                             <p className="font-semibold">Location</p>
-                            <span className="text-muted-foreground">New York, NY | Available Worldwide</span>
+                            <span className="text-muted-foreground group-hover:text-primary transition-colors">New York, NY | Available Worldwide</span>
                           </div>
                       </div>
                   </div>
