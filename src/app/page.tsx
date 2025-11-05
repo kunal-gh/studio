@@ -269,7 +269,7 @@ export default function Home() {
                     <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[2/1] rounded-lg shadow-2xl overflow-hidden">
                          <AnimatedHero images={bioImages} />
                     </div>
-                    <div className="md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:w-1/2 lg:w-2/5 p-8 lg:p-12 bg-background/80 backdrop-blur-md rounded-lg shadow-xl mt-8 md:mt-0">
+                    <div className="md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:w-3/5 lg:w-1/2 p-8 lg:p-12 bg-background/80 backdrop-blur-md rounded-lg shadow-xl mt-8 md:mt-0">
                         <div className="text-left">
                             <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
                                 Hardik — The Eye Behind the Lens
@@ -314,7 +314,7 @@ export default function Home() {
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
-                <div className="hidden md:block w-px bg-border/20 shadow-[2px_0_10px_hsl(var(--ring)),-2px_0_10px_hsl(var(--ring))] h-full"></div>
+                <div className="hidden md:block w-px bg-border shadow-[0_0_15px_2px_hsl(var(--ring))] h-full"></div>
                 <div className="md:col-span-1">
                   <h3 className="font-headline text-3xl font-semibold pt-2">Contact Information</h3>
                   <div className="space-y-6 text-base mt-8">
