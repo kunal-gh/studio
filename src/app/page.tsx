@@ -47,7 +47,7 @@ const portfolioCategories = [
         title: "Street", 
         description: "Finding extraordinary stories in ordinary city life.",
         coverImage: placeHolderImages.find(p => p.id === 'street-1')!,
-        className: "md:col-span-6 md:row-span-2",
+        className: "md:col-span-6 md-row-span-2",
         sharp: true,
     },
     { 
@@ -71,7 +71,7 @@ const portfolioCategories = [
         title: "Live Events", 
         description: "Documenting the energy and emotion of every occasion, from concerts to conferences.",
         coverImage: placeHolderImages.find(p => p.id === 'event-1')!,
-        className: "md:col-span-10 md:row-span-2",
+        className: "md:col-span-10",
         sharp: true,
     },
 ];
@@ -216,7 +216,7 @@ export default function Home() {
                     <CarouselContent>
                     {testimonials.map((testimonial, index) => (
                         <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
-                            <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg">
+                            <Card className="h-full flex flex-col items-center text-center p-8 border-border/20 shadow-sm bg-card/20 rounded-lg">
                                 <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
                                     <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
                                     <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
