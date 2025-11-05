@@ -343,13 +343,13 @@ export default function Home() {
                     <h4 className="font-headline text-lg font-semibold">Follow Me</h4>
                     <div className="flex items-center gap-4">
                       <Link href="#" aria-label="Twitter" className="group">
-                        <Twitter className="h-6 w-6 text-muted-foreground transition-colors group-hover:text-primary" />
+                        <Twitter className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
                       </Link>
                       <Link href="#" aria-label="Facebook" className="group">
-                        <Facebook className="h-6 w-6 text-muted-foreground transition-colors group-hover:text-primary" />
+                        <Facebook className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
                       </Link>
                       <Link href="#" aria-label="Instagram" className="group">
-                        <Instagram className="h-6 w-6 text-muted-foreground transition-colors group-hover:text-primary" />
+                        <Instagram className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
                       </Link>
                     </div>
                   </div>
