@@ -314,7 +314,7 @@ export default function Home() {
                 </div>
                 <div className="hidden md:block w-px bg-border/20 shadow-[2px_0_10px_hsl(var(--ring)),-2px_0_10px_hsl(var(--ring))] h-full"></div>
                 <div className="md:col-span-1">
-                  <h3 className="font-headline text-2xl font-semibold">Contact Information</h3>
+                  <h3 className="font-headline text-2xl font-semibold pt-2">Contact Information</h3>
                   <div className="space-y-6 text-base mt-8">
                       <div className="flex items-start gap-4 group">
                           <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
