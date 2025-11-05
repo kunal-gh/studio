@@ -111,7 +111,7 @@ export default function Home() {
       <div className="bg-background text-foreground w-full overflow-x-hidden">
         <section id="home" className="w-full">
             <div className="relative w-full h-screen flex items-center justify-center text-center text-white">
-                <div className="absolute inset-0 mx-auto w-[96%]">
+                <div className="absolute inset-0 shadow-2xl">
                     <AnimatedHero images={heroImages} />
                 </div>
                 
