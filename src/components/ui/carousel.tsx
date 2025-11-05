@@ -79,7 +79,11 @@ const Carousel = React.forwardRef<
 
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
-      setMainSelectedIndex(api.selectedScrollSnap());
+      
+      const slidesInView = api.slidesInView(true);
+      const middleIndex = Math.floor(slidesInView.length / 2);
+      const middleSlide = slidesInView[middleIndex];
+      setMainSelectedIndex(middleSlide);
 
     }, [])
 
@@ -120,9 +124,13 @@ const Carousel = React.forwardRef<
       onSelect(api)
       api.on("reInit", onSelect)
       api.on("select", onSelect)
+      api.on("slidesInView", onSelect)
+
 
       return () => {
         api?.off("select", onSelect)
+        api?.off("reInit", onSelect)
+        api?.off("slidesInView", onSelect)
       }
     }, [api, onSelect])
 
