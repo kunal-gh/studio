@@ -207,12 +207,17 @@ const CarouselItem = React.forwardRef<
       )}
       {...props}
     >
-        <div className={cn("transition-all duration-300", 
-            isSelected ? "scale-100 opacity-100" : "scale-90 opacity-60",
-            isSelected && "hover:scale-105 hover:shadow-2xl"
-        )}>
-            {children}
-        </div>
+      <div
+        className={cn(
+          "transition-all duration-300",
+          isSelected
+            ? "scale-100 opacity-100"
+            : "scale-90 opacity-60",
+          isSelected && "hover:scale-110 hover:shadow-2xl"
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 });
