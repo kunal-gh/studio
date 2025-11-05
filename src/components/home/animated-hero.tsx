@@ -43,7 +43,7 @@ export function AnimatedHero({ images }: AnimatedHeroProps) {
             index === currentIndex ? "opacity-100" : "opacity-0"
           )}
         >
-          <div className="relative w-full h-full rounded-lg shadow-2xl overflow-hidden">
+          <div className="relative w-full h-full shadow-2xl overflow-hidden">
             <Image
               src={image.imageUrl}
               alt={image.description}
