@@ -178,32 +178,9 @@ const CarouselItem = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & { index?: number }
 >(({ className, index, ...props }, ref) => {
   const { api } = useCarousel()
-  const [isSelected, setIsSelected] = React.useState(false)
-
-  React.useEffect(() => {
-    if (!api) return;
-    
-    const onSelect = () => {
-      if (index !== undefined) {
-        setIsSelected(api.selectedScrollSnap() === index)
-      }
-    }
-
-    api.on("select", onSelect);
-    // Also check on reInit
-    api.on("reInit", onSelect);
-    
-    // Initial check
-    onSelect();
-
-    return () => {
-      api.off("select", onSelect);
-      api.off("reInit", onSelect);
-    };
-  }, [api, index]);
 
   const handleClick = () => {
-    if (api && index !== undefined && !isSelected) {
+    if (api && index !== undefined) {
       api.scrollTo(index)
     }
   }
@@ -216,7 +193,6 @@ const CarouselItem = React.forwardRef<
       onClick={handleClick}
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full pl-4",
-        isSelected && "is-selected",
         className
       )}
       {...props}
