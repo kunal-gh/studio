@@ -65,7 +65,7 @@
     }
   },
   "auth": {
-    "providers": ["anonymous"]
+    "providers": ["anonymous", "google.com"]
   },
   "firestore": {
     "photographs": {
@@ -78,3 +78,5 @@
     }
   }
 }
+
+    

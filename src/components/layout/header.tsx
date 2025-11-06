@@ -92,13 +92,13 @@ export function Header() {
               ))}
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="#" aria-label="Twitter">
+            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <Twitter className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
             </Link>
-            <Link href="#" aria-label="Facebook">
+            <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <Facebook className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
             </Link>
-            <Link href="#" aria-label="Instagram">
+            <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <Instagram className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
             </Link>
           </div>
@@ -123,3 +123,5 @@ export function Header() {
     </header>
   );
 }
+
+    
