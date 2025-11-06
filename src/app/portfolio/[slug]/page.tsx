@@ -1,4 +1,3 @@
-
 'use client';
 
 import { PortfolioGrid } from '@/components/portfolio/portfolio-grid';
@@ -6,9 +5,9 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection, query, where, orderBy } from 'firebase/firestore';
-import { seedPhotographs } from '@/lib/seed-db';
+import { collection, query, where } from 'firebase/firestore';
 import { useEffect } from 'react';
+import { seedPhotographs } from '@/lib/seed-db';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const categoryDescriptions: Record<string, string> = {
@@ -21,18 +20,19 @@ const categoryDescriptions: Record<string, string> = {
 };
 
 const LoadingSkeleton = () => (
-  <div className="container mx-auto px-4">
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[300px]">
-      <Skeleton className="col-span-2 row-span-2" />
-      <Skeleton className="col-span-1" />
-      <Skeleton className="col-span-1" />
-      <Skeleton className="col-span-1" />
-      <Skeleton className="col-span-1" />
-      <Skeleton className="col-span-2" />
-      <Skeleton className="col-span-2" />
+    <div className="container mx-auto px-4">
+      <div className="animate-pulse">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4" style={{ gridAutoRows: 'minmax(200px, auto)' }}>
+          <div className="col-span-2 row-span-2 rounded-lg bg-muted"></div>
+          <div className="col-span-1 rounded-lg bg-muted"></div>
+          <div className="col-span-1 rounded-lg bg-muted"></div>
+          <div className="col-span-1 rounded-lg bg-muted"></div>
+          <div className="col-span-1 rounded-lg bg-muted"></div>
+          <div className="col-span-2 rounded-lg bg-muted"></div>
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
 
 
 export default function PortfolioCategoryPage({ params }: { params: { slug: string } }) {
@@ -50,24 +50,14 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
 
   const photographsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
-    return query(collection(firestore, 'photographs'), where('category', '==', slug), orderBy('order'));
+    // NOTE: orderBy('order') was removed to avoid needing a composite index, which was causing permission errors.
+    return query(collection(firestore, 'photographs'), where('category', '==', slug));
   }, [firestore, slug]);
 
   const { data: images, isLoading } = useCollection(photographsQuery);
 
-  const getLayoutForSlug = (slug: string): "A" | "B" | "C" => {
-    switch(slug) {
-        case 'weddings': return 'B';
-        case 'portraits': return 'C';
-        case 'fashion': return 'A';
-        case 'street': return 'B';
-        case 'live-events': return 'C';
-        default: return 'A';
-    }
-  }
-
   return (
-    <div className="py-20 md:py-28 lg:py-32 bg-background animate-in fade-in-25">
+    <div className="py-20 md:py-28 lg:py-32 bg-background animate-in fade-in-25 duration-300">
         <div className="container mx-auto px-4">
             <div className="mb-16 text-center">
                 <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">{categoryTitle}</h1>
@@ -77,7 +67,7 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
             </div>
             
             {isLoading && <LoadingSkeleton />}
-            {!isLoading && images && images.length > 0 && <PortfolioGrid title="" images={images} layout={getLayoutForSlug(slug)} />}
+            {!isLoading && images && images.length > 0 && <PortfolioGrid title="" images={images} />}
             {!isLoading && (!images || images.length === 0) && <p className="text-center text-muted-foreground">This gallery is empty for now. Check back soon!</p>}
 
             <div className="mt-24 text-center">
