@@ -59,7 +59,7 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
     <div className="py-20 md:py-28 lg:py-32 bg-background animate-in fade-in-25 duration-300">
         <div className="container mx-auto px-4">
             <div className="mb-12">
-                <Button asChild variant="outline" size="sm" className="mb-8">
+                <Button asChild variant="outline" size="sm">
                     <Link href="/#portfolio">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back to All Portfolios
