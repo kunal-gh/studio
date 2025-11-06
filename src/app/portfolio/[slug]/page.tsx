@@ -1,3 +1,4 @@
+
 'use client';
 
 import { PortfolioGrid } from '@/components/portfolio/portfolio-grid';
@@ -56,9 +57,9 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
   const { data: images, isLoading } = useCollection(photographsQuery);
 
   return (
-    <div className="py-20 md:py-28 lg:py-32 bg-background animate-in fade-in-25 duration-300">
+    <div className="py-12 md:py-16 bg-background animate-in fade-in-25 duration-300">
         <div className="container mx-auto px-4">
-            <div className="mb-12">
+            <div className="mb-8">
                 <Button asChild variant="outline" size="sm">
                     <Link href="/#portfolio">
                         <ArrowLeft className="mr-2 h-4 w-4" />
@@ -66,7 +67,7 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
                     </Link>
                 </Button>
             </div>
-            <div className="mb-16 text-center">
+            <div className="mb-12 text-center">
                 <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">{categoryTitle}</h1>
                 <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
                     {categoryDescriptions[slug] || "A collection of our finest work."}
