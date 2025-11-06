@@ -6,9 +6,10 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection, query, where } from 'firebase/firestore';
+import { collection, query, where, orderBy } from 'firebase/firestore';
 import { seedPhotographs } from '@/lib/seed-db';
 import { useEffect } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const categoryDescriptions: Record<string, string> = {
     weddings: "Capturing the love, joy, and candid moments that make your wedding day unforgettable. From the grand ceremony to the intimate details, we tell your unique love story.",
@@ -18,6 +19,21 @@ const categoryDescriptions: Record<string, string> = {
     street: "Finding beauty and narrative in the everyday. Our street photography captures the candid, fleeting moments of life in the city with an authentic, documentary style.",
     "ai-generated": "Exploring the frontiers of creativity with AI-generated imagery. A showcase of art that blends technology and imagination.",
 };
+
+const LoadingSkeleton = () => (
+  <div className="container mx-auto px-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[300px]">
+      <Skeleton className="col-span-2 row-span-2" />
+      <Skeleton className="col-span-1" />
+      <Skeleton className="col-span-1" />
+      <Skeleton className="col-span-1" />
+      <Skeleton className="col-span-1" />
+      <Skeleton className="col-span-2" />
+      <Skeleton className="col-span-2" />
+    </div>
+  </div>
+);
+
 
 export default function PortfolioCategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
@@ -34,9 +50,7 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
 
   const photographsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
-    
-    // Removed orderBy('order') to simplify the query and avoid needing a composite index.
-    return query(collection(firestore, 'photographs'), where('category', '==', slug));
+    return query(collection(firestore, 'photographs'), where('category', '==', slug), orderBy('order'));
   }, [firestore, slug]);
 
   const { data: images, isLoading } = useCollection(photographsQuery);
@@ -46,12 +60,14 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
         case 'weddings': return 'B';
         case 'portraits': return 'C';
         case 'fashion': return 'A';
-        default: return 'B';
+        case 'street': return 'B';
+        case 'live-events': return 'C';
+        default: return 'A';
     }
   }
 
   return (
-    <div className="py-20 md:py-28 lg:py-32 bg-background animate-in fade-in-50 duration-500">
+    <div className="py-20 md:py-28 lg:py-32 bg-background animate-in fade-in-25">
         <div className="container mx-auto px-4">
             <div className="mb-16 text-center">
                 <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">{categoryTitle}</h1>
@@ -60,7 +76,7 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
                 </p>
             </div>
             
-            {isLoading && <p className="text-center text-muted-foreground">Loading gallery...</p>}
+            {isLoading && <LoadingSkeleton />}
             {!isLoading && images && images.length > 0 && <PortfolioGrid title="" images={images} layout={getLayoutForSlug(slug)} />}
             {!isLoading && (!images || images.length === 0) && <p className="text-center text-muted-foreground">This gallery is empty for now. Check back soon!</p>}
 

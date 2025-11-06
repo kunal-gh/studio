@@ -1,11 +1,13 @@
+
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 interface ImageInfo {
   id: string;
   imageUrl: string;
-  description: string;
-  imageHint: string;
+  title?: string;
+  description?: string;
+  imageHint?: string;
 }
 
 interface PortfolioGridProps {
@@ -15,9 +17,9 @@ interface PortfolioGridProps {
 }
 
 const layoutClasses = {
-  A: "grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-fr",
-  B: "grid grid-cols-1 md:grid-cols-5 gap-4 auto-rows-fr",
-  C: "grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-fr",
+  A: "grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[minmax(100px,_auto)]",
+  B: "grid grid-cols-1 md:grid-cols-5 gap-4 auto-rows-[minmax(100px,_auto)]",
+  C: "grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[minmax(100px,_auto)]",
 };
 
 const itemClasses = {
@@ -39,7 +41,7 @@ const itemClasses = {
       "md:col-span-2",
       "md:col-span-3",
       "md:col-span-2",
-      "md:col-span-3",
+      "md:col-span-2 md:row-span-2",
     ];
     return patterns[index % patterns.length];
   },
@@ -72,10 +74,10 @@ export function PortfolioGrid({ title, images, layout = "A" }: PortfolioGridProp
       )}
       <div className={cn(layoutClasses[layout])}>
         {images.map((image, index) => (
-          <div key={image.id} className={cn("group relative aspect-[4/5] md:aspect-auto overflow-hidden rounded-lg", itemClasses[layout](index))}>
+          <div key={image.id} className={cn("group relative overflow-hidden rounded-lg", itemClasses[layout](index))}>
             <Image
               src={image.imageUrl}
-              alt={image.description}
+              alt={image.description || 'Portfolio image'}
               fill
               className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -83,7 +85,7 @@ export function PortfolioGrid({ title, images, layout = "A" }: PortfolioGridProp
               priority={index < 4}
             />
              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute bottom-0 left-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute bottom-0 left-0 p-4 text-white opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                 <p className="text-sm font-semibold">{image.title}</p>
                 <p className="text-xs text-white/80">{image.description}</p>
             </div>
