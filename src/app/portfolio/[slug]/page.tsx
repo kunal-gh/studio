@@ -75,5 +75,3 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
     </div>
   );
 }
-
-    
