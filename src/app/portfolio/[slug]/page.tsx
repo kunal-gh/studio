@@ -59,7 +59,7 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
   return (
     <div className="py-12 md:py-16 bg-background animate-in fade-in-25 duration-300">
         <div className="container mx-auto px-4 relative">
-            <div className="sticky top-24 z-10 mb-8">
+            <div className="sticky top-24 z-10">
                 <Button asChild variant="outline" size="lg" className="rounded-full w-14 h-14 p-0">
                     <Link href="/#portfolio" aria-label="Back to All Portfolios">
                         <ArrowLeft className="h-6 w-6" />
