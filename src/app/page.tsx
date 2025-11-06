@@ -75,6 +75,44 @@ const portfolioCategories = [
     },
 ];
 
+const sampleTestimonials = [
+    {
+      author: "Jessica & Tom",
+      text: "Hardik didn't just take photos; he captured the soul of our wedding day. We look at our album and relive every laugh, tear, and dance. Truly magical.",
+      role: "Wedding Client",
+      avatar: "https://i.pravatar.cc/150?img=1",
+      rating: 5,
+    },
+    {
+      author: "Amina Yusuf",
+      text: "The portrait session was so relaxed and professional. Hardik made me feel completely at ease, and the final shots are the best photos I've ever had taken.",
+      role: "Portrait Client",
+      avatar: "https://i.pravatar.cc/150?img=5",
+      rating: 5,
+    },
+    {
+      author: "David Chen",
+      text: "His eye for street photography is unmatched. The photos he took for our magazine feature were raw, powerful, and told an incredible story.",
+      role: "Magazine Editor",
+      avatar: "https://i.pravatar.cc/150?img=8",
+      rating: 5,
+    },
+    {
+        author: "Sarah Jenkins",
+        text: "The fashion shoot was a dream. The creativity and direction were top-notch, resulting in a stunning lookbook that exceeded all our expectations.",
+        role: "Fashion Designer",
+        avatar: "https://i.pravatar.cc/150?img=12",
+        rating: 5,
+    },
+    {
+        author: "Michael B.",
+        text: "Incredible ability to capture the energy of a live event. The photos from our conference are dynamic and professional. Highly recommended.",
+        role: "Event Organizer",
+        avatar: "https://i.pravatar.cc/150?img=11",
+        rating: 5,
+    }
+  ];
+
 const Rating = ({ rating }: { rating: number }) => (
   <div className="flex items-center gap-1 text-yellow-400">
     {Array.from({ length: 5 }).map((_, i) => (
@@ -90,8 +128,10 @@ function TestimonialsSection() {
         return query(collection(firestore, 'testimonials'));
     }, [firestore]);
 
-    const { data: testimonials, isLoading: testimonialsLoading } = useCollection(testimonialsQuery);
+    const { data: testimonialsFromDB, isLoading: testimonialsLoading } = useCollection(testimonialsQuery);
     
+    const testimonials = testimonialsFromDB && testimonialsFromDB.length > 0 ? testimonialsFromDB : sampleTestimonials;
+
     return (
         <section id="testimonials" className="py-20 md:py-28 lg:py-32 bg-background">
             <div className="container mx-auto px-4">

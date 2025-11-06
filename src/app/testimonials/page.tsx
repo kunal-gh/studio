@@ -72,7 +72,8 @@ function TestimonialsContent() {
     }, [firestore]);
 
     const { data: testimonialsFromDB, isLoading } = useCollection(testimonialsQuery);
-    const testimonials = sampleTestimonials;
+    
+    const testimonials = testimonialsFromDB && testimonialsFromDB.length > 0 ? testimonialsFromDB : sampleTestimonials;
 
     return (
         <>
