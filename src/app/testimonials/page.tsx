@@ -110,8 +110,16 @@ export default function TestimonialsPage() {
 
   return (
     <div className="py-20 md:py-28 lg:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-20">
+      <div className="container mx-auto px-4 relative">
+        <div className="sticky top-24 z-10">
+            <Button asChild variant="outline" size="lg" className="rounded-full w-14 h-14 p-0">
+                <Link href="/" aria-label="Back to Home">
+                    <ArrowLeft className="h-6 w-6" />
+                </Link>
+            </Button>
+        </div>
+
+        <div className="text-center mb-20 -mt-14">
           <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">Client Voices</h1>
           <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
             Stories from those who have trusted me to capture their most precious moments.
@@ -130,15 +138,6 @@ export default function TestimonialsPage() {
             <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
             <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
         </Carousel>
-
-        <div className="mt-24 text-center">
-            <Button asChild variant="outline" size="lg">
-                <Link href="/">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Home
-                </Link>
-            </Button>
-        </div>
       </div>
     </div>
   );
