@@ -50,7 +50,6 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
 
   const photographsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
-    // NOTE: orderBy('order') was removed to avoid needing a composite index, which was causing permission errors.
     return query(collection(firestore, 'photographs'), where('category', '==', slug));
   }, [firestore, slug]);
 
@@ -59,6 +58,14 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
   return (
     <div className="py-20 md:py-28 lg:py-32 bg-background animate-in fade-in-25 duration-300">
         <div className="container mx-auto px-4">
+            <div className="mb-12">
+                <Button asChild variant="outline" size="sm" className="mb-8">
+                    <Link href="/#portfolio">
+                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        Back to All Portfolios
+                    </Link>
+                </Button>
+            </div>
             <div className="mb-16 text-center">
                 <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">{categoryTitle}</h1>
                 <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
@@ -70,14 +77,6 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
             {!isLoading && images && images.length > 0 && <PortfolioGrid title="" images={images} />}
             {!isLoading && (!images || images.length === 0) && <p className="text-center text-muted-foreground">This gallery is empty for now. Check back soon!</p>}
 
-            <div className="mt-24 text-center">
-                <Button asChild variant="outline" size="lg">
-                    <Link href="/#portfolio">
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        Back to All Portfolios
-                    </Link>
-                </Button>
-            </div>
         </div>
     </div>
   );
