@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection, query, where, orderBy } from 'firebase/firestore';
+import { collection, query, where } from 'firebase/firestore';
 import { seedPhotographs } from '@/lib/seed-db';
 import { useEffect } from 'react';
 
@@ -35,7 +35,8 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
   const photographsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
     
-    return query(collection(firestore, 'photographs'), where('category', '==', slug), orderBy('order'));
+    // Removed orderBy('order') to simplify the query and avoid needing a composite index.
+    return query(collection(firestore, 'photographs'), where('category', '==', slug));
   }, [firestore, slug]);
 
   const { data: images, isLoading } = useCollection(photographsQuery);
