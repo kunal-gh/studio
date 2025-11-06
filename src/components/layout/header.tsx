@@ -75,12 +75,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-lg">
-      <div className="container flex h-20 items-center justify-between px-0 sm:px-4">
-        <Link href="/#home" onClick={() => handleLinkClick('/#home')} className="flex items-baseline gap-3">
-            <span className="font-bold sm:inline-block font-headline text-5xl tracking-[0.2em]">
+      <div className="container flex h-20 items-center justify-between px-4 sm:px-4">
+        <Link href="/#home" onClick={() => handleLinkClick('/#home')} className="flex items-baseline gap-2 md:gap-3">
+            <span className="font-bold sm:inline-block font-headline text-3xl md:text-5xl tracking-[0.2em]">
                 THE
             </span>
-            <span className="hidden md:inline-block text-sm font-body text-muted-foreground tracking-widest uppercase whitespace-nowrap">
+            <span className="hidden sm:inline-block text-xs md:text-sm font-body text-muted-foreground tracking-widest uppercase whitespace-nowrap">
                 Through Hardik's Eye
             </span>
         </Link>
@@ -123,5 +123,3 @@ export function Header() {
     </header>
   );
 }
-
-    

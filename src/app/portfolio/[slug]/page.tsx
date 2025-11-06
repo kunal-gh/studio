@@ -22,15 +22,15 @@ const categoryDescriptions: Record<string, string> = {
 
 const LoadingSkeleton = () => (
     <div className="container mx-auto px-4">
-      <div className="animate-pulse">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4" style={{ gridAutoRows: 'minmax(200px, auto)' }}>
-          <div className="col-span-2 row-span-2 rounded-lg bg-muted"></div>
-          <div className="col-span-1 rounded-lg bg-muted"></div>
-          <div className="col-span-1 rounded-lg bg-muted"></div>
-          <div className="col-span-1 rounded-lg bg-muted"></div>
-          <div className="col-span-1 rounded-lg bg-muted"></div>
-          <div className="col-span-2 rounded-lg bg-muted"></div>
-        </div>
+      <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+        <Skeleton className="h-64 w-full" />
+        <Skeleton className="h-96 w-full" />
+        <Skeleton className="h-80 w-full" />
+        <Skeleton className="h-64 w-full" />
+        <Skeleton className="h-96 w-full" />
+        <Skeleton className="h-80 w-full" />
+        <Skeleton className="h-64 w-full" />
+        <Skeleton className="h-96 w-full" />
       </div>
     </div>
   );
@@ -59,15 +59,15 @@ export default function PortfolioCategoryPage({ params }: { params: { slug: stri
   return (
     <div className="py-12 md:py-16 bg-background animate-in fade-in-25 duration-300">
         <div className="container mx-auto px-4 relative">
-            <div className="sticky top-24 z-10">
+            <div className="absolute top-0 left-4 z-10">
                 <Button asChild variant="outline" size="lg" className="rounded-full w-14 h-14 p-0">
                     <Link href="/#portfolio" aria-label="Back to All Portfolios">
                         <ArrowLeft className="h-6 w-6" />
                     </Link>
                 </Button>
             </div>
-            <div className="mb-12 text-center">
-                <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">{categoryTitle}</h1>
+            <div className="mb-12 pt-4 text-center">
+                <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{categoryTitle}</h1>
                 <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
                     {categoryDescriptions[slug] || "A collection of our finest work."}
                 </p>

@@ -81,7 +81,7 @@ function TestimonialsContent() {
             {testimonials && testimonials.length > 0 && (
             <CarouselContent>
                 {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} index={index} className="md:basis-1/2 lg:basis-1/3 p-4">
+                <CarouselItem key={index} index={index} className="sm:basis-1/2 lg:basis-1/3 p-4">
                     <Card className="h-full flex flex-col items-center text-center p-8 border border-border/20 shadow-sm bg-card/20 rounded-lg testimonial-card transition-all duration-300">
                     <Avatar className="w-24 h-24 mb-6 border-4 border-background shadow-md">
                         <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
@@ -111,7 +111,7 @@ export default function TestimonialsPage() {
   return (
     <div className="py-20 md:py-28 lg:py-32 bg-background">
       <div className="container mx-auto px-4 relative">
-        <div className="sticky top-24 z-10">
+        <div className="absolute top-8 left-4 md:left-8 z-10">
             <Button asChild variant="outline" size="lg" className="rounded-full w-14 h-14 p-0">
                 <Link href="/" aria-label="Back to Home">
                     <ArrowLeft className="h-6 w-6" />
@@ -119,8 +119,8 @@ export default function TestimonialsPage() {
             </Button>
         </div>
 
-        <div className="text-center mb-20 -mt-14">
-          <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">Client Voices</h1>
+        <div className="text-center mb-12 md:mb-20">
+          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">Client Voices</h1>
           <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
             Stories from those who have trusted me to capture their most precious moments.
           </p>
@@ -135,8 +135,8 @@ export default function TestimonialsPage() {
             className="w-full max-w-6xl mx-auto"
           >
             <TestimonialsContent />
-            <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
-            <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
+            <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground hidden md:flex" />
+            <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground hidden md:flex" />
         </Carousel>
       </div>
     </div>

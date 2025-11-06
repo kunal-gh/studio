@@ -131,8 +131,8 @@ function TestimonialsSection() {
                         </CarouselItem>
                     ))}
                     </CarouselContent>
-                    <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground" />
-                    <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground" />
+                    <CarouselPrevious className="left-[-50px] text-foreground/50 hover:text-foreground hidden md:flex" />
+                    <CarouselNext className="right-[-50px] text-foreground/50 hover:text-foreground hidden md:flex" />
                   </Carousel>
                 )}
                 
@@ -185,7 +185,7 @@ export default function Home() {
                 </div>
                 
                 <div className="relative z-10 p-4">
-                    <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tighter text-white/90 drop-shadow-md">
+                    <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter text-white/90 drop-shadow-md">
                     Capturing Life's Fleeting Moments
                     </h1>
                     <p className="mt-4 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl font-body text-white/80 drop-shadow-sm">
@@ -197,7 +197,7 @@ export default function Home() {
 
         <section id="portfolio" className="py-20 md:py-28 lg:py-32">
            <div className="container mx-auto px-4 text-center mb-12 md:mb-16">
-             <h2 className="font-headline text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight">
+             <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
               My Work
             </h2>
             <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
@@ -205,7 +205,7 @@ export default function Home() {
             </p>
           </div>
           <div className="container mx-auto px-2">
-            <div className="grid grid-cols-1 md:grid-cols-10 auto-rows-[20rem] md:auto-rows-[15rem] gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-10 auto-rows-[20rem] gap-4">
               {portfolioCategories.map((category) => (
                 <PortfolioCard 
                   key={category.slug}
@@ -226,7 +226,7 @@ export default function Home() {
         <section id="about" className="py-20 md:py-28 lg:py-32 overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="relative max-w-7xl mx-auto">
-                    <div className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] rounded-lg shadow-2xl overflow-hidden">
+                    <div className="relative w-full h-[400px] sm:h-[500px] md:h-[700px] lg:h-[800px] rounded-lg shadow-2xl overflow-hidden">
                          <AnimatedHero images={bioImages} />
                     </div>
                     <div className="md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:w-1/2 lg:w-2/5 p-8 lg:p-12 bg-background/80 backdrop-blur-md rounded-lg shadow-xl mt-8 md:mt-0">
@@ -234,10 +234,10 @@ export default function Home() {
                             <h3 className="font-headline text-xl md:text-2xl font-bold text-primary tracking-wide uppercase">
                                 Hardik — The Eye Behind the Lens
                             </h3>
-                            <h2 className="mt-4 font-headline text-4xl sm:text-5xl font-bold tracking-tighter leading-tight">
+                            <h2 className="mt-4 font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter leading-tight">
                                 About The Artist
                             </h2>
-                            <div className="mt-6 text-lg text-foreground/80 leading-relaxed space-y-6">
+                            <div className="mt-6 text-base md:text-lg text-foreground/80 leading-relaxed space-y-6">
                                 <p>
                                     I'm Hardik, a photographer driven to capture the fleeting moments that tell a larger story. My approach blends classic portraiture with candid, documentary-style photography to create images that are not just seen, but felt.
                                 </p>
@@ -270,7 +270,7 @@ export default function Home() {
                 Have a project in mind? I'd love to hear about it. Reach out, and let's discuss how we can bring your vision to life.
               </p>
             </div>
-            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] items-start gap-8 md:gap-16 bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border/10">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] items-start gap-8 md:gap-16 bg-card p-6 sm:p-8 md:p-12 rounded-2xl shadow-xl border border-border/10">
                 <div className="md:col-span-1">
                     <ContactForm />
                 </div>
@@ -278,7 +278,7 @@ export default function Home() {
                     <Separator orientation="vertical" className="h-full w-[2px]" />
                 </div>
                 <div className="md:col-span-1">
-                  <h3 className="font-headline text-3xl font-semibold pt-2">Contact Information</h3>
+                  <h3 className="font-headline text-2xl sm:text-3xl font-semibold pt-2">Contact Information</h3>
                   <div className="space-y-6 text-base mt-8">
                       <a href="mailto:contact@hardikseye.com" className="flex items-start gap-4 group">
                           <div className="p-2 bg-primary/10 rounded-full mt-1 transition-colors group-hover:bg-primary/20">
@@ -330,5 +330,3 @@ export default function Home() {
     </>
   );
 }
-
-    

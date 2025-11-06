@@ -30,7 +30,7 @@ export function PortfolioGrid({ title, images }: PortfolioGridProps) {
           {title}
         </h2>
       )}
-      <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
         {images.map((image, index) => (
           <div key={image.id} className="break-inside-avoid">
             <Image
