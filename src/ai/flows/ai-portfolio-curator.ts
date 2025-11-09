@@ -13,7 +13,7 @@ import {z} from 'zod';
 const AddToPortfolioInputSchema = z.object({
   prompt: z
     .string()
-    describle('The text prompt used to generate the images.'),
+    .describe('The text prompt used to generate the images.'),
 });
 export type AddToPortfolioInput = z.infer<typeof AddToPortfolioInputSchema>;
 
