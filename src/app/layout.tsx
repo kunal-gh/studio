@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { ClientLayout } from '@/components/layout/client-layout';
-import { DataProvider } from '@/lib/data-provider';
+import { Providers } from '@/components/providers';
 
 export const metadata: Metadata = {
   title: "Through Hardik's Eye",
@@ -23,9 +23,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
       </head>
       <body className={cn('font-body antialiased min-h-screen flex flex-col bg-background text-foreground')}>
-        <DataProvider>
+        <Providers>
           <ClientLayout>{children}</ClientLayout>
-        </DataProvider>
+        </Providers>
       </body>
     </html>
   );
