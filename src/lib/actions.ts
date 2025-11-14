@@ -2,6 +2,7 @@
 "use server";
 
 import { z } from "zod";
+import { addContact } from "./db";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -20,11 +21,19 @@ export async function submitContactForm(formData: FormData) {
     };
   }
 
-  // In a real application, you would send an email or save to a database here.
-  console.log("Contact form submitted:", parsed.data);
-
-  return {
-    success: true,
-    message: "Thank you for your message! I'll get back to you soon.",
-  };
+  try {
+    // Save to database
+    addContact(parsed.data);
+    
+    return {
+      success: true,
+      message: "Thank you for your message! I'll get back to you soon.",
+    };
+  } catch (error) {
+    console.error("Failed to save contact:", error);
+    return {
+      success: false,
+      message: "Failed to send message. Please try again.",
+    };
+  }
 }

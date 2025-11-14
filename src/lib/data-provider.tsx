@@ -1,18 +1,33 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { 
-  Photograph, 
-  Testimonial, 
-  getPhotographs, 
-  getTestimonials,
-  initializeLocalData 
-} from './local-data';
+
+export interface Photograph {
+  id: string;
+  category: string;
+  title: string;
+  description?: string;
+  imageUrl: string;
+  imageHint: string;
+  featured?: boolean;
+  createdAt: string;
+}
+
+export interface Testimonial {
+  id: string;
+  author: string;
+  text: string;
+  role: string;
+  avatar: string;
+  rating: number;
+  createdAt: string;
+}
 
 interface DataContextValue {
   photographs: Photograph[];
   testimonials: Testimonial[];
   isLoading: boolean;
+  refreshData: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextValue | undefined>(undefined);
@@ -22,16 +37,32 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const [photosRes, testimonialsRes] = await Promise.all([
+        fetch('/api/photographs'),
+        fetch('/api/testimonials')
+      ]);
+      
+      const photos = await photosRes.json();
+      const testimonials = await testimonialsRes.json();
+      
+      setPhotographs(photos);
+      setTestimonials(testimonials);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    // Initialize data on mount
-    initializeLocalData();
-    setPhotographs(getPhotographs());
-    setTestimonials(getTestimonials());
-    setIsLoading(false);
+    fetchData();
   }, []);
 
   return (
-    <DataContext.Provider value={{ photographs, testimonials, isLoading }}>
+    <DataContext.Provider value={{ photographs, testimonials, isLoading, refreshData: fetchData }}>
       {children}
     </DataContext.Provider>
   );
