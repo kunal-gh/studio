@@ -6,6 +6,10 @@
       "type": "object",
       "description": "Represents a single photograph in the portfolio.",
       "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the photograph."
+        },
         "title": {
           "type": "string",
           "description": "The title of the photograph."
@@ -19,22 +23,35 @@
           "description": "URL to the photograph image.",
           "format": "uri"
         },
+        "imageHint": {
+          "type": "string",
+          "description": "Alt text for accessibility."
+        },
         "category": {
           "type": "string",
-          "description": "The category of the photograph (e.g., 'portraits', 'live-events')."
+          "description": "The category of the photograph (e.g., 'weddings', 'portraits', 'street', 'fashion', 'live-events', 'ai-generated')."
         },
-        "order": {
-          "type": "number",
-          "description": "The order in which the photograph should be displayed within its category."
+        "featured": {
+          "type": "boolean",
+          "description": "Whether the photograph is featured."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of when the photograph was added.",
+          "format": "date-time"
         }
       },
-      "required": ["title", "imageUrl", "category"]
+      "required": ["id", "title", "imageUrl", "imageHint", "category", "createdAt"]
     },
     "Testimonial": {
       "title": "Testimonial",
       "type": "object",
       "description": "Represents a testimonial from a client.",
       "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the testimonial."
+        },
         "author": {
           "type": "string",
           "description": "The name of the testimonial author."
@@ -43,40 +60,107 @@
           "type": "string",
           "description": "The text content of the testimonial."
         },
-        "date": {
-          "type": "string",
-          "description": "The date the testimonial was given.",
-          "format": "date-time"
-        },
         "role": {
-            "type": "string",
-            "description": "The role of the client (e.g. 'Wedding Client')."
+          "type": "string",
+          "description": "The role of the client (e.g. 'Wedding Client')."
         },
         "avatar": {
-            "type": "string",
-            "description": "URL for the client's avatar image."
+          "type": "string",
+          "description": "URL for the client's avatar image."
         },
         "rating": {
-            "type": "number",
-            "description": "Rating given by the client."
+          "type": "number",
+          "description": "Rating given by the client (1-5)."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of when the testimonial was added.",
+          "format": "date-time"
         }
       },
-      "required": ["author", "text"]
+      "required": ["id", "author", "text", "role", "avatar", "rating", "createdAt"]
+    },
+    "Contact": {
+      "title": "Contact",
+      "type": "object",
+      "description": "Represents a contact form submission.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the contact."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person contacting."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address.",
+          "format": "email"
+        },
+        "message": {
+          "type": "string",
+          "description": "The message content."
+        },
+        "read": {
+          "type": "boolean",
+          "description": "Whether the message has been read."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of when the message was sent.",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "name", "email", "message", "read", "createdAt"]
     }
   },
-  "auth": {
-    "providers": ["anonymous", "google.com"]
+  "storage": {
+    "type": "file-based",
+    "description": "JSON file-based database stored in data/ directory",
+    "files": {
+      "photographs": {
+        "path": "data/photographs.json",
+        "schema": { "$ref": "#/entities/Photograph" },
+        "description": "Stores all photographs for the portfolio."
+      },
+      "testimonials": {
+        "path": "data/testimonials.json",
+        "schema": { "$ref": "#/entities/Testimonial" },
+        "description": "Stores all testimonials from clients."
+      },
+      "contacts": {
+        "path": "data/contacts.json",
+        "schema": { "$ref": "#/entities/Contact" },
+        "description": "Stores all contact form submissions."
+      }
+    }
   },
-  "firestore": {
-    "photographs": {
-      "schema": { "$ref": "#/entities/Photograph" },
-      "description": "Stores all photographs for the portfolio."
-    },
-    "testimonials": {
-      "schema": { "$ref": "#/entities/Testimonial" },
-      "description": "Stores all testimonials from clients."
+  "api": {
+    "baseUrl": "/api",
+    "endpoints": {
+      "photographs": {
+        "list": "GET /api/photographs",
+        "create": "POST /api/photographs",
+        "get": "GET /api/photographs/:id",
+        "update": "PATCH /api/photographs/:id",
+        "delete": "DELETE /api/photographs/:id"
+      },
+      "testimonials": {
+        "list": "GET /api/testimonials",
+        "create": "POST /api/testimonials",
+        "update": "PATCH /api/testimonials/:id",
+        "delete": "DELETE /api/testimonials/:id"
+      },
+      "contacts": {
+        "list": "GET /api/contacts",
+        "create": "POST /api/contacts",
+        "markRead": "PATCH /api/contacts/:id",
+        "delete": "DELETE /api/contacts/:id"
+      },
+      "upload": {
+        "upload": "POST /api/upload"
+      }
     }
   }
 }
-
-    
