@@ -1,33 +1,20 @@
 
 'use client';
 
-import {addToPortfolio} from '@/ai/flows/ai-portfolio-curator';
 import {Button} from '@/components/ui/button';
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Input} from '@/components/ui/input';
-import {useUser} from '@/firebase';
-import {useRouter} from 'next/navigation';
 import React, {useState} from 'react';
 
 export default function AdminPage() {
-  const {user, isUserLoading} = useUser();
-  const router = useRouter();
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
-
-  if (isUserLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user) {
-    router.push('/');
-    return null;
-  }
 
   const handleCurate = async () => {
     setLoading(true);
     try {
-      await addToPortfolio({prompt});
+      // AI portfolio curation would go here
+      console.log('Curating with prompt:', prompt);
       setPrompt('');
     } catch (error) {
       console.error('Failed to curate portfolio:', error);

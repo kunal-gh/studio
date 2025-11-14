@@ -11,9 +11,7 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { Separator } from '@/components/ui/separator';
 import { AnimatedHero } from '@/components/home/animated-hero';
 import { PortfolioCard } from '@/components/portfolio/portfolio-card';
-import { useCollection, useMemoFirebase } from '@/firebase';
-import { collection, query, where } from 'firebase/firestore';
-import { useFirestore } from '@/firebase/provider';
+import { usePhotographs, useTestimonials } from '@/lib/data-provider';
 import { placeHolderImages } from '@/lib/placeholder-images';
 import {
     Carousel,
@@ -122,13 +120,7 @@ const Rating = ({ rating }: { rating: number }) => (
 );
 
 function TestimonialsSection() {
-    const firestore = useFirestore();
-    const testimonialsQuery = useMemoFirebase(() => {
-        if (!firestore) return null;
-        return query(collection(firestore, 'testimonials'));
-    }, [firestore]);
-
-    const { data: testimonialsFromDB, isLoading: testimonialsLoading } = useCollection(testimonialsQuery);
+    const { data: testimonialsFromDB, isLoading: testimonialsLoading } = useTestimonials();
     
     const testimonials = testimonialsFromDB && testimonialsFromDB.length > 0 ? testimonialsFromDB : sampleTestimonials;
 
@@ -194,13 +186,7 @@ function TestimonialsSection() {
 }
 
 export default function Home() {
-  const firestore = useFirestore();
-  const photographsQuery = useMemoFirebase(() => {
-    if (!firestore) return null;
-    return query(collection(firestore, 'photographs'));
-  }, [firestore]);
-
-  const { data: photographs } = useCollection(photographsQuery);
+  const { data: photographs } = usePhotographs();
   const categories = photographs ? [...new Set(photographs.map(p => p.category))] : [];
   
   const bioImages = [

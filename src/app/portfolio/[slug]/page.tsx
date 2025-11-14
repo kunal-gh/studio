@@ -5,10 +5,7 @@ import { PortfolioGrid } from '@/components/portfolio/portfolio-grid';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection, query, where } from 'firebase/firestore';
-import { useEffect } from 'react';
-import { seedPhotographs } from '@/lib/seed-db';
+import { usePhotographs } from '@/lib/data-provider';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const categoryDescriptions: Record<string, string> = {
@@ -38,23 +35,8 @@ const LoadingSkeleton = () => (
 
 export default function PortfolioCategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const firestore = useFirestore();
-
-  // Seed the database if it's empty
-  useEffect(() => {
-    if (firestore) {
-      seedPhotographs(firestore);
-    }
-  }, [firestore]);
-
   const categoryTitle = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-
-  const photographsQuery = useMemoFirebase(() => {
-    if (!firestore) return null;
-    return query(collection(firestore, 'photographs'), where('category', '==', slug));
-  }, [firestore, slug]);
-
-  const { data: images, isLoading } = useCollection(photographsQuery);
+  const { data: images, isLoading } = usePhotographs(slug);
 
   return (
     <div className="py-12 md:py-16 bg-background animate-in fade-in-25 duration-300">

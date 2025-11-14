@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Star } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection, query } from 'firebase/firestore';
+import { useTestimonials } from '@/lib/data-provider';
 import {
   Carousel,
   CarouselContent,
@@ -65,13 +64,7 @@ const sampleTestimonials = [
   ];
 
 function TestimonialsContent() {
-    const firestore = useFirestore();
-    const testimonialsQuery = useMemoFirebase(() => {
-        if (!firestore) return null;
-        return query(collection(firestore, 'testimonials'));
-    }, [firestore]);
-
-    const { data: testimonialsFromDB, isLoading } = useCollection(testimonialsQuery);
+    const { data: testimonialsFromDB, isLoading } = useTestimonials();
     
     const testimonials = testimonialsFromDB && testimonialsFromDB.length > 0 ? testimonialsFromDB : sampleTestimonials;
 
