@@ -6,12 +6,16 @@
 - **React 18** - UI library
 - **TypeScript 5** - Type-safe development
 
-## Data Management
+## Backend & Data Management
 
-- **Local State** - In-memory data storage using React Context
-  - No external database dependencies
-  - Data provider pattern for photographs and testimonials
-  - Easily extensible to add backend later
+- **Next.js API Routes** - RESTful API endpoints
+- **File-Based Database** - JSON files in `data/` directory
+  - `photographs.json` - Portfolio images
+  - `testimonials.json` - Client reviews
+  - `contacts.json` - Contact form submissions
+- **Image Upload System** - File uploads to `public/uploads/`
+- **React Context** - Client-side data provider
+- **Easily upgradeable** - Can migrate to PostgreSQL, MongoDB, or any database
 
 ## UI & Styling
 

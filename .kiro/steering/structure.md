@@ -8,6 +8,14 @@
 - `components.json` - shadcn/ui configuration
 - `package.json` - Dependencies and scripts
 
+## Data Storage
+
+- `data/` - JSON database files
+  - `photographs.json` - Portfolio images data
+  - `testimonials.json` - Client testimonials
+  - `contacts.json` - Contact form submissions
+- `public/uploads/` - Uploaded images
+
 ## Source Directory (`src/`)
 
 ### `src/app/` - Next.js App Router
@@ -15,6 +23,15 @@
 - `page.tsx` - Home page
 - `globals.css` - Global styles with CSS variables
 - `admin/` - Admin panel routes
+  - `page.tsx` - Admin dashboard
+  - `photographs/page.tsx` - Manage photographs
+  - `testimonials/page.tsx` - Manage testimonials
+  - `contacts/page.tsx` - View contact messages
+- `api/` - API routes
+  - `photographs/` - CRUD for photographs
+  - `testimonials/` - CRUD for testimonials
+  - `contacts/` - CRUD for contacts
+  - `upload/` - Image upload endpoint
 - `portfolio/` - Portfolio page routes
 - `testimonials/` - Testimonials page routes
 
@@ -36,8 +53,8 @@
 
 ### `src/lib/`
 - `utils.ts` - Utility functions (cn for class merging)
-- `actions.ts` - Server actions
-- `local-data.ts` - Local data storage (photographs, testimonials)
+- `actions.ts` - Server actions (contact form submission)
+- `db.ts` - Database operations (file-based JSON storage)
 - `data-provider.tsx` - React Context provider for data
 - `placeholder-images.ts` - Image placeholder utilities
 - `placeholder-images.json` - Placeholder image data
@@ -45,7 +62,10 @@
 ## Documentation
 
 - `docs/blueprint.md` - Product design and style guidelines
-- `docs/backend.json` - Backend configuration reference
+- `ADMIN_GUIDE.md` - Complete admin panel documentation
+- `README.md` - Project setup and overview
+- `DEPLOYMENT.md` - Deployment instructions
+- `MIGRATION_SUMMARY.md` - Firebase to local migration notes
 
 
 
